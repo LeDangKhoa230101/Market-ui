@@ -1,6 +1,13 @@
 @import 'normalize.css';
 
 :root {
+    --width-website: 1280px;
+    --height-header: 139px;
+    --height-top-header: 80px;
+
+    --primary-color: #d23f57;
+    --white: #fff;
+    --black: #000;
 }
 
 html {
@@ -18,4 +25,14 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+}
+
+button,
+input {
+    border: none;
+    outline: none;
+}
+
+a {
+    text-decoration: none;
 }
