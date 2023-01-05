@@ -12,8 +12,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Tooltip from '@mui/material/Tooltip';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
 
 const cx = classNames.bind(styles);
 
@@ -44,8 +42,6 @@ function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [showResults, setShowResults] = useState(true);
 
-    const [open, setOpen] = useState(false);
-
     useEffect(() => {
         setSearchResult([]);
     }, []);
@@ -59,14 +55,6 @@ function Search() {
         if (!searchValue.startsWith(' ')) {
             setSearchValue(searchValue);
         }
-    };
-
-    const handleTooltipClose = () => {
-        setOpen(false);
-    };
-
-    const handleTooltipOpen = () => {
-        setOpen(true);
     };
 
     return (
