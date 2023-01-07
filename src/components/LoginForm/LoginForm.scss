@@ -1,6 +1,10 @@
 .modal_user-body {
     text-align: left;
     margin-bottom: 12px;
+
+    &.modal_user-body--position {
+        position: relative;
+    }
 }
 
 .modal_user-label {
@@ -44,17 +48,20 @@
 
 .modal_user-input-active {
     padding-top: 12px;
-    position: relative;
+}
+
+.mes-error {
+    color: var(--primary-color);
+    font-size: 1.2rem;
 }
 
 .password-eye {
     position: absolute;
-    right: 60px;
-    top: 262px;
+    right: 26px;
+    top: 31px;
     border: none;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+    width: 34px;
+    height: 34px;
     border-radius: 999px;
     font-size: 1.6rem;
     color: rgb(218, 225, 231);
@@ -79,7 +86,6 @@
     margin-top: 16px;
     background-color: var(--primary-color);
     border: none;
-    cursor: pointer;
     outline: none;
 
     &:hover {
