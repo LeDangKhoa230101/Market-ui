@@ -1,12 +1,12 @@
-import styles from './Header.module.scss';
 import images from '~/assets/image';
 import Button from '~/components/Button/Button';
+import ModalUser from '~/components/ModalUser/ModalUser';
 
 import classNames from 'classnames/bind';
 import { Search } from '../Search';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
+import styles from './Header.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -22,13 +22,8 @@ function Header() {
                     />
                     <Search />
                     <div className={cx('action')}>
-                        <Button rounded className={cx('action-btn')}>
-                            <FontAwesomeIcon
-                                icon={faUser}
-                                className={cx('action-icon')}
-                            />
-                        </Button>
-                        <Button rounded className={cx('action-btn')}>
+                        <ModalUser />
+                        <Button className={cx('action-btn')}>
                             <FontAwesomeIcon
                                 icon={faBagShopping}
                                 className={cx('action-icon')}

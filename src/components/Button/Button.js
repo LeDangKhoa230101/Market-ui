@@ -35,7 +35,7 @@ function Button({
         Comp = 'a';
     }
 
-    const classes = cx('btn', {
+    const classes = cx('wrappers', {
         [className]: className,
         primary,
         rounded,

@@ -1,7 +1,8 @@
 const images = {
     logo: require('~/assets/Image/logo.svg').default,
-    user: require('~/assets/Image/user.svg').default,
-    cart: require('~/assets/Image/cart.svg').default,
+    logoUser: require('~/assets/Image/logoUser.svg').default,
+    facebook: require('~/assets/Image/facebook.svg').default,
+    google: require('~/assets/Image/google.svg').default,
 };
 
 export default images;

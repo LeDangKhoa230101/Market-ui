@@ -59,7 +59,10 @@ function Search() {
 
     return (
         <div className={cx('search')}>
-            <span>
+            <button className={cx('search-btn')}>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+            <div className={cx('input-wrapper')}>
                 <HeadlessTippy
                     visible={searchResult.length > 0 && showResults}
                     interactive
@@ -86,10 +89,8 @@ function Search() {
                         placeholder="Searching for..."
                     />
                 </HeadlessTippy>
-            </span>
-            <button className={cx('search-btn')}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
+            </div>
+
             <HeadlessTippy
                 trigger="click"
                 offset={[-20, 2]}
