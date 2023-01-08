@@ -92,6 +92,10 @@
     width: 100%;
     justify-content: center;
     height: 44px;
+
+    &:hover {
+        opacity: 0.9;
+    }
 }
 
 .modal_user-google-btn {
@@ -126,4 +130,9 @@
     color: var(--blue-color);
     background-color: transparent;
     text-decoration: underline;
+}
+
+// menu user
+.className {
+    width: 175px;
 }

@@ -47,7 +47,7 @@ function Search() {
     const [showCate, setShowCate] = useState(null);
 
     useEffect(() => {
-        setSearchResult([]);
+        setSearchResult([1]);
     }, []);
 
     const handleHideResult = () => {
@@ -73,74 +73,76 @@ function Search() {
     const id = openCate ? 'simple-popover' : undefined;
 
     return (
-        <div className={cx('search')}>
-            <button className={cx('search-btn')}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-            <div className={cx('input-wrapper')}>
-                <HeadlessTippy
-                    visible={searchResult.length > 0 && showResults}
-                    interactive
-                    offset={[0, 0]}
-                    onClickOutside={handleHideResult}
-                    render={(attrs) => (
-                        <div
-                            className={cx('search-result')}
-                            tabIndex="-1"
-                            {...attrs}
-                        >
-                            <PopperWrapper>
-                                <SearchItem onClick={handleHideResult} />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <input
-                        value={searchValue}
-                        onFocus={() => setShowResults(true)}
-                        onChange={handleValueChange}
-                        className={cx('search-input')}
-                        type="text"
-                        placeholder="Searching for..."
-                    />
-                </HeadlessTippy>
-            </div>
+        <div className={cx('container')}>
+            <HeadlessTippy
+                visible={searchResult.length > 0 && showResults}
+                interactive
+                offset={[0, 0]}
+                onClickOutside={handleHideResult}
+                render={(attrs) => (
+                    <div
+                        className={cx('search-result')}
+                        tabIndex="-1"
+                        {...attrs}
+                    >
+                        <PopperWrapper>
+                            <SearchItem onClick={handleHideResult} />
+                        </PopperWrapper>
+                    </div>
+                )}
+            >
+                <div className={cx('search')}>
+                    <button className={cx('search-btn')}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
+                    <div className={cx('input-wrapper')}>
+                        <input
+                            value={searchValue}
+                            onFocus={() => setShowResults(true)}
+                            onChange={handleValueChange}
+                            className={cx('search-input')}
+                            type="text"
+                            placeholder="Searching for..."
+                        />
+                    </div>
 
-            <button
-                aria-describedby={id}
-                onClick={handleShowCate}
-                className={cx('cate-btn')}
-            >
-                All Categorys
-                <FontAwesomeIcon
-                    className={cx('down-icon')}
-                    icon={faAngleDown}
-                />
-            </button>
-            <Popover
-                id={id}
-                open={openCate}
-                anchorEl={showCate}
-                onClose={handleHideCate}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                }}
-            >
-                <PopperWrapper>
-                    {ALL_CATE.map((item, index) => {
-                        return (
-                            <Link
-                                key={index}
-                                to={item.to}
-                                className={cx('cate-item')}
-                            >
-                                {item.title}
-                            </Link>
-                        );
-                    })}
-                </PopperWrapper>
-            </Popover>
+                    <button
+                        aria-describedby={id}
+                        onClick={handleShowCate}
+                        className={cx('cate-btn')}
+                    >
+                        All Categorys
+                        <FontAwesomeIcon
+                            className={cx('down-icon')}
+                            icon={faAngleDown}
+                        />
+                    </button>
+                    <Popover
+                        id={id}
+                        open={openCate}
+                        anchorEl={showCate}
+                        onClose={handleHideCate}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                    >
+                        <PopperWrapper>
+                            {ALL_CATE.map((item, index) => {
+                                return (
+                                    <Link
+                                        key={index}
+                                        to={item.to}
+                                        className={cx('cate-item')}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                );
+                            })}
+                        </PopperWrapper>
+                    </Popover>
+                </div>
+            </HeadlessTippy>
         </div>
     );
 }

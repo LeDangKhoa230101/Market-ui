@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function Popper({ children }) {
-    return <div className={cx('wrapper')}>{children}</div>;
+function Popper({ children, className }) {
+    return <div className={cx('popper-wrapper', className)}>{children}</div>;
 }
 
 export default Popper;

@@ -1,6 +1,9 @@
-.search {
+.container {
     flex: 1;
     max-width: 670px;
+}
+
+.search {
     height: 44px;
     display: flex;
     align-items: center;
@@ -21,7 +24,7 @@
 .search-input {
     height: 100%;
     width: 100%;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #4b566b;
 }
 
