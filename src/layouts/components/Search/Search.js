@@ -1,4 +1,3 @@
-import styles from './Search.scss';
 import SearchItem from '~/components/SearchItem';
 import PopperWrapper from '~/components/Popper/Popper';
 
@@ -12,6 +11,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Popover from '@mui/material/Popover';
+
+import styles from './Search.scss';
 
 const cx = classNames.bind(styles);
 
@@ -42,6 +44,8 @@ function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [showResults, setShowResults] = useState(true);
 
+    const [showCate, setShowCate] = useState(null);
+
     useEffect(() => {
         setSearchResult([]);
     }, []);
@@ -56,6 +60,17 @@ function Search() {
             setSearchValue(searchValue);
         }
     };
+
+    const handleShowCate = (e) => {
+        setShowCate(e.currentTarget);
+    };
+
+    const handleHideCate = () => {
+        setShowCate(null);
+    };
+
+    const openCate = Boolean(showCate);
+    const id = openCate ? 'simple-popover' : undefined;
 
     return (
         <div className={cx('search')}>
@@ -91,38 +106,41 @@ function Search() {
                 </HeadlessTippy>
             </div>
 
-            <HeadlessTippy
-                trigger="click"
-                offset={[-20, 2]}
-                placement="top"
-                duration={2000}
-                interactive
-                render={(attrs) => (
-                    <div className={cx('cate-list')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>
-                            {ALL_CATE.map((item, index) => {
-                                return (
-                                    <Link
-                                        key={index}
-                                        to={item.to}
-                                        className={cx('cate-item')}
-                                    >
-                                        {item.title}
-                                    </Link>
-                                );
-                            })}
-                        </PopperWrapper>
-                    </div>
-                )}
+            <button
+                aria-describedby={id}
+                onClick={handleShowCate}
+                className={cx('cate-btn')}
             >
-                <button className={cx('cate-btn')}>
-                    All Categorys
-                    <FontAwesomeIcon
-                        className={cx('down-icon')}
-                        icon={faAngleDown}
-                    />
-                </button>
-            </HeadlessTippy>
+                All Categorys
+                <FontAwesomeIcon
+                    className={cx('down-icon')}
+                    icon={faAngleDown}
+                />
+            </button>
+            <Popover
+                id={id}
+                open={openCate}
+                anchorEl={showCate}
+                onClose={handleHideCate}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+            >
+                <PopperWrapper>
+                    {ALL_CATE.map((item, index) => {
+                        return (
+                            <Link
+                                key={index}
+                                to={item.to}
+                                className={cx('cate-item')}
+                            >
+                                {item.title}
+                            </Link>
+                        );
+                    })}
+                </PopperWrapper>
+            </Popover>
         </div>
     );
 }
