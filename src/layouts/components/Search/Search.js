@@ -47,7 +47,7 @@ function Search() {
     const [showCate, setShowCate] = useState(null);
 
     useEffect(() => {
-        setSearchResult([1]);
+        setSearchResult([]);
     }, []);
 
     const handleHideResult = () => {

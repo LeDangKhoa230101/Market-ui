@@ -7,6 +7,7 @@
     margin: auto;
     width: var(--width-website);
     padding: 0 24px;
+    height: 100%;
 }
 
 .top-header {
@@ -23,4 +24,11 @@
 .action {
     display: flex;
     align-items: center;
+}
+
+.sub-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: calc(100% - var(--height-top-header));
 }

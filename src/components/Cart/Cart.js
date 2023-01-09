@@ -73,6 +73,7 @@ function Cart() {
                     icon={faBagShopping}
                     className={cx('action-icon')}
                 />
+                <span className={cx('cart-item')}>3</span>
             </Button>
             <Drawer open={showCart} anchor="right" onClose={handleHideCart}>
                 <Box className={cx('cart')}>

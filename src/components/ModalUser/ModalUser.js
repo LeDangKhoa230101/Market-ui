@@ -68,7 +68,7 @@ function ModalUser() {
                         className={cx('action-btn')}
                     >
                         <FontAwesomeIcon
-                            icon={faUser}
+                            icon={faArrowRightToBracket}
                             className={cx('action-icon')}
                         />
                     </Button>
