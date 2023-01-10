@@ -2,6 +2,7 @@ import styles from './SearchItem.scss';
 
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
@@ -12,5 +13,9 @@ function SearchItem({ onClick }) {
         </Link>
     );
 }
+
+SearchItem.propTypes = {
+    onclick: PropTypes.func,
+};
 
 export default SearchItem;

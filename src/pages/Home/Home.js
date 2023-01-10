@@ -1,5 +1,5 @@
 import styles from './Home.scss';
-import Slide from '~/components/Slide/Slide';
+import Slide from '~/layouts/components/Slide/Slide';
 
 import classNames from 'classnames/bind';
 

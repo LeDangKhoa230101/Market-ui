@@ -1,7 +1,7 @@
 import styles from './Header.module.scss';
 import images from '~/assets/image';
-import ModalUser from '~/components/ModalUser/ModalUser';
-import Cart from '~/components/Cart/Cart';
+import ModalUser from '~/layouts/components/ModalUser/ModalUser';
+import Cart from '~/layouts/components/Cart/Cart';
 import { Search } from '../Search';
 import Category from '~/layouts/components/Category';
 

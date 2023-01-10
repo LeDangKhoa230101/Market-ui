@@ -1,7 +1,7 @@
 import Image from '~/components/Image/Image';
 import Button from '~/components/Button/Button';
 import images from '~/assets/image';
-import LoginForm from '~/components/LoginForm/LoginForm';
+import LoginForm from '~/layouts/components/LoginForm/LoginForm';
 import Menu from '~/components/Popper/Menu';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

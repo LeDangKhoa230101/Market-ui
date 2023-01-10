@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import PopperWrapper from '~/components/Popper/Popper';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
@@ -32,5 +33,10 @@ function Menu({ children, data }) {
         </span>
     );
 }
+
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    data: PropTypes.array,
+};
 
 export default Menu;

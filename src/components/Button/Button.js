@@ -1,5 +1,6 @@
 import styles from './Button.scss';
 
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { forwardRef } from 'react';
@@ -56,5 +57,20 @@ function Button(
         </Comp>
     );
 }
+
+Button.propTypes = {
+    to: PropTypes.string,
+    href: PropTypes.string,
+    primary: PropTypes.bool,
+    rounded: PropTypes.bool,
+    outline: PropTypes.bool,
+    medium: PropTypes.bool,
+    large: PropTypes.bool,
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+    leftIcon: PropTypes.node.isRequired,
+    rightIcon: PropTypes.node.isRequired,
+    onClick: PropTypes.func.isRequired,
+};
 
 export default forwardRef(Button);
