@@ -1,0 +1,132 @@
+// product item
+.product-item {
+    position: relative;
+    border-radius: 8px;
+    width: calc(100% - 2.4rem);
+    height: 100%;
+    margin: auto;
+    background-color: var(--white);
+    transition: all 250ms ease-in-out;
+    box-shadow: 0px 1px 3px rgb(3 0 71 / 9%);
+
+    &:hover .product__item-follow {
+        display: flex;
+    }
+}
+
+.product__item-img {
+    width: 100%;
+    height: 290px;
+    cursor: pointer;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.product__item-top {
+    width: 100%;
+}
+
+.product__item-sale {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    border-radius: 25px;
+    font-size: 1rem;
+    width: 58px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    background-color: var(--primary-color);
+}
+
+.product__item-follow {
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+}
+
+.product__item-like {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.product__item-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.product__item-body-right {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.product__item-name {
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: #373f50;
+    font-weight: 500;
+}
+
+.product__item-rate {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-top: 4px;
+}
+
+.product__item-star {
+    width: 20px;
+    height: 20px;
+}
+
+.product__item-star-icon {
+    width: 20px !important;
+    height: 20px !important;
+    color: #faaf00;
+}
+
+.product__item-price {
+    font-size: 1.4rem;
+}
+
+.product__item-price-curr {
+    color: var(--primary-color);
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.product__item-price-deals {
+    color: #7d879c;
+    font-weight: 600;
+    text-decoration: line-through;
+}
+
+.product__item-body-action {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 80px;
+}
+
+.product__item-qt {
+    color: rgb(43, 52, 69);
+    font-weight: 600;
+}

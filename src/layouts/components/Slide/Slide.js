@@ -30,6 +30,11 @@ function Slide() {
                 autoPlay={false}
                 animation="slide"
                 duration={400}
+                navButtonsProps={{
+                    style: {
+                        display: 'none',
+                    },
+                }}
                 indicatorIconButtonProps={{
                     style: {
                         color: '#0F3460',
