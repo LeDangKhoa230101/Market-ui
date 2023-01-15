@@ -6,9 +6,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
 import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import Popover from '@mui/material/Popover';
-import Box from '@mui/material/Box';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import PopoverCate from './PopoverCate/PopoverCate';
 
 const cx = classNames.bind(styles);
 
@@ -41,6 +40,7 @@ function Category({ data }) {
 
     const open = Boolean(anchorEl);
     const id = anchorEl ? 'simple-popover' : undefined;
+
     return (
         <div className={cx('category')}>
             <ThemeProvider theme={theme}>
@@ -60,6 +60,7 @@ function Category({ data }) {
                         sx={{
                             width: '20px',
                             height: '20px',
+                            rotate: '90deg',
                         }}
                         className={cx('cate-icon')}
                     />
@@ -75,49 +76,13 @@ function Category({ data }) {
                     />
                 </Button>
             </ThemeProvider>
-            <Popover
+            <PopoverCate
+                data={data}
+                handleHideMenuCate={handleHideMenuCate}
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
-                onClose={handleHideMenuCate}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
-                sx={{ marginTop: '10px' }}
-            >
-                <Box
-                    sx={{
-                        width: '278px',
-                        padding: '8px 0',
-                    }}
-                >
-                    {data.map((item, index) => (
-                        <Button
-                            key={index}
-                            className={cx('cate-item')}
-                            sx={{
-                                padding: '0 16px',
-                                fontSize: '1.5rem',
-                                color: '#2b3445',
-                                textTransform: 'capitalize',
-                                justifyContent: 'flex-start',
-                            }}
-                            onClick={handleHideMenuCate}
-                        >
-                            <FontAwesomeIcon
-                                className={cx('cate-item-icon')}
-                                icon={item.icon}
-                            />
-                            <span>{item.title}</span>
-                        </Button>
-                    ))}
-                </Box>
-            </Popover>
+            />
         </div>
     );
 }

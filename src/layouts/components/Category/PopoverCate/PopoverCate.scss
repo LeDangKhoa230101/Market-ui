@@ -1,0 +1,24 @@
+.cate-item {
+    width: 100%;
+    height: 40px;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    &:hover .cate-item-icon {
+        color: var(--primary-color);
+    }
+
+    &:hover span {
+        color: var(--primary-color);
+    }
+}
+
+.cate-item-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    color: #2b3445;
+    margin-bottom: 3px;
+}

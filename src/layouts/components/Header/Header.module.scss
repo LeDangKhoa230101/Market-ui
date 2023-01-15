@@ -1,13 +1,40 @@
 .header {
     border-bottom: 1px solid #f3f5f9;
     height: var(--height-header);
+    background-color: var(--white);
+
+    &.sticky {
+        position: sticky;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 999;
+        height: var(--height-top-header);
+        background-color: var(--white);
+        box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
+        animation: fadeInHeader linear 0.3s;
+
+        & .sub-header {
+            display: none;
+        }
+    }
+}
+
+@keyframes fadeInHeader {
+    from {
+        top: -80px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
 }
 
 .wrapper {
     margin: auto;
-    width: var(--width-website);
     padding: 0 24px;
-    height: 100%;
+    width: var(--width-website);
 }
 
 .top-header {
@@ -30,5 +57,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: auto;
+    padding: 0 24px;
+    width: var(--width-website);
     height: calc(100% - var(--height-top-header));
 }
