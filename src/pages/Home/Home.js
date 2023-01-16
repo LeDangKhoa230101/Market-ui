@@ -14,99 +14,12 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+
+import { useGetProductsFlashDealsQuery } from '~/reducers/productsApi';
 
 const cx = classNames.bind(styles);
-
-const FLASH_DEALS = [
-    {
-        id: 1,
-        name: 'NikeCourt Zoom Vapor Cage',
-        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-1.png&w=1920&q=75',
-        curPrice: '187,50',
-        dealsPrice: '250,00',
-        description:
-            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
-        rating: 4,
-        cate: 'Cosmetic',
-    },
-    {
-        id: 2,
-        name: 'Classic Rolex Watch',
-        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=1920&q=75',
-        curPrice: '297,50',
-        dealsPrice: '350,00',
-        description:
-            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
-        rating: 5,
-        cate: 'Cosmetic',
-    },
-    {
-        id: 3,
-        name: 'IPhone 13 Pro Max 128GB',
-        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-3.png&w=1920&q=75',
-        curPrice: '108,00',
-        dealsPrice: '150,00',
-        description:
-            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
-        rating: 3,
-        cate: 'Cosmetic',
-    },
-    {
-        id: 4,
-        name: 'Mi Led Smart Watch',
-        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-4.png&w=1920&q=75',
-        curPrice: '142,20',
-        dealsPrice: '180,00',
-        description:
-            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
-        rating: 4,
-        cate: 'Cosmetic',
-    },
-    {
-        id: 5,
-        name: 'NikeCourt Zoom Vapor Cage',
-        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-1.png&w=1920&q=75',
-        curPrice: '187,50',
-        dealsPrice: '250,00',
-        description:
-            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
-        rating: 4,
-        cate: 'Cosmetic',
-    },
-    {
-        id: 6,
-        name: 'Classic Rolex Watch',
-        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=1920&q=75',
-        curPrice: '297,50',
-        dealsPrice: '350,00',
-        description:
-            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
-        rating: 5,
-        cate: 'Cosmetic',
-    },
-    {
-        id: 7,
-        name: 'IPhone 13 Pro Max 128GB',
-        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-3.png&w=1920&q=75',
-        curPrice: '108,00',
-        dealsPrice: '150,00',
-        description:
-            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
-        rating: 3,
-        cate: 'Cosmetic',
-    },
-    {
-        id: 8,
-        name: 'Mi Led Smart Watch',
-        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-4.png&w=1920&q=75',
-        curPrice: '142,20',
-        dealsPrice: '180,00',
-        description:
-            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
-        rating: 4,
-        cate: 'Cosmetic',
-    },
-];
 
 function Home() {
     const [heart, setHeart] = useState('none');
@@ -158,6 +71,9 @@ function Home() {
 
     const sliderRef = useRef(null);
 
+    // display product flash deals
+    const { data, error, isLoading } = useGetProductsFlashDealsQuery();
+
     return (
         <div className={cx('wrapper-home')}>
             <Slide />
@@ -198,28 +114,41 @@ function Home() {
                     </div>
                     {/* Slide deals */}
                     <div className={cx('deal-slide')}>
-                        <Slider {...settings} ref={sliderRef}>
-                            {FLASH_DEALS.map((product, index) => {
-                                return (
-                                    <Box key={index}>
-                                        <ProductItem
-                                            product={product}
-                                            handleShowModal={handleShowModal}
-                                            handleShowUnHeart={
-                                                handleShowUnHeart
-                                            }
-                                            heart={heart}
-                                            handleShowHeart={handleShowHeart}
-                                            unHeart={unHeart}
-                                            handleMinusItem={handleMinusItem}
-                                            showAction={showAction}
-                                            qtItem={qtItem}
-                                            handlePlusItem={handlePlusItem}
-                                        />
-                                    </Box>
-                                );
-                            })}
-                        </Slider>
+                        {isLoading ? (
+                            <CircularProgress />
+                        ) : error ? (
+                            <Alert severity="error" />
+                        ) : (
+                            <Slider {...settings} ref={sliderRef}>
+                                {data.map((product, index) => {
+                                    return (
+                                        <Box key={index}>
+                                            <ProductItem
+                                                product={product}
+                                                handleShowModal={
+                                                    handleShowModal
+                                                }
+                                                handleShowUnHeart={
+                                                    handleShowUnHeart
+                                                }
+                                                heart={heart}
+                                                handleShowHeart={
+                                                    handleShowHeart
+                                                }
+                                                unHeart={unHeart}
+                                                handleMinusItem={
+                                                    handleMinusItem
+                                                }
+                                                showAction={showAction}
+                                                qtItem={qtItem}
+                                                handlePlusItem={handlePlusItem}
+                                            />
+                                        </Box>
+                                    );
+                                })}
+                            </Slider>
+                        )}
+
                         <button
                             onClick={() => sliderRef.current.slickPrev()}
                             className={cx('deals-slide-btn--left')}
