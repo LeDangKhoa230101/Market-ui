@@ -2,14 +2,15 @@ import styles from './ProductItem.scss';
 import Image from '~/components/Image/Image';
 
 import classNames from 'classnames/bind';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Button from '@mui/material/Button';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +30,9 @@ function ProductItem({
         <div className={cx('product-item')}>
             <Image className={cx('product__item-img')} src={product.image} />
             <div className={cx('product__item-top')}>
-                <span className={cx('product__item-sale')}>25% off</span>
+                <span className={cx('product__item-sale')}>
+                    {product.deals} off
+                </span>
                 <div className={cx('product__item-follow')}>
                     <VisibilityIcon
                         onClick={handleShowModal}
@@ -85,33 +88,13 @@ function ProductItem({
                     <span className={cx('product__item-name')}>
                         {product.name}
                     </span>
-                    <div className={cx('product__item-rate')}>
-                        <span className={cx('product__item-star')}>
-                            <StarIcon
-                                className={cx('product__item-star-icon')}
-                            />
-                        </span>
-                        <span className={cx('product__item-star')}>
-                            <StarIcon
-                                className={cx('product__item-star-icon')}
-                            />
-                        </span>
-                        <span className={cx('product__item-star')}>
-                            <StarIcon
-                                className={cx('product__item-star-icon')}
-                            />
-                        </span>
-                        <span className={cx('product__item-star')}>
-                            <StarIcon
-                                className={cx('product__item-star-icon')}
-                            />
-                        </span>
-                        <span className={cx('product__item-star')}>
-                            <StarBorderIcon
-                                className={cx('product__item-star-icon')}
-                            />
-                        </span>
-                    </div>
+                    <Stack
+                        sx={{
+                            margin: '9px 0',
+                        }}
+                    >
+                        <Rating value={product.rating} size="large" />
+                    </Stack>
                     <div className={cx('product__item-price')}>
                         <span className={cx('product__item-price-curr')}>
                             {product.curPrice} US$
@@ -170,5 +153,18 @@ function ProductItem({
         </div>
     );
 }
+
+ProductItem.propTypes = {
+    product: PropTypes.object,
+    handleShowModal: PropTypes.func,
+    handleShowUnHeart: PropTypes.func,
+    heart: PropTypes.node,
+    handleShowHeart: PropTypes.func,
+    unHeart: PropTypes.node,
+    handleMinusItem: PropTypes.func,
+    showAction: PropTypes.node,
+    qtItem: PropTypes.node,
+    handlePlusItem: PropTypes.func,
+};
 
 export default ProductItem;

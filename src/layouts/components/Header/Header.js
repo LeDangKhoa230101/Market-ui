@@ -80,14 +80,19 @@ function Header() {
     let scroll = 280;
 
     useEffect(() => {
-        window.onscroll = () => {
-            if (window.pageYOffset >= scroll) {
+        const handleScroll = () => {
+            if (window.scrollY >= scroll) {
                 setClassHeader('sticky');
                 setShowSubCate('block');
             } else {
                 setClassHeader('');
                 setShowSubCate('none');
             }
+        };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 

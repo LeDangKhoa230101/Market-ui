@@ -12,10 +12,10 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import Carousel from 'react-material-ui-carousel';
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
 
 const cx = classNames.bind(styles);
 
@@ -130,48 +130,9 @@ function ModalDetail({ open, func }) {
                             <span className={cx('modal-price')}>
                                 250,00 US$
                             </span>
-                            <div>
-                                <span className={cx('modal-star')}>
-                                    <StarIcon
-                                        sx={{
-                                            width: '20px',
-                                            height: '20px',
-                                        }}
-                                    />
-                                </span>
-                                <span className={cx('modal-star')}>
-                                    <StarIcon
-                                        sx={{
-                                            width: '20px',
-                                            height: '20px',
-                                        }}
-                                    />
-                                </span>
-                                <span className={cx('modal-star')}>
-                                    <StarIcon
-                                        sx={{
-                                            width: '20px',
-                                            height: '20px',
-                                        }}
-                                    />
-                                </span>
-                                <span className={cx('modal-star')}>
-                                    <StarIcon
-                                        sx={{
-                                            width: '20px',
-                                            height: '20px',
-                                        }}
-                                    />
-                                </span>
-                                <span className={cx('modal-star--active')}>
-                                    <StarBorderIcon
-                                        sx={{
-                                            width: '20px',
-                                            height: '20px',
-                                        }}
-                                    />
-                                </span>
-                            </div>
+                            <Stack>
+                                <Rating value={4} size="large" />
+                            </Stack>
                             <span className={cx('modal-description')}>
                                 Components may have multiple widths defined,
                                 causing the layout to change at the defined

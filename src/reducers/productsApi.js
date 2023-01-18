@@ -5,7 +5,7 @@ export const productsFlashDealsApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000' }),
     endpoints: (builder) => ({
         getProductsFlashDeals: builder.query({
-            query: () => 'flash-deals-products',
+            query: () => '/flash-deals-products',
         }),
     }),
 });

@@ -23,14 +23,14 @@ const productsFlashDealsSlice = createSlice({
     reducers: {},
     extraReducers(builder) {
         builder
-            .addCase(productsFlashDealsFetch.pending, (state, action) => {
+            .addCase(productsFlashDealsFetch.pending, (state) => {
                 state.status = 'loading';
             })
             .addCase(productsFlashDealsFetch.fulfilled, (state, action) => {
                 state.status = 'success';
                 state.items = state.items.concat(action.payload);
             })
-            .addCase(productsFlashDealsFetch.rejected, (state, action) => {
+            .addCase(productsFlashDealsFetch.rejected, (state) => {
                 state.status = 'failed';
             });
     },

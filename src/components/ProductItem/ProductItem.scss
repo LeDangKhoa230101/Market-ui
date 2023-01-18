@@ -82,24 +82,11 @@
     font-size: 1.4rem;
     color: #373f50;
     font-weight: 500;
-}
-
-.product__item-rate {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-    margin-top: 4px;
-}
-
-.product__item-star {
-    width: 20px;
-    height: 20px;
-}
-
-.product__item-star-icon {
-    width: 20px !important;
-    height: 20px !important;
-    color: #faaf00;
+    display: -webkit-box;
+    height: 2.2rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 
 .product__item-price {

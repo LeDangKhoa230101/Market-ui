@@ -21,6 +21,105 @@ import { useGetProductsFlashDealsQuery } from '~/reducers/productsApi';
 
 const cx = classNames.bind(styles);
 
+const items = [
+    {
+        id: 1,
+        name: 'NikeCourt Zoom Vapor Cage',
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-1.png&w=1920&q=75',
+        curPrice: 87.5,
+        dealsPrice: 250.0,
+        description:
+            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
+        rating: 4,
+        cate: 'Cosmetic',
+        like: false,
+    },
+    {
+        id: 2,
+        name: 'Classic Rolex Watch',
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=1920&q=75',
+        curPrice: 297.5,
+        dealsPrice: 350.0,
+        description:
+            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
+        rating: 5,
+        cate: 'Cosmetic',
+        like: false,
+    },
+    {
+        id: 3,
+        name: 'IPhone 13 Pro Max 128GB',
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-3.png&w=1920&q=75',
+        curPrice: 108.0,
+        dealsPrice: 150.0,
+        description:
+            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
+        rating: 3,
+        cate: 'Cosmetic',
+        like: false,
+    },
+    {
+        id: 4,
+        name: 'Mi Led Smart Watch',
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-4.png&w=1920&q=75',
+        curPrice: 142.2,
+        dealsPrice: 180.0,
+        description:
+            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
+        rating: 4,
+        cate: 'Cosmetic',
+        like: false,
+    },
+    {
+        id: 5,
+        name: 'NikeCourt Zoom Vapor Cage',
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-1.png&w=1920&q=75',
+        curPrice: 87.5,
+        dealsPrice: 250.0,
+        description:
+            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
+        rating: 4,
+        cate: 'Cosmetic',
+        like: false,
+    },
+    {
+        id: 6,
+        name: 'Classic Rolex Watch',
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-2.png&w=1920&q=75',
+        curPrice: 297.5,
+        dealsPrice: 350.0,
+        description:
+            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
+        rating: 5,
+        cate: 'Cosmetic',
+        like: false,
+    },
+    {
+        id: 7,
+        name: 'IPhone 14 Pro Max 128GB',
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-3.png&w=1920&q=75',
+        curPrice: 108.0,
+        dealsPrice: 150.0,
+        description:
+            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
+        rating: 3,
+        cate: 'Cosmetic',
+        like: false,
+    },
+    {
+        id: 8,
+        name: 'Mi Led Smart Watch',
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-4.png&w=1920&q=75',
+        curPrice: 142.2,
+        dealsPrice: 180.0,
+        description:
+            'Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus adipiscing.',
+        rating: 4,
+        cate: 'Cosmetic',
+        like: false,
+    },
+];
+
 function Home() {
     const [heart, setHeart] = useState('none');
     const [unHeart, setUnHeart] = useState('');
@@ -117,7 +216,9 @@ function Home() {
                         {isLoading ? (
                             <CircularProgress />
                         ) : error ? (
-                            <Alert severity="error" />
+                            <Alert severity="error">
+                                This is an error alert - check it out
+                            </Alert>
                         ) : (
                             <Slider {...settings} ref={sliderRef}>
                                 {data.map((product, index) => {
@@ -148,7 +249,6 @@ function Home() {
                                 })}
                             </Slider>
                         )}
-
                         <button
                             onClick={() => sliderRef.current.slickPrev()}
                             className={cx('deals-slide-btn--left')}
