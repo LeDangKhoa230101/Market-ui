@@ -19,6 +19,10 @@ import Alert from '@mui/material/Alert';
 
 import { useGetProductsFlashDealsQuery } from '~/reducers/productsApi';
 
+import { addToCart } from '~/reducers/cartSlice';
+import { useDispatch } from 'react-redux';
+// import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
+
 const cx = classNames.bind(styles);
 
 const items = [
@@ -129,6 +133,8 @@ function Home() {
 
     const [showModal, setShowModal] = useState(false);
 
+    const dispatch = useDispatch();
+
     const handleShowHeart = () => {
         setHeart('block');
         setUnHeart('none');
@@ -139,9 +145,10 @@ function Home() {
         setHeart('none');
     };
 
-    const handlePlusItem = () => {
+    const handlePlusItem = (product) => {
         setShowAction('');
         setQtItem(qtItem + 1);
+        dispatch(addToCart(product));
     };
 
     const handleMinusItem = () => {
@@ -242,7 +249,9 @@ function Home() {
                                                 }
                                                 showAction={showAction}
                                                 qtItem={qtItem}
-                                                handlePlusItem={handlePlusItem}
+                                                handlePlusItem={() =>
+                                                    handlePlusItem(product)
+                                                }
                                             />
                                         </Box>
                                     );
