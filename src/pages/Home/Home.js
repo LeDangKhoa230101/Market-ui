@@ -16,12 +16,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
+import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
+import CancelSharpIcon from '@mui/icons-material/CancelSharp';
 
 import { useGetProductsFlashDealsQuery } from '~/reducers/productsApi';
 
 import { addToCart } from '~/reducers/cartSlice';
 import { useDispatch } from 'react-redux';
-// import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
+import { useSnackbar } from 'notistack';
 
 const cx = classNames.bind(styles);
 
@@ -135,6 +137,8 @@ function Home() {
 
     const dispatch = useDispatch();
 
+    const { enqueueSnackbar } = useSnackbar();
+
     const handleShowHeart = () => {
         setHeart('block');
         setUnHeart('none');
@@ -149,6 +153,21 @@ function Home() {
         setShowAction('');
         setQtItem(qtItem + 1);
         dispatch(addToCart(product));
+        enqueueSnackbar(
+            <div className={cx('snackbar')}>
+                <CheckCircleSharpIcon
+                    sx={{
+                        marginRight: '8px',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: 'var(--white)',
+                        color: '#33d067',
+                        borderRadius: '999px',
+                    }}
+                />
+                <span>Added to cart</span>
+            </div>,
+        );
     };
 
     const handleMinusItem = () => {
@@ -156,6 +175,21 @@ function Home() {
             setShowAction('none');
         }
         setQtItem(qtItem - 1);
+        enqueueSnackbar(
+            <div className={cx('snackbar')}>
+                <CancelSharpIcon
+                    sx={{
+                        marginRight: '8px',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: 'var(--white)',
+                        color: 'var(--primary-color)',
+                        borderRadius: '999px',
+                    }}
+                />
+                <span>Remove from cart</span>
+            </div>,
+        );
     };
 
     const handleShowModal = () => {

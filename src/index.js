@@ -5,14 +5,26 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyles from '~/components/GlobalStyles';
 import { store } from '~/app/store';
 import { Provider } from 'react-redux';
+import { SnackbarProvider } from 'notistack';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <GlobalStyles>
-                <App />
-            </GlobalStyles>
+            <SnackbarProvider
+                maxSnack={4}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                }}
+                style={{
+                    backgroundColor: 'var(--white)',
+                }}
+            >
+                <GlobalStyles>
+                    <App />
+                </GlobalStyles>
+            </SnackbarProvider>
         </Provider>
     </React.StrictMode>,
 );
