@@ -1,0 +1,24 @@
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.section-right {
+    &:hover {
+        background-color: transparent !important;
+    }
+}

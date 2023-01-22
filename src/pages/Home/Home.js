@@ -1,12 +1,10 @@
 import styles from './Home.scss';
 import Slide from '~/layouts/components/Slide/Slide';
 import ProductItem from '~/components/ProductItem';
+import TitleSection from '~/components/TitleSection';
 
 import { useRef } from 'react';
 import classNames from 'classnames/bind';
-import BoltIcon from '@mui/icons-material/Bolt';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Slider from 'react-slick';
@@ -17,6 +15,7 @@ import CancelSharpIcon from '@mui/icons-material/CancelSharp';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import { useSnackbar } from 'notistack';
+import BoltIcon from '@mui/icons-material/Bolt';
 
 import { addToCart } from '~/reducers/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -85,8 +84,8 @@ function Home() {
             <div className={cx('home-container')}>
                 {/* Flash Deals */}
                 <div className={cx('deals')}>
-                    <div className={cx('deals-header')}>
-                        <div className={cx('deals-heading')}>
+                    <TitleSection
+                        icon={
                             <BoltIcon
                                 sx={{
                                     width: '24px',
@@ -95,28 +94,9 @@ function Home() {
                                     color: 'var(--primary-color)',
                                 }}
                             />
-                            <span className={cx('deals-title')}>
-                                Flash Deals
-                            </span>
-                        </div>
-                        <Button
-                            sx={{
-                                fontSize: '1.4rem',
-                                textTransform: 'capitalize',
-                                color: '#7d879c',
-                                height: '26px',
-                            }}
-                            className={cx('deals-right')}
-                        >
-                            View all
-                            <ArrowRightIcon
-                                sx={{
-                                    width: '20px',
-                                    height: '20px',
-                                }}
-                            />
-                        </Button>
-                    </div>
+                        }
+                        title={'Flash Deals'}
+                    />
                     {/* Slide deals */}
                     <div className={cx('deal-slide')}>
                         {status === 'loading' ? (
