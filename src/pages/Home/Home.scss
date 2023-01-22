@@ -4,7 +4,7 @@
 
 // deals
 .deals {
-    width: var(--width-website);
+    max-width: var(--width-website);
     margin: auto;
     margin-bottom: 60px;
     padding: 60px 24px;

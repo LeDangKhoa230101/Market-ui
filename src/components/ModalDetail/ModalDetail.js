@@ -2,54 +2,57 @@ import styles from './ModalDetail.scss';
 import Image from '~/components/Image/Image';
 
 import classNames from 'classnames/bind';
-import { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import Carousel from 'react-material-ui-carousel';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
+import { useSnackbar } from 'notistack';
+
+import { useDispatch } from 'react-redux';
+import { addToCart } from '~/reducers/cartSlice';
 
 const cx = classNames.bind(styles);
 
-const IMAGE_DETAIL = [
-    {
-        image: 'https://bazaar.ui-lib.com/assets/images/products/flash-1.png',
-    },
-    {
-        image: 'https://bazaar.ui-lib.com/assets/images/products/flash-1.png',
-    },
-];
+function ModalDetail({
+    open,
+    func,
+    name,
+    cate,
+    curPrice,
+    description,
+    images,
+    rating,
+    product,
+}) {
+    const dispatch = useDispatch();
 
-function ModalDetail({ open, func }) {
-    const [showAddToCart, setShowAddToCart] = useState('');
-    const [showModalAction, setShowModalAction] = useState('none');
+    const { enqueueSnackbar } = useSnackbar();
 
-    const [qtItem, setQtItem] = useState(0);
-
-    const handleShowModalAction = () => {
-        setShowAddToCart('none');
-        setShowModalAction('');
-        setQtItem(qtItem + 1);
-    };
-
-    const handleAddModalAction = () => {
-        setQtItem(qtItem + 1);
-    };
-
-    const handleRemoveModalAction = () => {
-        if (qtItem === 1) {
-            setShowModalAction('none');
-            setShowAddToCart('');
-        }
-        setQtItem(qtItem - 1);
+    const handleShowModalAction = (product) => {
+        dispatch(addToCart(product));
+        enqueueSnackbar(
+            <div className={cx('snackbar')}>
+                <CheckCircleSharpIcon
+                    sx={{
+                        marginRight: '8px',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: 'var(--white)',
+                        color: '#33d067',
+                        borderRadius: '999px',
+                    }}
+                />
+                <span>Added to cart</span>
+            </div>,
+        );
     };
 
     return (
@@ -103,11 +106,11 @@ function ModalDetail({ open, func }) {
                                 autoPlay={false}
                                 animation="slide"
                             >
-                                {IMAGE_DETAIL.map((slide, index) => (
+                                {images.map((slide, index) => (
                                     <Image
                                         key={index}
                                         className={cx('modal-img')}
-                                        src={slide.image}
+                                        src={slide.imageDetail}
                                     />
                                 ))}
                             </Carousel>
@@ -121,30 +124,23 @@ function ModalDetail({ open, func }) {
                                 flexDirection: 'column',
                             }}
                         >
-                            <h1 className={cx('modal-heading')}>
-                                NikeCourt Zoom Vapor Cage
-                            </h1>
+                            <h1 className={cx('modal-heading')}>{name}</h1>
                             <span className={cx('modal-cate')}>
-                                CATEGORY: Cosmetic
+                                CATEGORY: {cate}
                             </span>
                             <span className={cx('modal-price')}>
-                                250,00 US$
+                                {curPrice} US$
                             </span>
                             <Stack>
-                                <Rating value={4} size="large" />
+                                <Rating value={rating} size="large" />
                             </Stack>
                             <span className={cx('modal-description')}>
-                                Components may have multiple widths defined,
-                                causing the layout to change at the defined
-                                breakpoint. Width values given to larger
-                                breakpoints override those given to smaller
-                                breakpoints.
+                                {description}
                             </span>
                             <span className={cx('modal-seperate')}></span>
                             <Button
-                                onClick={handleShowModalAction}
+                                onClick={() => handleShowModalAction(product)}
                                 sx={{
-                                    display: showAddToCart,
                                     width: '164px',
                                     height: '45px',
                                     fontSize: '1.5rem',
@@ -167,54 +163,6 @@ function ModalDetail({ open, func }) {
                                     Add To Cart
                                 </span>
                             </Button>
-                            <div
-                                style={{ display: showModalAction }}
-                                className={cx('modal-action')}
-                            >
-                                <RemoveIcon
-                                    onClick={handleRemoveModalAction}
-                                    sx={{
-                                        width: '41px',
-                                        height: '45px',
-                                        padding: '9.6px',
-                                        borderRadius: '4px',
-                                        border: '1px solid rgba(210, 63, 87, 0.5)',
-                                        color: 'var(--primary-color)',
-                                        cursor: 'pointer',
-
-                                        '&:hover': {
-                                            backgroundColor:
-                                                'rgba(210, 63, 87, 0.04)',
-                                        },
-                                    }}
-                                />
-                                <span
-                                    style={{
-                                        margin: '0 20px',
-                                        fontSize: '2rem',
-                                        fontWeight: '600',
-                                    }}
-                                >
-                                    0{qtItem}
-                                </span>
-                                <AddIcon
-                                    onClick={handleAddModalAction}
-                                    sx={{
-                                        width: '41px',
-                                        height: '45px',
-                                        padding: '9.6px',
-                                        borderRadius: '4px',
-                                        border: '1px solid rgba(210, 63, 87, 0.5)',
-                                        color: 'var(--primary-color)',
-                                        cursor: 'pointer',
-
-                                        '&:hover': {
-                                            backgroundColor:
-                                                'rgba(210, 63, 87, 0.04)',
-                                        },
-                                    }}
-                                />
-                            </div>
                         </Grid>
                     </Grid>
                     <CloseIcon

@@ -23,19 +23,19 @@ const ALL_CATE = [
     },
     {
         title: 'Fashion',
-        to: '/fashion',
+        to: '/',
     },
     {
         title: 'Electronics',
-        to: '/electronics',
+        to: '/',
     },
     {
         title: 'Automotive',
-        to: '/automotive',
+        to: '/',
     },
     {
         title: 'Bike',
-        to: '/bike',
+        to: '/',
     },
 ];
 
@@ -133,6 +133,7 @@ function Search() {
                                     <Link
                                         key={index}
                                         to={item.to}
+                                        onClick={handleHideCate}
                                         className={cx('cate-item')}
                                     >
                                         {item.title}

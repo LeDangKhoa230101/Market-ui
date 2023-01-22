@@ -87,6 +87,7 @@
     overflow: hidden;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+    text-align: left;
 }
 
 .product__item-price {
@@ -110,7 +111,8 @@
     align-items: center;
     flex-direction: column;
     justify-content: flex-end;
-    height: 80px;
+    height: 79px;
+    width: 30px;
 }
 
 .product__item-qt {

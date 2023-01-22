@@ -3,7 +3,7 @@ import styles from './Cart.scss';
 import Button from '~/components/Button/Button';
 import Image from '~/components/Image/Image';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faBagShopping,
@@ -11,40 +11,26 @@ import {
     faPlus,
     faXmark,
 } from '@fortawesome/free-solid-svg-icons';
+import ShoppingBagRoundedIcon from '@mui/icons-material/ShoppingBagRounded';
 import classNames from 'classnames/bind';
 import Drawer from '@mui/material/Drawer';
 import { Box } from '@mui/material';
+import { addToCart, getTotalMoneys } from '~/reducers/cartSlice';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { removeFromCart, removeItem } from '~/reducers/cartSlice';
 
 const cx = classNames.bind(styles);
 
-const ITEM_CART = [
-    {
-        id: 1,
-        name: 'Giày Nike màu đen',
-        image: 'https://cf.shopee.vn/file/sg-11134201-22110-tijbfxajhbkv02_tn',
-        price: 370000,
-    },
-    {
-        id: 2,
-        name: 'Giày Nike màu trắng',
-        image: 'https://cf.shopee.vn/file/64a07a36beb506d909be0ecdefb6a14f_tn',
-        price: 450000,
-    },
-    {
-        id: 3,
-        name: 'Giày Nike màu xanh',
-        image: 'https://cf.shopee.vn/file/sg-11134201-22110-ta67beh7iljvd4_tn',
-        price: 430000,
-    },
-];
-
 function Cart() {
     const [showCart, setShowCart] = useState(false);
-    const [quantityItem, setQuantityItem] = useState(1);
 
-    const [classMinus, setClassMinus] = useState(
-        'body_cart-action-btn--disable',
-    );
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.cart); //state.cart(cart từ store)
+
+    useEffect(() => {
+        dispatch(getTotalMoneys());
+    }, [cart, dispatch]);
 
     const handleShowCart = () => {
         setShowCart(true);
@@ -54,16 +40,16 @@ function Cart() {
         setShowCart(false);
     };
 
-    const handlePlusItem = () => {
-        setQuantityItem(quantityItem + 1);
-        setClassMinus('');
+    const handlePlusItem = (item) => {
+        dispatch(addToCart(item));
     };
 
-    const handleMinusItem = () => {
-        if (quantityItem === 2) {
-            setClassMinus('body_cart-action-btn--disable');
-        }
-        setQuantityItem(quantityItem - 1);
+    const handleMinusItem = (item) => {
+        dispatch(removeFromCart(item));
+    };
+
+    const handleDeleteItem = (item) => {
+        dispatch(removeItem(item));
     };
 
     return (
@@ -73,7 +59,9 @@ function Cart() {
                     icon={faBagShopping}
                     className={cx('action-icon')}
                 />
-                <span className={cx('cart-item')}>3</span>
+                {cart.carts.length > 0 && (
+                    <span className={cx('cart-item')}>{cart.carts.length}</span>
+                )}
             </Button>
             <Drawer open={showCart} anchor="right" onClose={handleHideCart}>
                 <Box className={cx('cart')}>
@@ -84,7 +72,7 @@ function Cart() {
                                 icon={faBagShopping}
                             />
                             <span className={cx('header_cart-item')}>
-                                3 item
+                                {cart.carts.length} item
                             </span>
                         </div>
                         <Button
@@ -97,50 +85,85 @@ function Cart() {
                             />
                         </Button>
                     </div>
-                    <div className={cx('body_cart')}>
-                        {ITEM_CART.map((item) => (
-                            <div key={item.id} className={cx('body_cart-item')}>
-                                <div className={cx('body_cart-action')}>
-                                    <Button
-                                        onClick={handlePlusItem}
-                                        className={cx('body_cart-action-btn')}
-                                    >
-                                        <FontAwesomeIcon icon={faPlus} />
-                                    </Button>
-                                    <span className={cx('body_cart-qt')}>
-                                        {quantityItem}
-                                    </span>
-                                    <Button
-                                        onClick={handleMinusItem}
-                                        className={cx(
-                                            'body_cart-action-btn',
-                                            classMinus,
-                                        )}
-                                    >
-                                        <FontAwesomeIcon icon={faMinus} />
-                                    </Button>
-                                </div>
-                                <Image
-                                    className={cx('body_cart-img')}
-                                    src={item.image}
+                    {cart.carts.length === 0 ? (
+                        <div className={cx('body_cart')}>
+                            <div className={cx('cart-empty')}>
+                                <ShoppingBagRoundedIcon
+                                    sx={{
+                                        width: '60px',
+                                        height: '60px',
+                                        color: 'var(--primary-color)',
+                                    }}
                                 />
-                                <div className={cx('body_cart-des')}>
-                                    <span className={cx('body_cart-name')}>
-                                        {item.name}
-                                    </span>
-                                    <span className={cx('body_cart-price')}>
-                                        {item.price * quantityItem} US$
-                                    </span>
-                                </div>
-                                <Button className={cx('body_cart-close')}>
-                                    <FontAwesomeIcon
-                                        className={cx('body_cart-close-icon')}
-                                        icon={faXmark}
-                                    />
-                                </Button>
+                                <span>Your shopping bag is empty.</span>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+                    ) : (
+                        <div className={cx('body_cart')}>
+                            {cart.carts.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={cx('body_cart-item')}
+                                >
+                                    <div className={cx('body_cart-action')}>
+                                        <Button
+                                            onClick={() => handlePlusItem(item)}
+                                            className={cx(
+                                                'body_cart-action-btn',
+                                            )}
+                                        >
+                                            <FontAwesomeIcon icon={faPlus} />
+                                        </Button>
+                                        <span className={cx('body_cart-qt')}>
+                                            {item.totalQuantity}
+                                        </span>
+                                        <Button
+                                            onClick={() =>
+                                                handleMinusItem(item)
+                                            }
+                                            className={cx(
+                                                'body_cart-action-btn',
+                                            )}
+                                        >
+                                            <FontAwesomeIcon icon={faMinus} />
+                                        </Button>
+                                    </div>
+                                    <Image
+                                        className={cx('body_cart-img')}
+                                        src={item.image}
+                                    />
+                                    <div className={cx('body_cart-des')}>
+                                        <span className={cx('body_cart-name')}>
+                                            {item.name}
+                                        </span>
+                                        <span
+                                            className={cx(
+                                                'body_cart-current-price',
+                                            )}
+                                        >
+                                            {item.curPrice} US$ x{' '}
+                                            {item.totalQuantity}
+                                        </span>
+                                        <span className={cx('body_cart-price')}>
+                                            {item.curPrice * item.totalQuantity}{' '}
+                                            US$
+                                        </span>
+                                    </div>
+                                    <Button
+                                        onClick={() => handleDeleteItem(item)}
+                                        className={cx('body_cart-close')}
+                                    >
+                                        <FontAwesomeIcon
+                                            className={cx(
+                                                'body_cart-close-icon',
+                                            )}
+                                            icon={faXmark}
+                                        />
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                     <div className={cx('footer_cart')}>
                         <Button
                             className={cx(
@@ -148,7 +171,7 @@ function Cart() {
                                 'footer_cart-btn-checkout',
                             )}
                         >
-                            Checkout Now (460,000 US$)
+                            Checkout Now ({cart.totalMoneyFromCart} US$)
                         </Button>
                         <Button
                             className={cx(

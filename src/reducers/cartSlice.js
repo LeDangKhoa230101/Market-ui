@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    carts: localStorage.getItem('cartItem')
-        ? JSON.parse(localStorage.getItem('cartItem'))
+    carts: localStorage.getItem('carts')
+        ? JSON.parse(localStorage.getItem('carts'))
         : [],
-    totalQuantity: 0,
-    totalMoney: 0,
+    totalMoneyFromCart: 0,
 };
 
 const cartSlice = createSlice({
@@ -24,11 +23,50 @@ const cartSlice = createSlice({
                 const tempProduct = { ...action.payload, totalQuantity: 1 };
                 state.carts.push(tempProduct);
             }
-            localStorage.setItem('cart', JSON.stringify(state.carts));
+            localStorage.setItem('carts', JSON.stringify(state.carts));
+        },
+        removeFromCart: (state, action) => {
+            const itemIndex = state.carts.findIndex(
+                (item) => item.id === action.payload.id,
+            );
+            if (state.carts[itemIndex].totalQuantity > 1) {
+                state.carts[itemIndex].totalQuantity -= 1;
+            } else if (state.carts[itemIndex].totalQuantity === 1) {
+                // xóa phần tử click và trả về mảng mới
+                const nextCartItems = state.carts.filter(
+                    (cartItem) => cartItem.id !== action.payload.id,
+                );
+                //gán mảng hiện tại thành mảng mới
+                state.carts = nextCartItems;
+            }
+            localStorage.setItem('carts', JSON.stringify(state.carts));
+        },
+        removeItem: (state, action) => {
+            // xóa phần tử click và trả về mảng mới
+            const nextCartItems = state.carts.filter(
+                (cartItem) => cartItem.id !== action.payload.id,
+            );
+            //gán mảng hiện tại thành mảng mới
+            state.carts = nextCartItems;
+            localStorage.setItem('carts', JSON.stringify(state.carts));
+        },
+        getTotalMoneys: (state, action) => {
+            let { total } = state.carts.reduce(
+                (cartTotal, cartItem) => {
+                    const { curPrice, totalQuantity } = cartItem;
+                    const itemTotal = curPrice * totalQuantity;
+
+                    cartTotal.total += itemTotal;
+                    return cartTotal;
+                },
+                { total: 0 },
+            );
+            state.totalMoneyFromCart = total;
         },
     },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, removeItem, getTotalMoneys } =
+    cartSlice.actions;
 
 export default cartSlice.reducer;
