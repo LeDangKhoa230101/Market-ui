@@ -169,13 +169,27 @@ function Header() {
                 <div className={cx('sub-header-right')}>
                     <Button
                         sx={{
-                            minWidth: '120px',
+                            minWidth: '80px',
                             height: '36px',
-                            backgroundColor: '#f6f9fc',
                             border: 'none',
                             color: '#7d879c',
                             fontSize: '1.4rem',
                             textTransform: 'capitalize',
+                            marginLeft: '12px',
+                        }}
+                        className={cx('all-shop-btn')}
+                    >
+                        Home
+                    </Button>
+                    <Button
+                        sx={{
+                            minWidth: '80px',
+                            height: '36px',
+                            border: 'none',
+                            color: '#7d879c',
+                            fontSize: '1.4rem',
+                            textTransform: 'capitalize',
+                            marginLeft: '12px',
                         }}
                         className={cx('all-shop-btn')}
                     >

@@ -5,13 +5,13 @@ import TitleSection from '~/components/TitleSection';
 import classNames from 'classnames/bind';
 import StarsIcon from '@mui/icons-material/Stars';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 const cx = classNames.bind(styles);
 
 function FeartureBrand() {
-    const Item = styled(Box)(({ theme }) => ({
+    const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(2),
         backgroundColor: 'var(--white)',

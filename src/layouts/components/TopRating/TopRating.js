@@ -5,14 +5,14 @@ import Image from '~/components/Image/Image';
 import classNames from 'classnames/bind';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import { Rating } from '@mui/material';
 
 const cx = classNames.bind(styles);
 
 function TopRating() {
-    const Item = styled(Box)(({ theme }) => ({
+    const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(2),
         backgroundColor: 'var(--white)',
@@ -41,16 +41,19 @@ function TopRating() {
                         xs={3}
                         sx={{
                             display: 'flex',
-                            alignItems: 'center',
                             flexDirection: 'column',
                             cursor: 'pointer',
                         }}
                     >
-                        <Image
-                            className={cx('top-rating-img')}
-                            src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
-                        />
-                        <Rating value={5} />
+                        <div className={cx('container-img-top-rating')}>
+                            <Image
+                                className={cx('top-rating-img')}
+                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
+                            />
+                            <div className={cx('overlay')}></div>
+                        </div>
+
+                        <Rating value={5} size="large" />
                         <span className={cx('top-rating-name')}>Camera</span>
                         <span className={cx('top-rating-price')}>
                             3.300,00 US$
@@ -61,16 +64,19 @@ function TopRating() {
                         xs={3}
                         sx={{
                             display: 'flex',
-                            alignItems: 'center',
                             flexDirection: 'column',
                             cursor: 'pointer',
                         }}
                     >
-                        <Image
-                            className={cx('top-rating-img')}
-                            src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
-                        />
-                        <Rating value={5} />
+                        <div className={cx('container-img-top-rating')}>
+                            <Image
+                                className={cx('top-rating-img')}
+                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
+                            />
+                            <div className={cx('overlay')}></div>
+                        </div>
+
+                        <Rating value={5} size="large" />
                         <span className={cx('top-rating-name')}>Camera</span>
                         <span className={cx('top-rating-price')}>
                             3.300,00 US$
@@ -81,16 +87,19 @@ function TopRating() {
                         xs={3}
                         sx={{
                             display: 'flex',
-                            alignItems: 'center',
                             flexDirection: 'column',
                             cursor: 'pointer',
                         }}
                     >
-                        <Image
-                            className={cx('top-rating-img')}
-                            src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
-                        />
-                        <Rating value={5} />
+                        <div className={cx('container-img-top-rating')}>
+                            <Image
+                                className={cx('top-rating-img')}
+                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
+                            />
+                            <div className={cx('overlay')}></div>
+                        </div>
+
+                        <Rating value={5} size="large" />
                         <span className={cx('top-rating-name')}>Camera</span>
                         <span className={cx('top-rating-price')}>
                             3.300,00 US$
@@ -101,16 +110,19 @@ function TopRating() {
                         xs={3}
                         sx={{
                             display: 'flex',
-                            alignItems: 'center',
                             flexDirection: 'column',
                             cursor: 'pointer',
                         }}
                     >
-                        <Image
-                            className={cx('top-rating-img')}
-                            src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
-                        />
-                        <Rating value={5} />
+                        <div className={cx('container-img-top-rating')}>
+                            <Image
+                                className={cx('top-rating-img')}
+                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
+                            />
+                            <div className={cx('overlay')}></div>
+                        </div>
+
+                        <Rating value={5} size="large" />
                         <span className={cx('top-rating-name')}>Camera</span>
                         <span className={cx('top-rating-price')}>
                             3.300,00 US$

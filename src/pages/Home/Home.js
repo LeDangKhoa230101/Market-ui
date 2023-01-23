@@ -5,16 +5,26 @@ import FlashDeals from '~/layouts/components/FlashDeals';
 import TopCate from '~/layouts/components/TopCate';
 import TopRating from '~/layouts/components/TopRating';
 import FeartureBrand from '~/layouts/components/FeartureBrand';
+import Arrivals from '~/layouts/components/Arrivals';
+import BigDiscount from '~/layouts/components/BigDiscount';
 
 import classNames from 'classnames/bind';
 import BoltIcon from '@mui/icons-material/Bolt';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 
 import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 const cx = classNames.bind(styles);
 
 function Home() {
+    const Item = styled(Paper)(({ theme }) => ({
+        padding: theme.spacing(2),
+        backgroundColor: 'var(--white)',
+        borderRadius: '8px',
+    }));
+
     return (
         <div className={cx('wrapper-home')}>
             <Slide />
@@ -73,6 +83,14 @@ function Home() {
                     </Grid>
                 </div>
                 {/* Top rate and Featured Brands */}
+
+                {/* New Arrivals */}
+                <Arrivals />
+                {/* New Arrivals */}
+
+                {/* Big Discounts */}
+                <BigDiscount />
+                {/* Big Discounts */}
             </div>
         </div>
     );
