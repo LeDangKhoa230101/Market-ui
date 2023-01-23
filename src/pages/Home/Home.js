@@ -1,83 +1,20 @@
 import styles from './Home.scss';
 import Slide from '~/layouts/components/Slide/Slide';
-import ProductItem from '~/components/ProductItem';
 import TitleSection from '~/components/TitleSection';
+import FlashDeals from '~/layouts/components/FlashDeals';
+import TopCate from '~/layouts/components/TopCate';
+import TopRating from '~/layouts/components/TopRating';
+import FeartureBrand from '~/layouts/components/FeartureBrand';
 
-import { useRef } from 'react';
 import classNames from 'classnames/bind';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
-import CancelSharpIcon from '@mui/icons-material/CancelSharp';
-import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
-import { useSnackbar } from 'notistack';
 import BoltIcon from '@mui/icons-material/Bolt';
+import WidgetsIcon from '@mui/icons-material/Widgets';
 
-import { addToCart } from '~/reducers/cartSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import Grid from '@mui/material/Grid';
 
 const cx = classNames.bind(styles);
 
 function Home() {
-    const data = useSelector((state) => state.productsFlashDeals.items);
-    const status = useSelector((state) => state.productsFlashDeals.status);
-
-    const dispatch = useDispatch();
-
-    const { enqueueSnackbar } = useSnackbar();
-
-    const handlePlusItem = (product) => {
-        dispatch(addToCart(product));
-        enqueueSnackbar(
-            <div className={cx('snackbar')}>
-                <CheckCircleSharpIcon
-                    sx={{
-                        marginRight: '8px',
-                        width: '20px',
-                        height: '20px',
-                        backgroundColor: 'var(--white)',
-                        color: '#33d067',
-                        borderRadius: '999px',
-                    }}
-                />
-                <span>Added to cart</span>
-            </div>,
-        );
-    };
-
-    const handleMinusItem = () => {
-        enqueueSnackbar(
-            <div className={cx('snackbar')}>
-                <CancelSharpIcon
-                    sx={{
-                        marginRight: '8px',
-                        width: '20px',
-                        height: '20px',
-                        backgroundColor: 'var(--white)',
-                        color: 'var(--primary-color)',
-                        borderRadius: '999px',
-                    }}
-                />
-                <span>Remove from cart</span>
-            </div>,
-        );
-    };
-
-    var settings = {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 400,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-    };
-
-    const sliderRef = useRef(null);
-
     return (
         <div className={cx('wrapper-home')}>
             <Slide />
@@ -98,61 +35,44 @@ function Home() {
                         title={'Flash Deals'}
                     />
                     {/* Slide deals */}
-                    <div className={cx('deal-slide')}>
-                        {status === 'loading' ? (
-                            <CircularProgress />
-                        ) : status === 'failed' ? (
-                            <Alert
-                                sx={{
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                                severity="error"
-                            >
-                                This is an error alert — check it out!
-                            </Alert>
-                        ) : (
-                            <Slider {...settings} ref={sliderRef}>
-                                {data.map((product) => {
-                                    return (
-                                        <ProductItem
-                                            key={product.id}
-                                            product={product}
-                                            handleMinusItem={handleMinusItem}
-                                            handlePlusItem={() =>
-                                                handlePlusItem(product)
-                                            }
-                                        />
-                                    );
-                                })}
-                            </Slider>
-                        )}
-                        <button
-                            onClick={() => sliderRef.current.slickPrev()}
-                            className={cx('deals-slide-btn--left')}
-                        >
-                            <ArrowBackIcon
-                                sx={{
-                                    width: '20px',
-                                    height: '20px',
-                                }}
-                            />
-                        </button>
-                        <button
-                            onClick={() => sliderRef.current.slickNext()}
-                            className={cx('deals-slide-btn--right')}
-                        >
-                            <ArrowForwardIcon
-                                sx={{
-                                    width: '20px',
-                                    height: '20px',
-                                }}
-                            />
-                        </button>
-                    </div>
+                    <FlashDeals />
                     {/* Slide deals */}
                 </div>
                 {/* Flash Deals */}
+
+                {/* Top Categories */}
+                <div className={cx('top-cate')}>
+                    <TitleSection
+                        icon={
+                            <WidgetsIcon
+                                sx={{
+                                    width: '24px',
+                                    height: '24px',
+                                    marginTop: '2px',
+                                    color: 'var(--primary-color)',
+                                }}
+                            />
+                        }
+                        title={'Top Categories'}
+                    />
+                    {/* Top cate content */}
+                    <TopCate />
+                    {/* Top cate content */}
+                </div>
+                {/* Top Categories */}
+
+                {/* Top rate and Featured Brands */}
+                <div className={cx('rate-feature')}>
+                    <Grid container spacing={4}>
+                        {/* Top rate */}
+                        <TopRating />
+                        {/* Top rate */}
+                        {/* Featured Brands */}
+                        <FeartureBrand />
+                        {/* Featured Brands */}
+                    </Grid>
+                </div>
+                {/* Top rate and Featured Brands */}
             </div>
         </div>
     );

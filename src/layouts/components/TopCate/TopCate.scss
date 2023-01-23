@@ -1,0 +1,43 @@
+// top category
+.top-cate {
+    max-width: var(--width-website);
+    margin: auto;
+    margin-bottom: 60px;
+    padding: 0px 24px;
+}
+
+.top-cate-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.top-cate-body {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+}
+.top-cate-body-left,
+.top-cate-body-right {
+    font-size: 1rem;
+    border-radius: 16px;
+    height: 24px;
+    font-weight: 500;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+}
+
+.top-cate-body-left {
+    color: var(--white);
+    background-color: #0f3460;
+}
+
+.top-cate-body-right {
+    color: #2b3445;
+    background-color: rgba(0, 0, 0, 0.08);
+}

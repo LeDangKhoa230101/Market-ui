@@ -1,0 +1,25 @@
+//top rating
+.top-rating-img {
+    width: 118px;
+    height: 118px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    transition: all ease 0.3s;
+
+    &:hover {
+        background-color: #ababab;
+    }
+}
+
+.top-rating-name {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 4px 0;
+    color: var(--text-color);
+}
+
+.top-rating-price {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
