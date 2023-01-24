@@ -65,7 +65,7 @@ function ModalUser() {
                 <>
                     <Button
                         onClick={handleShowModalUser}
-                        className={cx('action-btn')}
+                        className={cx('action-btn-user')}
                     >
                         <FontAwesomeIcon
                             icon={faArrowRightToBracket}

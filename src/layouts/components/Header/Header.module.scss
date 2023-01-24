@@ -44,6 +44,11 @@
     height: var(--height-top-header);
 }
 
+.top-header-right {
+    display: flex;
+    align-items: center;
+}
+
 .logo {
     height: 44px;
 }

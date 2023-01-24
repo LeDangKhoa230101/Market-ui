@@ -10,7 +10,6 @@ import BigDiscount from '~/layouts/components/BigDiscount';
 
 import classNames from 'classnames/bind';
 import BoltIcon from '@mui/icons-material/Bolt';
-import WidgetsIcon from '@mui/icons-material/Widgets';
 
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
@@ -53,24 +52,8 @@ function Home() {
                 {/* Flash Deals */}
 
                 {/* Top Categories */}
-                <div className={cx('top-cate')}>
-                    <TitleSection
-                        icon={
-                            <WidgetsIcon
-                                sx={{
-                                    width: '24px',
-                                    height: '24px',
-                                    marginTop: '2px',
-                                    color: 'var(--primary-color)',
-                                }}
-                            />
-                        }
-                        title={'Top Categories'}
-                    />
-                    {/* Top cate content */}
-                    <TopCate />
-                    {/* Top cate content */}
-                </div>
+
+                <TopCate />
                 {/* Top Categories */}
 
                 {/* Top rate and Featured Brands */}

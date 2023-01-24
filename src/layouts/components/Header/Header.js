@@ -111,53 +111,60 @@ function Header() {
         <div className={cx('header', classHeader)}>
             <div className={cx('wrapper')}>
                 <div className={cx('top-header')}>
-                    <Link to="/">
-                        <Image
-                            className={cx('logo')}
-                            src={images.logo}
-                            alt="bazaar"
-                        />
-                    </Link>
-                    {/* Sub menu */}
-                    <ThemeProvider theme={theme}>
-                        <Button
-                            aria-describedby={id}
-                            onClick={handleShowMenuCate}
-                            sx={{
-                                height: '32px',
-                                color: '#7d879c',
-                                marginLeft: '16px',
-                                display: showSubCate,
+                    <div className={cx('top-header-right')}>
+                        <Link to="/">
+                            <Image
+                                className={cx('logo')}
+                                src={images.logo}
+                                alt="bazaar"
+                            />
+                        </Link>
+                        {/* Sub menu */}
+                        <ThemeProvider theme={theme}>
+                            <Button
+                                aria-describedby={id}
+                                onClick={handleShowMenuCate}
+                                sx={{
+                                    height: '32px',
+                                    color: '#7d879c',
+                                    marginLeft: '16px',
+                                    display: showSubCate,
 
-                                '&:hover': {
-                                    backgroundColor: 'rgba(43, 52, 69, 0.04)',
-                                },
-                            }}
-                        >
-                            <WidgetsRoundedIcon
-                                sx={{
-                                    width: '20px',
-                                    height: '20px',
-                                    rotate: '90deg',
+                                    '&:hover': {
+                                        backgroundColor:
+                                            'rgba(43, 52, 69, 0.04)',
+                                    },
                                 }}
-                            />
-                            <ExpandMoreIcon
-                                sx={{
-                                    width: '20px',
-                                    height: '20px',
-                                }}
-                            />
-                        </Button>
-                    </ThemeProvider>
-                    <PopoverCate
-                        data={CATE_LIST}
-                        handleHideMenuCate={handleHideMenuCate}
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                    />
-                    {/* Sub menu */}
+                            >
+                                <WidgetsRoundedIcon
+                                    sx={{
+                                        width: '20px',
+                                        height: '20px',
+                                        rotate: '90deg',
+                                    }}
+                                />
+                                <ExpandMoreIcon
+                                    sx={{
+                                        width: '20px',
+                                        height: '20px',
+                                    }}
+                                />
+                            </Button>
+                        </ThemeProvider>
+                        <PopoverCate
+                            data={CATE_LIST}
+                            handleHideMenuCate={handleHideMenuCate}
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                        />
+                        {/* Sub menu */}
+                    </div>
+
+                    {/* Search input */}
                     <Search />
+                    {/* Search input */}
+
                     <div className={cx('action')}>
                         <ModalUser />
                         <Cart />
