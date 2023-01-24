@@ -1,5 +1,5 @@
 const config = {
-    home: '/',
+    home: '*',
     search: '/search',
     fashion: '/fashion',
 };

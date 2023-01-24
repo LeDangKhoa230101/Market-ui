@@ -16,6 +16,8 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
+import PhoneLayout from '~/layouts/PhoneLayout';
+
 const cx = classNames.bind(styles);
 
 function Home() {
@@ -91,6 +93,10 @@ function Home() {
                 {/* Big Discounts */}
                 <BigDiscount />
                 {/* Big Discounts */}
+
+                {/* phone layout */}
+                <PhoneLayout />
+                {/* phone layout */}
             </div>
         </div>
     );
