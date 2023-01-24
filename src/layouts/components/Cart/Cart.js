@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from './Cart.scss';
+import styles from './Cart.module.scss';
 import Button from '~/components/Button/Button';
 import Image from '~/components/Image/Image';
 

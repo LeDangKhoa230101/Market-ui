@@ -1,4 +1,4 @@
-import styles from './Category.scss';
+import styles from './Category.module.scss';
 
 import { useState } from 'react';
 import classNames from 'classnames/bind';

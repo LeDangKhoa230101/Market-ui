@@ -1,4 +1,4 @@
-import styles from './ProductItem.scss';
+import styles from './ProductItem.module.scss';
 import Image from '~/components/Image/Image';
 import ModalDetail from '~/components/ModalDetail';
 

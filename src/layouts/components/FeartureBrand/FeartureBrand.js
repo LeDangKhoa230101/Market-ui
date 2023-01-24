@@ -1,4 +1,4 @@
-import styles from './FeartureBrand.scss';
+import styles from './FeartureBrand.module.scss';
 import Image from '~/components/Image/Image';
 import TitleSection from '~/components/TitleSection';
 

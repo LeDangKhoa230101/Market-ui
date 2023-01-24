@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from './LoginForm.scss';
+import styles from './LoginForm.module.scss';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import classNames from 'classnames/bind';

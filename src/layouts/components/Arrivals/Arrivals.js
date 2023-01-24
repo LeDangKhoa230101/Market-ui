@@ -1,4 +1,4 @@
-import styles from './Arrivals.scss';
+import styles from './Arrivals.module.scss';
 import TitleSection from '~/components/TitleSection';
 
 import classNames from 'classnames/bind';

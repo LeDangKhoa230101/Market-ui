@@ -29,6 +29,11 @@
     background-color: #f6f9fc;
     transition: all ease 0.3s;
 
+    &.active {
+        background-color: var(--white);
+        box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
+    }
+
     &:hover {
         box-shadow: 0px 4px 16px rgb(43 52 69 / 10%);
     }
@@ -62,6 +67,11 @@
     margin-top: 64px;
     color: var(--text-color);
     transition: all ease 0.3s;
+
+    &.active {
+        background-color: var(--white);
+        box-shadow: rgb(43 52 69 / 10%) 0px 4px 16px;
+    }
 
     &:hover {
         box-shadow: 0px 4px 16px rgb(43 52 69 / 10%);

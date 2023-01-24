@@ -1,4 +1,4 @@
-import styles from './FlashDeals.scss';
+import styles from './FlashDeals.module.scss';
 
 import ProductItem from '~/components/ProductItem';
 

@@ -1,4 +1,4 @@
-import styles from './PhoneLayout.scss';
+import styles from './PhoneLayout.module.scss';
 import Sidebar from '~/layouts/components/Sidebar';
 
 import classNames from 'classnames/bind';
@@ -9,6 +9,8 @@ import Oppo from '~/phones/brands/Oppo';
 import Samsung from '~/phones/brands/Samsung';
 import Vivo from '~/phones/brands/Vivo';
 import Xiaomi from '~/phones/brands/Xiaomi';
+import AllBrandsPhone from '~/phones/brands/AllBrandsPhone';
+import AllShopsPhone from '~/phones/shops/AllShopsPhone';
 
 import AZparts from '~/phones/shops/AZparts';
 import BiStore45 from '~/phones/shops/BiStore45';
@@ -86,6 +88,8 @@ function PhoneLayout() {
             <Sidebar
                 brandData={SIDE_BAR_brand_PHONE}
                 shopData={SIDE_BAR_SHOP_PHONE}
+                allBrands={'/allphone/brands'}
+                allShops={'/allphone/shops'}
             />
             {/* Side bar */}
 
@@ -109,6 +113,12 @@ function PhoneLayout() {
                         path="/shops/skyphonecity"
                         element={<SkyPhoneCity />}
                     />
+
+                    <Route
+                        path="/allphone/brands"
+                        element={<AllBrandsPhone />}
+                    />
+                    <Route path="/allphone/shops" element={<AllShopsPhone />} />
                 </Routes>
             </div>
         </div>

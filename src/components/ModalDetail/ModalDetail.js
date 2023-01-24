@@ -1,4 +1,4 @@
-import styles from './ModalDetail.scss';
+import styles from './ModalDetail.module.scss';
 import Image from '~/components/Image/Image';
 
 import classNames from 'classnames/bind';

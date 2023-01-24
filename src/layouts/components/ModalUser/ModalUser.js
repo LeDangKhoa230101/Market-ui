@@ -1,3 +1,4 @@
+import styles from './ModalUser.module.scss';
 import Image from '~/components/Image/Image';
 import Button from '~/components/Button/Button';
 import images from '~/assets/image';
@@ -10,7 +11,6 @@ import { Box } from '@mui/material';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import styles from './ModalUser.scss';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);

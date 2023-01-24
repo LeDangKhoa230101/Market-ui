@@ -1,4 +1,4 @@
-import styles from './TopRating.scss';
+import styles from './TopRating.module.scss';
 import TitleSection from '~/components/TitleSection';
 import Image from '~/components/Image/Image';
 

@@ -1,8 +1,9 @@
-import styles from './TitleSection.scss';
+import styles from './TitleSection.module.scss';
 
 import classNames from 'classnames/bind';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import Button from '@mui/material/Button';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
@@ -33,5 +34,10 @@ function TitleSection({ icon, title }) {
         </div>
     );
 }
+
+TitleSection.propTypes = {
+    icon: PropTypes.node,
+    title: PropTypes.string,
+};
 
 export default TitleSection;

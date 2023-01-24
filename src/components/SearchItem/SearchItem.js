@@ -1,4 +1,4 @@
-import styles from './SearchItem.scss';
+import styles from './SearchItem.module.scss';
 
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';

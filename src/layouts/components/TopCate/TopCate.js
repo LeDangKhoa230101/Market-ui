@@ -1,4 +1,4 @@
-import styles from './TopCate.scss';
+import styles from './TopCate.module.scss';
 
 import classNames from 'classnames/bind';
 import Grid from '@mui/material/Grid';

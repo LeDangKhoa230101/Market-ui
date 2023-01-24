@@ -1,4 +1,4 @@
-import styles from './BigDiscount.scss';
+import styles from './BigDiscount.module.scss';
 import TitleSection from '~/components/TitleSection';
 
 import classNames from 'classnames/bind';

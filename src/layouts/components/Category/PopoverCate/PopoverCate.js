@@ -1,4 +1,4 @@
-import styles from './PopoverCate.scss';
+import styles from './PopoverCate.module.scss';
 
 import classNames from 'classnames/bind';
 import Popover from '@mui/material/Popover';

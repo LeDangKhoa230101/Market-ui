@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Popover from '@mui/material/Popover';
 
-import styles from './Search.scss';
+import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 

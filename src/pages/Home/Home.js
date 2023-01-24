@@ -1,4 +1,4 @@
-import styles from './Home.scss';
+import styles from './Home.module.scss';
 import Slide from '~/layouts/components/Slide/Slide';
 import TitleSection from '~/components/TitleSection';
 import FlashDeals from '~/layouts/components/FlashDeals';

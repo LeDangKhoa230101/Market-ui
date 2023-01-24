@@ -1,4 +1,4 @@
-import styles from './Menu.scss';
+import styles from './Menu.module.scss';
 
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';

@@ -1,4 +1,4 @@
-import styles from './Popper.scss';
+import styles from './Popper.module.scss';
 import classNames from 'classnames/bind';
 
 import PropTypes from 'prop-types';
