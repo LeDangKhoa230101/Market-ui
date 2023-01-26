@@ -1,0 +1,18 @@
+//category
+.category {
+    max-width: var(--width-website);
+    margin: auto;
+    margin-bottom: 60px;
+    padding: 0px 24px 10px;
+}
+
+.cate-img {
+    width: 52px;
+    height: 52px;
+}
+
+.cate-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-left: 10px;
+}

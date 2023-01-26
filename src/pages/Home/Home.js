@@ -1,30 +1,29 @@
 import styles from './Home.module.scss';
-import Slide from '~/layouts/components/Slide/Slide';
+import Slide from './HomeComponents/Slide';
 import TitleSection from '~/components/TitleSection';
-import FlashDeals from '~/layouts/components/FlashDeals';
-import TopCate from '~/layouts/components/TopCate';
-import TopRating from '~/layouts/components/TopRating';
-import FeartureBrand from '~/layouts/components/FeartureBrand';
-import Arrivals from '~/layouts/components/Arrivals';
-import BigDiscount from '~/layouts/components/BigDiscount';
+import FlashDeals from './HomeComponents/FlashDeals';
+import TopCate from './HomeComponents/TopCate';
+import TopRating from './HomeComponents/TopRating';
+import FeartureBrand from './HomeComponents/FeartureBrand';
+import Arrivals from './HomeComponents/Arrivals';
+import BigDiscount from './HomeComponents/BigDiscount';
+import Category from './HomeComponents/Category';
+import PhoneLayout from './HomeComponents/PhoneLayout';
+import LaptopLayout from './HomeComponents/LaptopLayout';
+import Banner from './HomeComponents/Banner';
 
 import classNames from 'classnames/bind';
 import BoltIcon from '@mui/icons-material/Bolt';
 
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-
-import PhoneLayout from '~/layouts/PhoneLayout';
-import Image from '~/components/Image/Image';
+import Box from '@mui/material/Box';
 
 const cx = classNames.bind(styles);
 
 function Home() {
-    const Item = styled(Paper)(({ theme }) => ({
-        padding: theme.spacing(2),
-        backgroundColor: 'var(--white)',
-        borderRadius: '8px',
+    const Item = styled(Box)(({ theme }) => ({
+        padding: theme.spacing(0),
     }));
 
     return (
@@ -83,37 +82,16 @@ function Home() {
                 {/* phone layout */}
 
                 {/* banner */}
-                <div className={cx('banner')}>
-                    <Grid container>
-                        <Grid
-                            item
-                            xs={4}
-                            sx={{
-                                padding: '4px 8px',
-                                cursor: 'not-allowed',
-                            }}
-                        >
-                            <Image
-                                className={cx('banner-img')}
-                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbanners%2Fbanner-1.png&w=1920&q=75"
-                            />
-                        </Grid>
-                        <Grid
-                            item
-                            xs={8}
-                            sx={{
-                                padding: '4px 8px',
-                                cursor: 'not-allowed',
-                            }}
-                        >
-                            <Image
-                                className={cx('banner-img')}
-                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbanners%2Fbanner-2.png&w=1920&q=75"
-                            />
-                        </Grid>
-                    </Grid>
-                </div>
+                <Banner />
                 {/* banner */}
+
+                {/* LaptopLayout */}
+                <LaptopLayout />
+                {/* LaptopLayout */}
+
+                {/* Category */}
+                <Category />
+                {/* Category */}
             </div>
         </div>
     );
