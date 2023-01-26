@@ -9,7 +9,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
-import CancelSharpIcon from '@mui/icons-material/CancelSharp';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import { useSnackbar } from 'notistack';
@@ -42,25 +41,7 @@ function FlashDeals() {
                         borderRadius: '999px',
                     }}
                 />
-                <span>Added to cart</span>
-            </div>,
-        );
-    };
-
-    const handleMinusItem = () => {
-        enqueueSnackbar(
-            <div className={cx('snackbar')}>
-                <CancelSharpIcon
-                    sx={{
-                        marginRight: '8px',
-                        width: '20px',
-                        height: '20px',
-                        backgroundColor: 'var(--white)',
-                        color: 'var(--primary-color)',
-                        borderRadius: '999px',
-                    }}
-                />
-                <span>Remove from cart</span>
+                <span className={cx('snackbar-title')}>Added to cart</span>
             </div>,
         );
     };
@@ -97,7 +78,6 @@ function FlashDeals() {
                             <ProductItem
                                 key={product.id}
                                 product={product}
-                                handleMinusItem={handleMinusItem}
                                 handlePlusItem={() => handlePlusItem(product)}
                             />
                         );

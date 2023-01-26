@@ -27,3 +27,13 @@
 .deals-slide-btn--right {
     right: -7px;
 }
+
+.snackbar {
+    display: flex;
+    align-items: center;
+}
+
+.snackbar-title {
+    font-size: 1.4rem;
+    color: var(--text-color);
+}

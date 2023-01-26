@@ -3,11 +3,14 @@
     position: relative;
     border-radius: 8px;
     width: calc(100% - 2.4rem);
-    height: 100%;
     margin: auto;
     background-color: var(--white);
     transition: all 250ms ease-in-out;
     box-shadow: 0px 1px 3px rgb(3 0 71 / 9%);
+
+    &:hover {
+        box-shadow: 0px 8px 45px rgb(3 0 71 / 9%);
+    }
 
     &:hover .product__item-follow {
         display: flex;

@@ -16,6 +16,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 
 import PhoneLayout from '~/layouts/PhoneLayout';
+import Image from '~/components/Image/Image';
 
 const cx = classNames.bind(styles);
 
@@ -80,6 +81,39 @@ function Home() {
                 {/* phone layout */}
                 <PhoneLayout />
                 {/* phone layout */}
+
+                {/* banner */}
+                <div className={cx('banner')}>
+                    <Grid container>
+                        <Grid
+                            item
+                            xs={4}
+                            sx={{
+                                padding: '4px 8px',
+                                cursor: 'not-allowed',
+                            }}
+                        >
+                            <Image
+                                className={cx('banner-img')}
+                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbanners%2Fbanner-1.png&w=1920&q=75"
+                            />
+                        </Grid>
+                        <Grid
+                            item
+                            xs={8}
+                            sx={{
+                                padding: '4px 8px',
+                                cursor: 'not-allowed',
+                            }}
+                        >
+                            <Image
+                                className={cx('banner-img')}
+                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbanners%2Fbanner-2.png&w=1920&q=75"
+                            />
+                        </Grid>
+                    </Grid>
+                </div>
+                {/* banner */}
             </div>
         </div>
     );

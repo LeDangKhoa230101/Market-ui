@@ -1,7 +1,7 @@
 import styles from './PhoneLayout.module.scss';
 import Sidebar from '~/layouts/components/Sidebar';
+import TitleSection from '~/components/TitleSection';
 
-import classNames from 'classnames/bind';
 import { Routes, Route } from 'react-router-dom';
 import Apple from '~/phones/brands/Apple';
 import Asus from '~/phones/brands/Asus';
@@ -17,6 +17,7 @@ import BiStore45 from '~/phones/shops/BiStore45';
 import CDStore from '~/phones/shops/CDStore';
 import KTsmartphone from '~/phones/shops/KTsmartphone';
 import SkyPhoneCity from '~/phones/shops/SkyPhoneCity';
+import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
@@ -94,6 +95,7 @@ function PhoneLayout() {
             {/* Side bar */}
 
             <div className={cx('phone-container')}>
+                <TitleSection title="Mobile Phones" />
                 <Routes>
                     <Route path="/brands/apple" element={<Apple />} />
                     <Route path="/brands/asus" element={<Asus />} />
