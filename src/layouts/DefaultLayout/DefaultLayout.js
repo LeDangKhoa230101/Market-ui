@@ -1,4 +1,5 @@
 import Header from '~/layouts/components/Header';
+import Footer from '~/layouts/components/Footer';
 import PropTypes from 'prop-types';
 
 import styles from './DefaultLayout.module.scss';
@@ -11,6 +12,7 @@ function DefaultLayout({ children }) {
         <div className="wrapper">
             <Header />
             <div className={cx('content')}>{children}</div>
+            <Footer />
         </div>
     );
 }

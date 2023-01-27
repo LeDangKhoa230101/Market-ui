@@ -11,21 +11,16 @@ import Category from './HomeComponents/Category';
 import PhoneLayout from './HomeComponents/PhoneLayout';
 import LaptopLayout from './HomeComponents/LaptopLayout';
 import Banner from './HomeComponents/Banner';
+import MoreForYou from './HomeComponents/MoreForYou';
+import Support from './HomeComponents/Support';
 
 import classNames from 'classnames/bind';
 import BoltIcon from '@mui/icons-material/Bolt';
-
 import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 
 const cx = classNames.bind(styles);
 
 function Home() {
-    const Item = styled(Box)(({ theme }) => ({
-        padding: theme.spacing(0),
-    }));
-
     return (
         <div className={cx('wrapper-home')}>
             <Slide />
@@ -92,6 +87,14 @@ function Home() {
                 {/* Category */}
                 <Category />
                 {/* Category */}
+
+                {/* More for you */}
+                <MoreForYou />
+                {/* More for you */}
+
+                {/* support */}
+                <Support />
+                {/* support */}
             </div>
         </div>
     );

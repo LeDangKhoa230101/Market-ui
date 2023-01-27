@@ -56,13 +56,7 @@ function Apple() {
 
     return (
         <div className={cx('wrapper')}>
-            <Grid
-                container
-                rowSpacing={3}
-                sx={{
-                    minHeight: '851px',
-                }}
-            >
+            <Grid container rowSpacing={3}>
                 {isLoading ? (
                     <CircularProgress />
                 ) : error ? (
