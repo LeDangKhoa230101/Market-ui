@@ -200,6 +200,34 @@ function Header() {
                         }}
                         className={cx('all-shop-btn')}
                     >
+                        Phones
+                    </Button>
+                    <Button
+                        sx={{
+                            minWidth: '80px',
+                            height: '36px',
+                            border: 'none',
+                            color: '#7d879c',
+                            fontSize: '1.4rem',
+                            textTransform: 'capitalize',
+                            marginLeft: '12px',
+                        }}
+                        className={cx('all-shop-btn')}
+                    >
+                        Laptops
+                    </Button>
+                    <Button
+                        sx={{
+                            minWidth: '80px',
+                            height: '36px',
+                            border: 'none',
+                            color: '#7d879c',
+                            fontSize: '1.4rem',
+                            textTransform: 'capitalize',
+                            marginLeft: '12px',
+                        }}
+                        className={cx('all-shop-btn')}
+                    >
                         All Shops
                     </Button>
                 </div>
