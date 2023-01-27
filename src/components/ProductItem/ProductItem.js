@@ -56,35 +56,48 @@ function ProductItem({ product, handlePlusItem }) {
 
                         <div className={cx('product__item-like')}>
                             {product.like ? (
-                                <FavoriteIcon
+                                <Button
                                     sx={{
-                                        width: '36px',
+                                        minWidth: '36px',
                                         height: '36px',
+                                        borderRadius: '999px',
                                         color: 'var(--primary-color)',
-                                        padding: '8px',
-                                        cursor: 'pointer',
-                                        borderRadius: '999px',
                                         '&:hover': {
                                             backgroundColor:
                                                 'rgba(0, 0, 0, 0.04)',
                                         },
                                     }}
-                                />
+                                >
+                                    <FavoriteIcon
+                                        sx={{
+                                            width: '20px',
+                                            height: '20px',
+                                            color: 'var(--primary-color)',
+                                        }}
+                                    />
+                                    ,
+                                </Button>
                             ) : (
-                                <FavoriteBorderIcon
+                                <Button
                                     sx={{
-                                        width: '36px',
+                                        minWidth: '36px',
                                         height: '36px',
-                                        color: 'rgb(0 0 0 / 26%)',
-                                        padding: '8px',
-                                        cursor: 'pointer',
                                         borderRadius: '999px',
+                                        color: 'rgb(0 0 0 / 26%)',
                                         '&:hover': {
                                             backgroundColor:
                                                 'rgba(0, 0, 0, 0.04)',
                                         },
                                     }}
-                                />
+                                >
+                                    <FavoriteBorderIcon
+                                        sx={{
+                                            width: '20px',
+                                            height: '20px',
+                                            color: 'rgb(0 0 0 / 26%)',
+                                        }}
+                                    />
+                                </Button>
                             )}
                         </div>
                     </div>
