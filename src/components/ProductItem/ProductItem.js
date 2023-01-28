@@ -4,8 +4,9 @@ import ModalDetail from '~/components/ModalDetail';
 
 import classNames from 'classnames/bind';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
@@ -55,50 +56,33 @@ function ProductItem({ product, handlePlusItem }) {
                         />
 
                         <div className={cx('product__item-like')}>
-                            {product.like ? (
-                                <Button
-                                    sx={{
-                                        minWidth: '36px',
-                                        height: '36px',
-                                        borderRadius: '999px',
-                                        color: 'var(--primary-color)',
-                                        '&:hover': {
-                                            backgroundColor:
-                                                'rgba(0, 0, 0, 0.04)',
-                                        },
-                                    }}
-                                >
-                                    <FavoriteIcon
-                                        sx={{
-                                            width: '20px',
-                                            height: '20px',
-                                            color: 'var(--primary-color)',
-                                        }}
-                                    />
-                                    ,
-                                </Button>
-                            ) : (
-                                <Button
-                                    sx={{
-                                        minWidth: '36px',
-                                        height: '36px',
-                                        borderRadius: '999px',
-                                        color: 'rgb(0 0 0 / 26%)',
-                                        '&:hover': {
-                                            backgroundColor:
-                                                'rgba(0, 0, 0, 0.04)',
-                                        },
-                                    }}
-                                >
-                                    <FavoriteBorderIcon
+                            <Checkbox
+                                sx={{
+                                    width: '36px',
+                                    height: '36px',
+                                    '&:hover': {
+                                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                                    },
+                                }}
+                                icon={
+                                    <FavoriteBorder
                                         sx={{
                                             width: '20px',
                                             height: '20px',
                                             color: 'rgb(0 0 0 / 26%)',
                                         }}
                                     />
-                                </Button>
-                            )}
+                                }
+                                checkedIcon={
+                                    <Favorite
+                                        sx={{
+                                            width: '20px',
+                                            height: '20px',
+                                            color: 'var(--primary-color)',
+                                        }}
+                                    />
+                                }
+                            />
                         </div>
                     </div>
                 </div>

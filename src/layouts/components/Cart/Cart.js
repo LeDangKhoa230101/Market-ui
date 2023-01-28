@@ -123,6 +123,9 @@ function Cart() {
                                             }
                                             className={cx(
                                                 'body_cart-action-btn',
+                                                item.totalQuantity === 1
+                                                    ? 'active'
+                                                    : null,
                                             )}
                                         >
                                             <FontAwesomeIcon icon={faMinus} />
