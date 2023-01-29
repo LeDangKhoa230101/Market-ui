@@ -7,9 +7,9 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function TitleSection({ icon, title }) {
+function TitleSection({ icon, title, className }) {
     return (
-        <div className={cx('section-header')}>
+        <div className={cx('section-header', className)}>
             <div className={cx('section-heading')}>
                 {icon}
                 <span className={cx('section-title')}>{title}</span>

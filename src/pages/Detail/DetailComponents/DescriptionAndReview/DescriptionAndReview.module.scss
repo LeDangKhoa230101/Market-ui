@@ -1,0 +1,92 @@
+// Description
+.desc-heading {
+    margin-bottom: 16px;
+    margin-top: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.desc-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+// review
+.review-list {
+    max-width: 600px;
+    padding: 0;
+
+    & .review-item {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        margin-bottom: 32px;
+    }
+}
+
+.review-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.review-name {
+    font-weight: 600;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+}
+
+.day-review {
+    margin-left: 10px;
+}
+
+.no-reviews {
+    padding: 10px 9px;
+}
+
+//form-review
+.form-review {
+    margin-top: 56px;
+}
+
+.form-heading {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.form-rating {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: rgb(75, 86, 107);
+
+    & > span {
+        margin-right: 6px;
+    }
+}
+
+.form-input {
+    margin-top: 12px;
+    & > span {
+        font-weight: 600;
+        font-size: 1.6rem;
+        color: rgb(75, 86, 107);
+        margin-bottom: 6px;
+        display: block;
+    }
+}
+
+.textarea {
+    &:hover {
+        outline: 1px solid #2b3445;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--primary-color);
+    }
+}

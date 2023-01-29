@@ -77,11 +77,9 @@ function Header() {
         },
     });
 
-    let scroll = 280;
-
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY >= scroll) {
+            if (window.scrollY >= 280) {
                 setClassHeader('sticky');
                 setShowSubCate('block');
             } else {

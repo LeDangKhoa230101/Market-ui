@@ -77,12 +77,13 @@ function DetailProduct() {
     const [disabled] = useState('disabled-btn');
 
     const handlePlusQt = () => {
-        setQt(qt + 1);
+        setQt((qt) => qt + 1);
     };
 
     const handleMinusQt = () => {
-        setQt(qt - 1);
+        setQt((qt) => qt - 1);
     };
+
     return (
         <Grid container spacing={1}>
             <Grid item xs={6}>
