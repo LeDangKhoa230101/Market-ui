@@ -1,0 +1,45 @@
+// sidebar
+.hr {
+    display: block;
+    margin: 24px 0;
+    color: #c0c0c2;
+}
+
+.section {
+    & h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    & ul {
+        list-style-type: none;
+        padding: 0;
+
+        & li {
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.cate-btn {
+    color: #7d879c;
+    font-size: 1.4rem;
+
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
+.price-body {
+    display: flex;
+    align-items: center;
+
+    & .separate {
+        padding: 0 8px;
+        color: #7d879c;
+        font-size: 1.6rem;
+    }
+}
