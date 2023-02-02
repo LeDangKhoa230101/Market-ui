@@ -2,7 +2,7 @@ const config = {
     home: '*',
     search: '/search',
     fashion: '/fashion',
-    detail: '/detail',
+    detail: '/products/:id',
 };
 
 export default config;

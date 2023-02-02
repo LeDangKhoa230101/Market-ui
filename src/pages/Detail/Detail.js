@@ -5,15 +5,31 @@ import OtherShop from './DetailComponents/OtherShop';
 import AlsoLike from './DetailComponents/AlsoLike';
 
 import classNames from 'classnames/bind';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import ScrollToTop from '~/pages/ScrollToTop';
 
 const cx = classNames.bind(styles);
 
 function Detail() {
+    const { id } = useParams();
+
+    const product = useSelector((state) =>
+        state.productsFlashDeals.items.find((prod) => prod.id === Number(id)),
+    );
+
     return (
         <div className={cx('wrapper')}>
+            <ScrollToTop />
             <div className={cx('container')}>
                 {/* Detail product */}
-                <DetailProduct />
+                {!product ? (
+                    <section>
+                        <h2>Product not found!</h2>
+                    </section>
+                ) : (
+                    <DetailProduct product={product} />
+                )}
                 {/* Detail product */}
 
                 {/* Description and Review */}

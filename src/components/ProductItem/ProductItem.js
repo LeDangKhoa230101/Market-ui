@@ -14,6 +14,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PropTypes from 'prop-types';
 
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -31,10 +32,12 @@ function ProductItem({ product, handlePlusItem }) {
     return (
         <>
             <div className={cx('product-item')}>
-                <Image
-                    className={cx('product__item-img')}
-                    src={product.image}
-                />
+                <Link to={`/products/${product.id}`}>
+                    <Image
+                        className={cx('product__item-img')}
+                        src={product.image}
+                    />
+                </Link>
                 <div className={cx('product__item-top')}>
                     <span className={cx('product__item-sale')}>
                         {product.deals} off
@@ -88,9 +91,11 @@ function ProductItem({ product, handlePlusItem }) {
                 </div>
                 <div className={cx('product__item-body')}>
                     <div className={cx('product__item-body-right')}>
-                        <span className={cx('product__item-name')}>
-                            {product.name}
-                        </span>
+                        <Link to={`/products/${product.id}`}>
+                            <span className={cx('product__item-name')}>
+                                {product.name}
+                            </span>
+                        </Link>
                         <Stack
                             sx={{
                                 margin: '9px 0',

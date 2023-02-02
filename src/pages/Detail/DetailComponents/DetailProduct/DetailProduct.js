@@ -9,23 +9,24 @@ import Box from '@mui/material/Box';
 import { useState, useRef, useEffect } from 'react';
 import Rating from '@mui/material/Rating';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '~/reducers/cartSlice';
+import { useSnackbar } from 'notistack';
+import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 
 const cx = classNames.bind(styles);
 
 const OPTION_COLOR = ['Black', 'White', 'Blue'];
 const OPTION_TYPE = ['12GB+128GB', '12GB+256GB', '12GB+512GB'];
 
-function DetailProduct() {
+function DetailProduct({ product }) {
     const Item = styled(Box)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(0),
+        maxWidth: '87%',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        maxWidth: '76%',
     }));
 
     const ItemImg = styled(Box)(({ theme }) => ({
@@ -34,13 +35,16 @@ function DetailProduct() {
         padding: theme.spacing(0),
         width: '64px',
         height: '64px',
-        marginRight: '10px',
+        marginLeft: '9px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: '10px',
-        border: '1px solid var(--primary-color)',
     }));
+
+    const dispatch = useDispatch();
+
+    const { enqueueSnackbar } = useSnackbar();
 
     const [nav1, setNav1] = useState(null);
     const [nav2, setNav2] = useState(null);
@@ -73,15 +77,23 @@ function DetailProduct() {
     const [typeColor, setTypeColor] = useState('');
     const [typeOption, setTypeOption] = useState('');
 
-    const [qt, setQt] = useState(1);
-    const [disabled] = useState('disabled-btn');
-
-    const handlePlusQt = () => {
-        setQt((qt) => qt + 1);
-    };
-
-    const handleMinusQt = () => {
-        setQt((qt) => qt - 1);
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product));
+        enqueueSnackbar(
+            <div className={cx('snackbar')}>
+                <CheckCircleSharpIcon
+                    sx={{
+                        marginRight: '8px',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: 'var(--white)',
+                        color: '#33d067',
+                        borderRadius: '999px',
+                    }}
+                />
+                <span className={cx('snackbar-title')}>Added to cart</span>
+            </div>,
+        );
     };
 
     return (
@@ -93,24 +105,16 @@ function DetailProduct() {
                     ref={slider1}
                     className={cx('slider-nav')}
                 >
-                    <div>
-                        <Image
-                            className={cx('slide1-img')}
-                            src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-3.png&w=384&q=75"
-                        />
-                    </div>
-                    <div>
-                        <Image
-                            className={cx('slide1-img')}
-                            src="https://ss7.vzw.com/is/image/VerizonWireless/iphone-14-pro-deep-purple-fall22-a"
-                        />
-                    </div>
-                    <div>
-                        <Image
-                            className={cx('slide1-img')}
-                            src="https://www.three.co.uk/cs/Satellite?blobkey=id&blobwhere=1401331509853&blobcol=urldata&blobtable=MungoBlobs"
-                        />
-                    </div>
+                    {product.sliderImage.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <Image
+                                    className={cx('slide1-img')}
+                                    src={item.imageDetail}
+                                />
+                            </div>
+                        );
+                    })}
                 </SlickSlider>
                 <SlickSlider
                     {...settings2}
@@ -118,36 +122,25 @@ function DetailProduct() {
                     ref={slider2}
                     className={cx('slider-subnav')}
                 >
-                    <div>
-                        <ItemImg>
-                            <Image
-                                className={cx('slide2-img')}
-                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fflash-3.png&w=384&q=75"
-                            />
-                        </ItemImg>
-                    </div>
-                    <div>
-                        <ItemImg>
-                            <Image
-                                className={cx('slide2-img')}
-                                src="https://ss7.vzw.com/is/image/VerizonWireless/iphone-14-pro-deep-purple-fall22-a"
-                            />
-                        </ItemImg>
-                    </div>
-                    <div>
-                        <ItemImg>
-                            <Image
-                                className={cx('slide2-img')}
-                                src="https://www.three.co.uk/cs/Satellite?blobkey=id&blobwhere=1401331509853&blobcol=urldata&blobtable=MungoBlobs"
-                            />
-                        </ItemImg>
-                    </div>
+                    {product.sliderImage.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <ItemImg className={cx('slick-active-style')}>
+                                    <Image
+                                        className={cx('slide2-img')}
+                                        src={item.imageDetail}
+                                    />
+                                </ItemImg>
+                            </div>
+                        );
+                    })}
                 </SlickSlider>
             </Grid>
+
             <Grid item xs={6}>
                 <Item>
-                    <h1 className={cx('product-name')}>Classic Rolex Watch</h1>
-                    <div>
+                    <h1 className={cx('product-name')}>{product.name}</h1>
+                    <div className={cx('product-brand-rate')}>
                         <div className={cx('product-brand')}>
                             Brand:
                             <span className={cx('product-brand-name')}>
@@ -162,7 +155,7 @@ function DetailProduct() {
                                 sx={{
                                     marginBottom: '2px',
                                 }}
-                                value={3}
+                                value={product.rating}
                                 size="large"
                             />
                         </div>
@@ -213,71 +206,27 @@ function DetailProduct() {
                     </div>
                     {/* price */}
                     <div>
-                        <span className={cx('price')}>126,00 US$</span>
+                        <span className={cx('price')}>
+                            {product.curPrice} US$
+                        </span>
+                        <span className={cx('available')}>
+                            270 products available
+                        </span>
                     </div>
-                    <div>
-                        <div className={cx('body_cart-action')}>
-                            <Button
-                                className={cx(qt === 1 ? disabled : '')}
-                                onClick={handleMinusQt}
-                                sx={{
-                                    minWidth: '38px',
-                                    height: '38px',
-                                    color: 'var(--primary-color)',
-                                    border: '1px solid rgba(210, 63, 87, 0.5)',
-                                    borderRadius: '4px',
-                                    '&:hover': {
-                                        backgroundColor:
-                                            'rgba(210, 63, 87, 0.04)',
-                                        border: '1px solid rgb(210, 63, 87)',
-                                    },
-                                }}
-                            >
-                                <RemoveIcon
-                                    sx={{
-                                        width: '20px',
-                                        height: '20px',
-                                    }}
-                                />
-                            </Button>
-                            <span className={cx('body_cart-qt')}>{qt}</span>
-                            <Button
-                                onClick={handlePlusQt}
-                                sx={{
-                                    minWidth: '38px',
-                                    height: '38px',
-                                    color: 'var(--primary-color)',
-                                    border: '1px solid rgba(210, 63, 87, 0.5)',
-                                    borderRadius: '4px',
-                                    '&:hover': {
-                                        backgroundColor:
-                                            'rgba(210, 63, 87, 0.04)',
-                                        border: '1px solid rgb(210, 63, 87)',
-                                    },
-                                }}
-                            >
-                                <AddIcon
-                                    sx={{
-                                        width: '20px',
-                                        height: '20px',
-                                    }}
-                                />
-                            </Button>
-                            <span className={cx('available')}>
-                                270 products available
-                            </span>
-                        </div>
+                    <div className={cx('action')}>
                         <Button
+                            onClick={() => handleAddToCart(product)}
                             sx={{
                                 minWidth: '214px',
                                 height: '40px',
-                                color: 'var(--white)',
+                                fontWeight: 600,
+                                color: 'var(--primary-color)',
                                 fontSize: '1.3rem',
                                 boxShadow: '0px 4px 16px rgb(43 52 69 / 10%)',
-                                backgroundColor: 'var(--primary-color)',
+                                border: '1px solid var(--primary-color)',
                                 '&:hover': {
-                                    opacity: '0.8',
-                                    backgroundColor: 'var(--primary-color)',
+                                    backgroundColor: 'rgba(210, 63, 87, 0.04)',
+                                    border: '1px solid rgb(210, 63, 87)',
                                 },
                             }}
                         >
@@ -290,6 +239,29 @@ function DetailProduct() {
                             />
                             Add to cart
                         </Button>
+                        <Button
+                            sx={{
+                                minWidth: '214px',
+                                height: '40px',
+                                fontWeight: 600,
+                                color: 'var(--white)',
+                                fontSize: '1.3rem',
+                                marginLeft: '14px',
+                                boxShadow: '0px 4px 16px rgb(43 52 69 / 10%)',
+                                backgroundColor: 'var(--primary-color)',
+                                '&:hover': {
+                                    opacity: '0.8',
+                                    backgroundColor: 'var(--primary-color)',
+                                },
+                            }}
+                        >
+                            Buy Now
+                        </Button>
+                    </div>
+
+                    <div className={cx('sold-by')}>
+                        <span>Sold By:</span>
+                        <p>Mobile Store</p>
                     </div>
                 </Item>
             </Grid>
