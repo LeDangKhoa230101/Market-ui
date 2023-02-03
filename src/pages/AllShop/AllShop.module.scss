@@ -1,0 +1,32 @@
+.wrapper-shops {
+    background-color: #f6f9fc;
+}
+
+.container {
+    max-width: var(--width-website);
+    margin: auto;
+    padding: 32px 24px 48px;
+}
+
+.heading {
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 38px;
+
+    & .all-shop {
+        color: #7d879c;
+        font-size: 1.5rem;
+    }
+
+    & .shops {
+        padding: 0;
+        margin: 0;
+    }
+}

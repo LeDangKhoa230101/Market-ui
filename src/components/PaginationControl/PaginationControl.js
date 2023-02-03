@@ -7,7 +7,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 const cx = classNames.bind(styles);
 
-function PaginationControl({ handlePageClick, length, limit }) {
+function PaginationControl({ handlePageClick, length, limit, className }) {
     const pageCount = Math.ceil(length / limit);
 
     const styles = {
@@ -19,7 +19,7 @@ function PaginationControl({ handlePageClick, length, limit }) {
     return (
         <>
             <ReactPaginate
-                className={cx('paginate')}
+                className={cx('paginate', className)}
                 breakLabel="..."
                 nextLabel={<NavigateNextIcon sx={styles} />}
                 onPageChange={handlePageClick}

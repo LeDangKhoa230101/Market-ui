@@ -5,6 +5,7 @@ const config = {
     detail: '/products/:id',
     cart: '/cart',
     checkout: '/checkout',
+    shops: '/all-shops',
 };
 
 export default config;

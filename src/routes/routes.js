@@ -4,6 +4,7 @@ import Fashion from '~/pages/Fashion';
 import Detail from '~/pages/Detail';
 import Cart from '~/pages/Cart';
 import Checkout from '~/pages/Checkout';
+import AllShop from '~/pages/AllShop';
 
 import { routes } from '~/config';
 
@@ -15,6 +16,7 @@ const publicRoutes = [
     { path: routes.detail, component: Detail },
     { path: routes.cart, component: Cart },
     { path: routes.checkout, component: Checkout },
+    { path: routes.shops, component: AllShop },
 ];
 
 // cần đăng nhập
