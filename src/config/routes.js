@@ -3,6 +3,7 @@ const config = {
     search: '/search',
     fashion: '/fashion',
     detail: '/products/:id',
+    cart: '/cart',
 };
 
 export default config;

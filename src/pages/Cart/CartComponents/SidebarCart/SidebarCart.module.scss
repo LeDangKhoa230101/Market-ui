@@ -1,0 +1,28 @@
+//sidebar
+.sidebar {
+    padding: 24px;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: 0px 4px 16px rgb(43 52 69 / 10%);
+
+    & .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & > span {
+            color: #7d879c;
+        }
+
+        & > p {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.hr {
+    color: #bababa;
+    margin: 20px 0 !important;
+}

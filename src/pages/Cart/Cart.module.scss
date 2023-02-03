@@ -1,0 +1,24 @@
+.wrapper-cart {
+    background-color: #f6f9fc;
+}
+
+.container {
+    max-width: var(--width-website);
+    margin: auto;
+    padding: 32px 24px 48px;
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    width: 100%;
+    margin-bottom: 40px;
+
+    & h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-left: 10px;
+    }
+}

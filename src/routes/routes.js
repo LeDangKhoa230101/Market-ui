@@ -2,6 +2,7 @@ import Home from '~/pages/Home';
 import Search from '~/pages/Search';
 import Fashion from '~/pages/Fashion';
 import Detail from '~/pages/Detail';
+import Cart from '~/pages/Cart';
 
 import { routes } from '~/config';
 
@@ -11,6 +12,7 @@ const publicRoutes = [
     { path: routes.search, component: Search },
     { path: routes.fashion, component: Fashion },
     { path: routes.detail, component: Detail },
+    { path: routes.cart, component: Cart },
 ];
 
 // cần đăng nhập
