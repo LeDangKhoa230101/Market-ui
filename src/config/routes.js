@@ -4,6 +4,7 @@ const config = {
     fashion: '/fashion',
     detail: '/products/:id',
     cart: '/cart',
+    checkout: '/checkout',
 };
 
 export default config;

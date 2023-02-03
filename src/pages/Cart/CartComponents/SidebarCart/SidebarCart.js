@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -70,25 +71,27 @@ function SidebarCart() {
                 </Button>
             </Box>
             <hr className={cx('hr')}></hr>
-            <Button
-                sx={{
-                    minWidth: '100%',
-                    height: '37px',
-                    backgroundColor: 'var(--primary-color)',
-                    color: 'var(--white)',
-                    fontSize: '1.4rem',
-                    fontWeight: '600',
-                    textTransform: 'capitalize',
-                    marginTop: '16px',
-
-                    '&:hover': {
+            <Link to={'/checkout'}>
+                <Button
+                    sx={{
+                        minWidth: '100%',
+                        height: '37px',
                         backgroundColor: 'var(--primary-color)',
-                        opacity: '0.9',
-                    },
-                }}
-            >
-                Checkout Now
-            </Button>
+                        color: 'var(--white)',
+                        fontSize: '1.4rem',
+                        fontWeight: '600',
+                        textTransform: 'capitalize',
+                        marginTop: '16px',
+
+                        '&:hover': {
+                            backgroundColor: 'var(--primary-color)',
+                            opacity: '0.9',
+                        },
+                    }}
+                >
+                    Checkout Now
+                </Button>
+            </Link>
         </section>
     );
 }

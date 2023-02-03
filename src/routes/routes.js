@@ -3,6 +3,7 @@ import Search from '~/pages/Search';
 import Fashion from '~/pages/Fashion';
 import Detail from '~/pages/Detail';
 import Cart from '~/pages/Cart';
+import Checkout from '~/pages/Checkout';
 
 import { routes } from '~/config';
 
@@ -13,6 +14,7 @@ const publicRoutes = [
     { path: routes.fashion, component: Fashion },
     { path: routes.detail, component: Detail },
     { path: routes.cart, component: Cart },
+    { path: routes.checkout, component: Checkout },
 ];
 
 // cần đăng nhập
