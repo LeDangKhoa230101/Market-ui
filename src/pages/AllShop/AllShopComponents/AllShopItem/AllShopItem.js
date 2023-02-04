@@ -7,6 +7,7 @@ import Rating from '@mui/material/Rating';
 import RoomIcon from '@mui/icons-material/Room';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EastIcon from '@mui/icons-material/East';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -62,28 +63,30 @@ function AllShopItem({ datas }) {
                                 />
                             </div>
                             <div className={cx('btn')}>
-                                <Button
-                                    sx={{
-                                        minWidth: '35px',
-                                        maxWidth: '35px',
-                                        height: '35px',
-                                        margin: '4px 8px 4px 0',
-                                        borderRadius: '999px',
-                                        color: 'var(--primary-color)',
-
-                                        '&:hover': {
-                                            backgroundColor:
-                                                'rgba(210, 63, 87, 0.04)',
-                                        },
-                                    }}
-                                >
-                                    <EastIcon
+                                <Link to={`/shop/${item.id}`}>
+                                    <Button
                                         sx={{
-                                            width: '20px',
-                                            height: '20px',
+                                            minWidth: '35px',
+                                            maxWidth: '35px',
+                                            height: '35px',
+                                            margin: '4px 8px 4px 0',
+                                            borderRadius: '999px',
+                                            color: 'var(--primary-color)',
+
+                                            '&:hover': {
+                                                backgroundColor:
+                                                    'rgba(210, 63, 87, 0.04)',
+                                            },
                                         }}
-                                    />
-                                </Button>
+                                    >
+                                        <EastIcon
+                                            sx={{
+                                                width: '20px',
+                                                height: '20px',
+                                            }}
+                                        />
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </Grid>

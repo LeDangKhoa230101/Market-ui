@@ -1,4 +1,4 @@
-import styles from './SearchSidebar.module.scss';
+import styles from './FilterPanel.module.scss';
 
 import { Button, Grid } from '@mui/material';
 import { NavLink } from 'react-router-dom';
@@ -12,7 +12,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-function SearchSidebar() {
+function FilterPanel() {
     const Item = styled(Box)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(2.25, 3.375),
@@ -532,4 +532,4 @@ function SearchSidebar() {
     );
 }
 
-export default SearchSidebar;
+export default FilterPanel;

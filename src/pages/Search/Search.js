@@ -1,10 +1,10 @@
 import styles from './Search.module.scss';
 import Header from './SearchComponents/SearchHeader';
-import SearchSidebar from './SearchComponents/SearchSidebar';
+import FilterPanel from '~/layouts/components/FilterPanel';
 
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { Button, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import ProductItem from '~/components/ProductItem';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -48,7 +48,7 @@ function Search() {
                     }}
                     className={cx('container')}
                 >
-                    <SearchSidebar />
+                    <FilterPanel />
                     <Grid
                         item
                         xs={9}

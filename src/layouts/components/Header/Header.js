@@ -214,20 +214,22 @@ function Header() {
                     >
                         Laptops
                     </Button>
-                    <Button
-                        sx={{
-                            minWidth: '80px',
-                            height: '36px',
-                            border: 'none',
-                            color: '#7d879c',
-                            fontSize: '1.4rem',
-                            textTransform: 'capitalize',
-                            marginLeft: '12px',
-                        }}
-                        className={cx('all-shop-btn')}
-                    >
-                        All Shops
-                    </Button>
+                    <Link to={'/all-shops'}>
+                        <Button
+                            sx={{
+                                minWidth: '80px',
+                                height: '36px',
+                                border: 'none',
+                                color: '#7d879c',
+                                fontSize: '1.4rem',
+                                textTransform: 'capitalize',
+                                marginLeft: '12px',
+                            }}
+                            className={cx('all-shop-btn')}
+                        >
+                            All Shops
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>
