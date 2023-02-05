@@ -17,19 +17,11 @@ const cx = classNames.bind(styles);
 
 const MENU_USER = [
     {
-        title: 'Order List',
+        title: 'Orders',
         to: '/',
     },
     {
-        title: 'Order Details',
-        to: '/',
-    },
-    {
-        title: 'View Profile',
-        to: '/',
-    },
-    {
-        title: 'Edit Profile',
+        title: 'Profile',
         to: '/',
     },
     {
@@ -41,7 +33,7 @@ const MENU_USER = [
 function ModalUser() {
     const [showModal, setShowModal] = useState(false);
 
-    const currentUser = false;
+    const currentUser = true;
 
     const handleShowModalUser = () => {
         setShowModal(true);
@@ -53,7 +45,7 @@ function ModalUser() {
     return (
         <>
             {currentUser ? (
-                <Menu data={MENU_USER} className={cx('className')}>
+                <Menu data={MENU_USER}>
                     <Button className={cx('action-btn')}>
                         <FontAwesomeIcon
                             icon={faUser}
@@ -65,7 +57,7 @@ function ModalUser() {
                 <>
                     <Button
                         onClick={handleShowModalUser}
-                        className={cx('action-btn-user')}
+                        className={cx('action-btn')}
                     >
                         <FontAwesomeIcon
                             icon={faArrowRightToBracket}
