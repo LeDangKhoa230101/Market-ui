@@ -1,0 +1,135 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & div {
+        display: flex;
+        align-items: center;
+
+        & .icon {
+            width: 26px;
+            height: 26px;
+            color: var(--primary-color);
+        }
+
+        & .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-left: 12px;
+            margin-bottom: 4px;
+        }
+    }
+}
+
+//info
+.info-body {
+    height: 100%;
+    padding: 14px 32px;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+
+    & > div {
+        display: flex;
+        align-items: center;
+
+        & .avatar {
+            width: 64px;
+            height: 64px;
+            margin-right: 12px;
+        }
+
+        & .body {
+            & span {
+                font-size: 1.6rem;
+                font-weight: 600;
+                height: 22px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+            }
+            & p {
+                font-size: 1.4rem;
+                color: #7d879c;
+                margin-bottom: 0;
+                margin-top: 4px;
+            }
+        }
+    }
+}
+
+.box {
+    padding: 16px 20px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: var(--white);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+
+    & span {
+        font-size: 2rem;
+        font-weight: 500;
+        color: var(--primary-color);
+    }
+
+    & p {
+        font-size: 1.2rem;
+        color: #7d879c;
+        margin: 0;
+    }
+}
+
+//view-info
+.view-info {
+    margin-top: 20px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+}
+
+.view-body {
+    height: 100%;
+
+    & span {
+        font-size: 1.2rem;
+        color: #7d879c;
+    }
+
+    & p {
+        font-size: 1.4rem;
+        margin: 0;
+        height: 21px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+}
+
+//edit-content
+.edit-section {
+    position: relative;
+    margin-top: 20px;
+    padding: 24px 28px;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+
+    & .avatar {
+        width: 64px;
+        height: 64px;
+    }
+
+    & .camera-icon {
+        position: absolute;
+        top: 52px;
+        left: 80px;
+        cursor: pointer;
+    }
+
+    & .profile-image {
+        display: none;
+    }
+}

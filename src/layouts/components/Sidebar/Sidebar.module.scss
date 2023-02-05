@@ -27,7 +27,7 @@
     font-weight: 500;
     border-radius: 5px;
     color: var(--text-color);
-    background-color: #f6f9fc;
+    background-color: var(--website-background-color);
     transition: all ease 0.3s;
 
     &.active {
