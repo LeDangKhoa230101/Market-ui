@@ -7,6 +7,7 @@ const config = {
     checkout: '/checkout',
     shops: '/all-shops',
     shop: '/shop/:id',
+    sale: '/sale-page/*',
 };
 
 export default config;

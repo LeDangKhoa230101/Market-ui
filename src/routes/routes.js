@@ -6,6 +6,7 @@ import Cart from '~/pages/Cart';
 import Checkout from '~/pages/Checkout';
 import AllShop from '~/pages/AllShop';
 import DetailShop from '~/pages/DetailShop';
+import SalePage from '~/pages/SalePage';
 
 import { routes } from '~/config';
 
@@ -19,6 +20,7 @@ const publicRoutes = [
     { path: routes.checkout, component: Checkout },
     { path: routes.shops, component: AllShop },
     { path: routes.shop, component: DetailShop },
+    { path: routes.sale, component: SalePage },
 ];
 
 // cần đăng nhập

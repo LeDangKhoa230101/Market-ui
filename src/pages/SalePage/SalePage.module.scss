@@ -1,0 +1,27 @@
+.wrapper-sale {
+    background-color: #f6f9fc;
+}
+
+.container {
+    max-width: var(--width-website);
+    margin: auto;
+    padding: 20px 24px 48px;
+}
+
+.heading {
+    font-size: 3.1rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+
+    & span:first-child {
+        color: var(--primary-color);
+    }
+
+    & span:last-child {
+        color: #7d879c;
+    }
+}
+
+.content {
+    margin-top: 40px;
+}

@@ -1,0 +1,30 @@
+// category
+.cate-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 1px solid rgb(218, 225, 231);
+    padding: 10px 0;
+
+    &.active {
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+
+        & > svg {
+            color: var(--primary-color);
+        }
+
+        & .cate-name {
+            color: var(--primary-color);
+        }
+    }
+}
+
+.cate-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 8px;
+    color: var(--text-color);
+}
