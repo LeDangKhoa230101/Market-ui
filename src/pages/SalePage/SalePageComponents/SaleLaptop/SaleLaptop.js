@@ -15,16 +15,15 @@ function SaleLaptop() {
     const datas = useSelector((state) => state.productsFlashDeals.items);
     const status = useSelector((state) => state.productsFlashDeals.status);
 
-    const [limit] = useState(20);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(20);
 
-    const [itemOffset, setItemOffset] = useState(0);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentData = datas?.slice(indexOfFirstPost, indexOfLastPost);
 
-    const endOffset = itemOffset + limit;
-    const currentItems = datas?.slice(itemOffset, endOffset);
-
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected + limit) % datas.length;
-        setItemOffset(newOffset);
+    const paginate = ({ selected }) => {
+        setCurrentPage(selected + 1);
     };
 
     return (
@@ -51,7 +50,7 @@ function SaleLaptop() {
                         This is an error alert — check it out!
                     </Alert>
                 ) : (
-                    currentItems?.map((product) => {
+                    currentData?.map((product) => {
                         return (
                             <Grid item xs={3} key={product.id}>
                                 <ProductItem product={product} />
@@ -65,12 +64,12 @@ function SaleLaptop() {
                 <span className={cx('sale-text')}>
                     Showing 1-20 of {datas?.length} Products
                 </span>
-                {currentItems && (
+                {currentData && (
                     <PaginationControl
                         className={cx('sale')}
-                        limit={limit}
-                        length={datas?.length}
-                        handlePageClick={handlePageClick}
+                        totalCount={datas?.length}
+                        postsPerPage={postsPerPage}
+                        onPageChange={paginate}
                     />
                 )}
             </div>

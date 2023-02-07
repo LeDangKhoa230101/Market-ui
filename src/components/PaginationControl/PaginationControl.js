@@ -7,8 +7,13 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 const cx = classNames.bind(styles);
 
-function PaginationControl({ handlePageClick, length, limit, className }) {
-    const pageCount = Math.ceil(length / limit);
+function PaginationControl({
+    totalCount,
+    postsPerPage,
+    onPageChange,
+    className,
+}) {
+    const pageCount = Math.ceil(totalCount / postsPerPage);
 
     const styles = {
         color: 'var(--primary-color)',
@@ -22,7 +27,7 @@ function PaginationControl({ handlePageClick, length, limit, className }) {
                 className={cx('paginate', className)}
                 breakLabel="..."
                 nextLabel={<NavigateNextIcon sx={styles} />}
-                onPageChange={handlePageClick}
+                onPageChange={onPageChange}
                 pageRangeDisplayed={5}
                 pageCount={pageCount}
                 activeClassName={cx('paginate-active')}

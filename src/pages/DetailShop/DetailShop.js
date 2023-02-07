@@ -30,16 +30,16 @@ function DetailShop() {
     }));
 
     const data = useSelector((state) => state.productsFlashDeals.items);
-    const [limit] = useState(12);
 
-    const [itemOffset, setItemOffset] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(12);
 
-    const endOffset = itemOffset + limit;
-    const currentItems = data?.slice(itemOffset, endOffset);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentData = data?.slice(indexOfFirstPost, indexOfLastPost);
 
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * limit) % data?.length;
-        setItemOffset(newOffset);
+    const paginate = ({ selected }) => {
+        setCurrentPage(selected + 1);
     };
 
     return (
@@ -57,19 +57,16 @@ function DetailShop() {
                             margin: '0px -16px',
                             width: 'calc(100% + 29px)',
                             padding: '20px 0',
+                            alignItems: 'flex-start',
                         }}
                     >
                         {/* Filter panel */}
-                        <FilterPanel />
+                        <Grid item xs={12} md={3}>
+                            <FilterPanel />
+                        </Grid>
                         {/* Filter panel */}
-                        <Grid
-                            item
-                            xs={9}
-                            container
-                            className={cx('content')}
-                            sx={{}}
-                        >
-                            {currentItems?.map((product) => {
+                        <Grid item xs={12} md={9} container>
+                            {currentData?.map((product) => {
                                 return (
                                     <Grid item xs={4} key={product.id}>
                                         <Item>
@@ -81,11 +78,11 @@ function DetailShop() {
 
                             <div className={cx('paginate')}>
                                 <span>Showing 1-12 of 1.3k Products</span>
-                                {currentItems && (
+                                {currentData && (
                                     <PaginationControl
-                                        limit={limit}
-                                        length={data?.length}
-                                        handlePageClick={handlePageClick}
+                                        totalCount={data?.length}
+                                        postsPerPage={postsPerPage}
+                                        onPageChange={paginate}
                                     />
                                 )}
                             </div>

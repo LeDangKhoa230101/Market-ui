@@ -14,16 +14,15 @@ function AllShop() {
     const datas = useSelector((state) => state.shopsSlice.datas);
     const status = useSelector((state) => state.shopsSlice.status);
 
-    const [limit] = useState(9);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(9);
 
-    const [itemOffset, setItemOffset] = useState(0);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentData = datas?.slice(indexOfFirstPost, indexOfLastPost);
 
-    const endOffset = itemOffset + limit;
-    const currentItems = datas?.slice(itemOffset, endOffset);
-
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected + limit) % datas.length;
-        setItemOffset(newOffset);
+    const paginate = ({ selected }) => {
+        setCurrentPage(selected + 1);
     };
 
     return (
@@ -43,19 +42,19 @@ function AllShop() {
                         This is an error alert — check it out!
                     </Alert>
                 ) : (
-                    <AllShopItem datas={currentItems} />
+                    <AllShopItem datas={currentData} />
                 )}
 
                 <div className={cx('bottom')}>
                     <span className={cx('all-shop')}>
                         Showing 1-9 of 300 Shops
                     </span>
-                    {currentItems && (
+                    {currentData && (
                         <PaginationControl
                             className={cx('shops')}
-                            limit={limit}
-                            length={datas?.length}
-                            handlePageClick={handlePageClick}
+                            totalCount={datas?.length}
+                            postsPerPage={postsPerPage}
+                            onPageChange={paginate}
                         />
                     )}
                 </div>

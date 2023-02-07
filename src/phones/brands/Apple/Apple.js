@@ -18,18 +18,17 @@ import { useGetListApplesQuery } from '~/reducers/productApi';
 const cx = classNames.bind(styles);
 
 function Apple() {
-    const [limit] = useState(6);
-
     const { data, isLoading, error } = useGetListApplesQuery();
 
-    const [itemOffset, setItemOffset] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(6);
 
-    const endOffset = itemOffset + limit;
-    const currentItems = data?.slice(itemOffset, endOffset);
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentData = data?.slice(indexOfFirstPost, indexOfLastPost);
 
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * limit) % data?.length;
-        setItemOffset(newOffset);
+    const paginate = ({ selected }) => {
+        setCurrentPage(selected + 1);
     };
 
     const dispatch = useDispatch();
@@ -71,7 +70,7 @@ function Apple() {
                     </Alert>
                 ) : (
                     <>
-                        {currentItems?.map((product) => {
+                        {currentData?.map((product) => {
                             return (
                                 <Grid item xs={4} key={product.id}>
                                     <ProductItem
@@ -87,11 +86,11 @@ function Apple() {
                 )}
             </Grid>
 
-            {currentItems && (
+            {currentData && (
                 <PaginationControl
-                    limit={limit}
-                    length={data?.length}
-                    handlePageClick={handlePageClick}
+                    totalCount={data?.length}
+                    postsPerPage={postsPerPage}
+                    onPageChange={paginate}
                 />
             )}
         </div>

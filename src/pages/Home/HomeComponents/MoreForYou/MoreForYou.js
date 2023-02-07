@@ -14,17 +14,17 @@ const cx = classNames.bind(styles);
 function MoreForYou() {
     const data = useSelector((state) => state.productsFlashDeals.items);
 
-    const [itemOffset, setItemOffset] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(20);
 
-    const [limit] = useState(12);
-    const endOffset = itemOffset + limit;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentData = data?.slice(indexOfFirstPost, indexOfLastPost);
 
-    const currentData = data?.slice(itemOffset, endOffset);
-
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * limit) % data?.length;
-        setItemOffset(newOffset);
+    const paginate = ({ selected }) => {
+        setCurrentPage(selected + 1);
     };
+
     return (
         <div className={cx('more-for-you')}>
             <TitleSection title="More For You" />
@@ -47,9 +47,9 @@ function MoreForYou() {
 
             {currentData && (
                 <PaginationControl
-                    length={data?.length}
-                    limit={limit}
-                    handlePageClick={handlePageClick}
+                    totalCount={data?.length}
+                    postsPerPage={postsPerPage}
+                    onPageChange={paginate}
                 />
             )}
         </div>
