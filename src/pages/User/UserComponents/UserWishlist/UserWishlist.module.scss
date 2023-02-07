@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & div {
+        display: flex;
+        align-items: center;
+
+        & .icon {
+            width: 26px;
+            height: 26px;
+            color: var(--primary-color);
+        }
+
+        & .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-left: 12px;
+            margin-bottom: 4px;
+        }
+    }
+}

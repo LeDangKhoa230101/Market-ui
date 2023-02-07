@@ -7,13 +7,8 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 const cx = classNames.bind(styles);
 
-function PaginationControl({
-    totalCount,
-    postsPerPage,
-    onPageChange,
-    className,
-}) {
-    const pageCount = Math.ceil(totalCount / postsPerPage);
+function PaginationControl({ totalCount, limit, onPageChange, className }) {
+    const pageCount = Math.ceil(totalCount / limit);
 
     const styles = {
         color: 'var(--primary-color)',

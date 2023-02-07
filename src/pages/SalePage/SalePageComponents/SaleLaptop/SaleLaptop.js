@@ -16,13 +16,13 @@ function SaleLaptop() {
     const status = useSelector((state) => state.productsFlashDeals.status);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(20);
+    const [limit] = useState(20);
 
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentData = datas?.slice(indexOfFirstPost, indexOfLastPost);
+    const indexOfLast = currentPage * limit;
+    const indexOfFirst = indexOfLast - limit;
+    const currentData = datas?.slice(indexOfFirst, indexOfLast);
 
-    const paginate = ({ selected }) => {
+    const onPageChange = ({ selected }) => {
         setCurrentPage(selected + 1);
     };
 
@@ -68,8 +68,8 @@ function SaleLaptop() {
                     <PaginationControl
                         className={cx('sale')}
                         totalCount={datas?.length}
-                        postsPerPage={postsPerPage}
-                        onPageChange={paginate}
+                        limit={limit}
+                        onPageChange={onPageChange}
                     />
                 )}
             </div>

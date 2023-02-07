@@ -24,13 +24,13 @@ function Search() {
     const data = useSelector((state) => state.productsFlashDeals.items);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(12);
+    const [limit] = useState(12);
 
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentData = data?.slice(indexOfFirstPost, indexOfLastPost);
+    const indexOfLast = currentPage * limit;
+    const indexOfFirst = indexOfLast - limit;
+    const currentData = data?.slice(indexOfFirst, indexOfLast);
 
-    const paginate = ({ selected }) => {
+    const onPageChange = ({ selected }) => {
         setCurrentPage(selected + 1);
     };
 
@@ -75,8 +75,8 @@ function Search() {
                             {currentData && (
                                 <PaginationControl
                                     totalCount={data?.length}
-                                    postsPerPage={postsPerPage}
-                                    onPageChange={paginate}
+                                    limit={limit}
+                                    onPageChange={onPageChange}
                                 />
                             )}
                         </div>

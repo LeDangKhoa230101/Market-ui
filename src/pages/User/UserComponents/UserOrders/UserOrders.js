@@ -19,13 +19,13 @@ function UserOrders() {
     const { data } = useGetListOrdersQuery();
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(4);
+    const [limit] = useState(4);
 
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentData = data?.slice(indexOfFirstPost, indexOfLastPost);
+    const indexOfLast = currentPage * limit;
+    const indexOfFirst = indexOfLast - limit;
+    const currentData = data?.slice(indexOfFirst, indexOfLast);
 
-    const paginate = ({ selected }) => {
+    const onPageChange = ({ selected }) => {
         setCurrentPage(selected + 1);
     };
 
@@ -148,8 +148,8 @@ function UserOrders() {
                 {currentData && (
                     <PaginationControl
                         totalCount={data?.length}
-                        postsPerPage={postsPerPage}
-                        onPageChange={paginate}
+                        limit={limit}
+                        onPageChange={onPageChange}
                     />
                 )}
             </Grid>
