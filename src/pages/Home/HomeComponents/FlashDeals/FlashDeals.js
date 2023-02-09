@@ -1,5 +1,5 @@
 import styles from './FlashDeals.module.scss';
-
+import TitleSection from '~/components/TitleSection';
 import ProductItem from '~/components/ProductItem';
 
 import { useRef } from 'react';
@@ -12,6 +12,7 @@ import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import { useSnackbar } from 'notistack';
+import BoltIcon from '@mui/icons-material/Bolt';
 
 import { addToCart } from '~/reducers/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -58,54 +59,72 @@ function FlashDeals() {
     const sliderRef = useRef(null);
 
     return (
-        <div className={cx('deal-slide')}>
-            {status === 'loading' ? (
-                <CircularProgress />
-            ) : status === 'failed' ? (
-                <Alert
-                    sx={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                    severity="error"
+        <div className={cx('deals')}>
+            <TitleSection
+                to={'sale-page'}
+                icon={
+                    <BoltIcon
+                        sx={{
+                            width: '24px',
+                            height: '24px',
+                            marginTop: '2px',
+                            color: 'var(--primary-color)',
+                        }}
+                    />
+                }
+                title={'Flash Deals'}
+            />
+            <div className={cx('deal-slide')}>
+                {status === 'loading' ? (
+                    <CircularProgress />
+                ) : status === 'failed' ? (
+                    <Alert
+                        sx={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                        severity="error"
+                    >
+                        This is an error alert — check it out!
+                    </Alert>
+                ) : (
+                    <Slider {...settings} ref={sliderRef}>
+                        {data.map((product) => {
+                            return (
+                                <ProductItem
+                                    key={product.id}
+                                    product={product}
+                                    handlePlusItem={() =>
+                                        handlePlusItem(product)
+                                    }
+                                />
+                            );
+                        })}
+                    </Slider>
+                )}
+                <button
+                    onClick={() => sliderRef.current.slickPrev()}
+                    className={cx('deals-slide-btn--left')}
                 >
-                    This is an error alert — check it out!
-                </Alert>
-            ) : (
-                <Slider {...settings} ref={sliderRef}>
-                    {data.map((product) => {
-                        return (
-                            <ProductItem
-                                key={product.id}
-                                product={product}
-                                handlePlusItem={() => handlePlusItem(product)}
-                            />
-                        );
-                    })}
-                </Slider>
-            )}
-            <button
-                onClick={() => sliderRef.current.slickPrev()}
-                className={cx('deals-slide-btn--left')}
-            >
-                <ArrowBackIcon
-                    sx={{
-                        width: '20px',
-                        height: '20px',
-                    }}
-                />
-            </button>
-            <button
-                onClick={() => sliderRef.current.slickNext()}
-                className={cx('deals-slide-btn--right')}
-            >
-                <ArrowForwardIcon
-                    sx={{
-                        width: '20px',
-                        height: '20px',
-                    }}
-                />
-            </button>
+                    <ArrowBackIcon
+                        sx={{
+                            width: '20px',
+                            height: '20px',
+                        }}
+                    />
+                </button>
+                <button
+                    onClick={() => sliderRef.current.slickNext()}
+                    className={cx('deals-slide-btn--right')}
+                >
+                    <ArrowForwardIcon
+                        sx={{
+                            width: '20px',
+                            height: '20px',
+                        }}
+                    />
+                </button>
+            </div>
         </div>
     );
 }

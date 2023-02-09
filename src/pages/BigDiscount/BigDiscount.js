@@ -1,4 +1,4 @@
-import styles from './SalePage.module.scss';
+import styles from './BigDiscount.module.scss';
 import ScrollToTop from '~/pages/ScrollToTop';
 import ProductItem from '~/components/ProductItem';
 import PaginationControl from '~/components/PaginationControl';
@@ -99,7 +99,7 @@ const CATE = [
     },
 ];
 
-function SalePage() {
+function BigDiscount() {
     const [cate, setCate] = useState('');
     const [active, setActive] = useState(null);
 
@@ -127,7 +127,7 @@ function SalePage() {
             <div className={cx('wrapper-sale')}>
                 <div className={cx('container')}>
                     <div className={cx('heading')}>
-                        <span>Flash Deals,</span>
+                        <span>Big Discount,</span>
                         <span> Enjoy Upto 80% discounts</span>
                     </div>
                     {/* Category */}
@@ -206,4 +206,4 @@ function SalePage() {
     );
 }
 
-export default SalePage;
+export default BigDiscount;

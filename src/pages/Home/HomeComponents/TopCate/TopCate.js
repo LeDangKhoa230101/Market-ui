@@ -20,6 +20,7 @@ function TopCate() {
     return (
         <div className={cx('top-cate')}>
             <TitleSection
+                to={'top-category'}
                 icon={
                     <WidgetsIcon
                         sx={{

@@ -10,15 +10,12 @@
         color: var(--primary-color);
     }
 
-    &:hover span {
+    &:hover .title {
         color: var(--primary-color);
     }
 }
 
-.cate-item-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    color: #2b3445;
-    margin-bottom: 3px;
+.title {
+    margin-left: 8px;
+    margin-top: 4px;
 }

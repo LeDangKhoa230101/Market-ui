@@ -6,6 +6,11 @@ import Checkout from '~/pages/Checkout';
 import AllShop from '~/pages/AllShop';
 import DetailShop from '~/pages/DetailShop';
 import SalePage from '~/pages/SalePage';
+import TopCate from '~/pages/TopCate';
+import TopRate from '~/pages/TopRate';
+import FeaturedBrands from '~/pages/FeaturedBrands';
+import NewArrivals from '~/pages/NewArrivals';
+import BigDiscount from '~/pages/BigDiscount';
 import User from '~/pages/User';
 
 import { routes } from '~/config';
@@ -20,6 +25,11 @@ const publicRoutes = [
     { path: routes.shops, component: AllShop },
     { path: routes.shop, component: DetailShop },
     { path: routes.sale, component: SalePage },
+    { path: routes.topcate, component: TopCate },
+    { path: routes.toprate, component: TopRate },
+    { path: routes.featurebrand, component: FeaturedBrands },
+    { path: routes.newarrival, component: NewArrivals },
+    { path: routes.bigdiscount, component: BigDiscount },
     { path: routes.user, component: User },
 ];
 

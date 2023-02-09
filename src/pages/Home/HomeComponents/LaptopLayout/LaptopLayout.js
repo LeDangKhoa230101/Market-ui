@@ -1,121 +1,242 @@
 import styles from './LaptopLayout.module.scss';
-import Sidebar from '~/layouts/components/Sidebar';
 import TitleSection from '~/components/TitleSection';
+import { useGetListBrandPhoneQuery } from '~/reducers/productApi';
+import ProductItem from '~/components/ProductItem';
+import PaginationControl from '~/components/PaginationControl';
+import { addToCart } from '~/reducers/cartSlice';
+import Image from '~/components/Image/Image';
 
-import Acer from '~/laptops/brands/Acer';
-import Asus from '~/laptops/brands/Asus';
-import Dell from '~/laptops/brands/Dell';
-import Hp from '~/laptops/brands/Hp';
-import Lenovo from '~/laptops/brands/Lenovo';
-import MacOS from '~/laptops/brands/MacOS';
-import AllBrandsLaptop from '~/laptops/brands/AllBrandsLaptop';
-
-import LaptopLC from '~/laptops/shops/LaptopLC';
-import LaptopNhatBan from '~/laptops/shops/LaptopNhatBan';
-import TienHungLaptop from '~/laptops/shops/TienHungLaptop';
-import AllShopsLaptop from '~/laptops/shops/AllShopsLaptop';
-
-import { Routes, Route } from 'react-router-dom';
 import classNames from 'classnames/bind';
+import { Grid } from '@mui/material';
+import { useState } from 'react';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/system';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabsListUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+import { useDispatch } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 
 const cx = classNames.bind(styles);
 
-const SIDE_BAR_brand_PHONE = [
+const SIDEBAR_BRAND = [
     {
         name: 'Acer',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Acer_2011.svg/2560px-Acer_2011.svg.png',
-        to: 'laptop/brands/acer',
+        brand: '&brand=apple',
     },
     {
         name: 'Asus',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/ASUS_Logo.svg/2560px-ASUS_Logo.svg.png',
-        to: 'laptop/brands/asus',
+        brand: '&brand=xiaomi',
     },
     {
         name: 'Dell',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dell_logo_2016.svg/2048px-Dell_logo_2016.svg.png',
-        to: 'laptop/brands/dell',
+        brand: '&brand=samsung',
     },
     {
         name: 'Hp',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/2048px-HP_logo_2012.svg.png',
-        to: 'laptop/brands/hp',
+        brand: '&brand=asus',
     },
     {
         name: 'Lenovo',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Lenovo_logo_2015.svg/2560px-Lenovo_logo_2015.svg.png',
-        to: 'laptop/brands/lenovo',
+        brand: '&brand=oppo',
     },
     {
         name: 'MacOS',
         image: 'https://cdn.unlockboot.com/wp-content/uploads/2018/12/type-apple-logo.jpg',
-        to: 'laptop/brands/mac',
+        brand: '&brand=vivo',
     },
 ];
 
-const SIDE_BAR_SHOP_PHONE = [
+const SIDEBAR_SHOP = [
     {
         name: 'LaptopLC',
         image: 'https://cf.shopee.vn/file/a346178f82ac211177a629373aebbb52_tn',
-        to: 'laptop/shops/laptoplc',
+        shop: '',
     },
     {
         name: 'LaptopNhatBan',
         image: 'https://cf.shopee.vn/file/2061b57c9ed90bfcda9482caba49e609_tn',
-        to: 'laptop/shops/laptopnhatban',
+        shop: '',
     },
     {
         name: 'TienHungLaptop',
         image: 'https://cf.shopee.vn/file/d40eec82f9cb5cf7a185db55d91840f7_tn',
-        to: 'laptop/shops/tienhunglaptop',
+        shop: '',
     },
 ];
 
 function LaptopLayout() {
+    const Tab = styled(TabUnstyled)`
+        color: #7d879c;
+        cursor: pointer;
+        font-size: 2.2rem;
+        font-weight: 600;
+        padding: 8px;
+        border: none;
+        min-width: 100px;
+        background-color: transparent;
+
+        &.${tabUnstyledClasses.selected} {
+            color: var(--text-color);
+        }
+    `;
+
+    const TabsList = styled(TabsListUnstyled)(
+        () => `
+    margin-bottom: 8px;
+`,
+    );
+
+    const [brand, setBrand] = useState('');
+    const [active, setActive] = useState(null);
+
+    const { data } = useGetListBrandPhoneQuery(brand);
+    // console.log(data);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [limit] = useState(6);
+
+    const indexOfLast = currentPage * limit;
+    const indexOfFirst = indexOfLast - limit;
+    const currentData = data?.slice(indexOfFirst, indexOfLast);
+
+    const onPageChange = ({ selected }) => {
+        setCurrentPage(selected + 1);
+    };
+
+    const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handlePlusItem = (product) => {
+        dispatch(addToCart(product));
+        enqueueSnackbar(
+            <div className={cx('snackbar')}>
+                <CheckCircleSharpIcon
+                    sx={{
+                        marginRight: '8px',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: 'var(--white)',
+                        color: '#33d067',
+                        borderRadius: '999px',
+                    }}
+                />
+                <span className={cx('snackbar-title')}>Added to cart</span>
+            </div>,
+        );
+    };
+
+    const handleActive = (item) => {
+        setBrand(item.brand);
+        setActive(item);
+    };
     return (
         <div className={cx('laptop-layout')}>
-            {/* Side bar */}
-            <Sidebar
-                brandData={SIDE_BAR_brand_PHONE}
-                shopData={SIDE_BAR_SHOP_PHONE}
-                allBrands={'/laptop/brands/all'}
-                allShops={'/laptop/shops/all'}
-            />
-            {/* Side bar */}
+            <Grid
+                container
+                spacing={3}
+                sx={{
+                    width: 'calc(100% + 34px)',
+                    alignItems: 'flex-start',
+                }}
+            >
+                {/* Side bar */}
+                <Grid item xs={3}>
+                    <Box className={cx('sidebar')}>
+                        <TabsUnstyled defaultValue={0}>
+                            <TabsList>
+                                <Tab>Brands</Tab>
+                                <span className={cx('sidebar-separation')}>
+                                    |
+                                </span>
+                                <Tab>Shops</Tab>
+                            </TabsList>
+                            <TabPanelUnstyled value={0}>
+                                {SIDEBAR_BRAND.map((item, index) => {
+                                    return (
+                                        <button
+                                            key={index}
+                                            onClick={() => handleActive(item)}
+                                            className={cx(
+                                                'sidebar-item',
+                                                active === item
+                                                    ? 'active'
+                                                    : null,
+                                            )}
+                                        >
+                                            <Image
+                                                className={cx('sidebar-img')}
+                                                src={item.image}
+                                            />
+                                            <span
+                                                className={cx('sidebar-name')}
+                                            >
+                                                {item.name}
+                                            </span>
+                                        </button>
+                                    );
+                                })}
+                            </TabPanelUnstyled>
+                            <TabPanelUnstyled value={2}>
+                                {SIDEBAR_SHOP.map((item, index) => {
+                                    return (
+                                        <button
+                                            key={index}
+                                            className={cx('sidebar-item')}
+                                        >
+                                            <Image
+                                                className={cx('sidebar-img')}
+                                                src={item.image}
+                                            />
+                                            <span
+                                                className={cx('sidebar-name')}
+                                            >
+                                                {item.name}
+                                            </span>
+                                        </button>
+                                    );
+                                })}
+                            </TabPanelUnstyled>
+                        </TabsUnstyled>
+                    </Box>
+                </Grid>
+                {/* Side bar */}
 
-            <div className={cx('laptop-container')}>
-                <TitleSection title="Laptops" />
-                <Routes>
-                    <Route path="laptop/brands/acer" element={<Acer />} />
-                    <Route path="laptop/brands/asus" element={<Asus />} />
-                    <Route path="laptop/brands/dell" element={<Dell />} />
-                    <Route path="laptop/brands/hp" element={<Hp />} />
-                    <Route path="laptop/brands/lenovo" element={<Lenovo />} />
-                    <Route path="laptop/brands/mac" element={<MacOS />} />
+                <Grid item xs={9}>
+                    <TitleSection title="Laptops" />
+                    <div className={cx('wrapper')}>
+                        <Grid container rowSpacing={3}>
+                            {currentData?.map((product) => {
+                                return (
+                                    <Grid item xs={4} key={product.id}>
+                                        <ProductItem
+                                            product={product}
+                                            handlePlusItem={() =>
+                                                handlePlusItem(product)
+                                            }
+                                        />
+                                    </Grid>
+                                );
+                            })}
+                        </Grid>
 
-                    <Route
-                        path="laptop/shops/laptoplc"
-                        element={<LaptopLC />}
-                    />
-                    <Route
-                        path="laptop/shops/laptopnhatban"
-                        element={<LaptopNhatBan />}
-                    />
-                    <Route
-                        path="laptop/shops/tienhunglaptop"
-                        element={<TienHungLaptop />}
-                    />
-
-                    <Route
-                        path="/laptop/brands/all"
-                        element={<AllBrandsLaptop />}
-                    />
-                    <Route
-                        path="/laptop/shops/all"
-                        element={<AllShopsLaptop />}
-                    />
-                </Routes>
-            </div>
+                        {currentData && (
+                            <PaginationControl
+                                totalCount={data?.length}
+                                limit={limit}
+                                onPageChange={onPageChange}
+                            />
+                        )}
+                    </div>
+                </Grid>
+            </Grid>
         </div>
     );
 }

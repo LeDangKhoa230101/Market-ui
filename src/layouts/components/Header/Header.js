@@ -5,6 +5,14 @@ import ModalUser from '~/layouts/components/ModalUser/ModalUser';
 import Cart from '~/layouts/components/Cart/Cart';
 import { Search } from '../Search';
 import Category from '~/layouts/components/Category';
+import {
+    laptop,
+    mobile,
+    camera,
+    headphone,
+    accessories,
+    speaker,
+} from '~/assets/icons/icons';
 
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
@@ -12,14 +20,6 @@ import Button from '@mui/material/Button';
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {
-    faShirt,
-    faLaptop,
-    faMobileScreenButton,
-    faCamera,
-    faMotorcycle,
-    faCar,
-} from '@fortawesome/free-solid-svg-icons';
 import Image from '~/components/Image/Image';
 import { Link } from 'react-router-dom';
 import PopoverCate from '~/layouts/components/Category/PopoverCate/PopoverCate';
@@ -28,34 +28,34 @@ const cx = classNames.bind(styles);
 
 const CATE_LIST = [
     {
-        title: 'Fashion',
-        to: '/',
-        icon: faShirt,
-    },
-    {
         title: 'Laptop',
         to: '/',
-        icon: faLaptop,
+        icon: laptop,
     },
     {
-        title: 'Mobile',
+        title: 'Mobile Phone',
         to: '/',
-        icon: faMobileScreenButton,
+        icon: mobile,
     },
     {
         title: 'Camera',
         to: '/',
-        icon: faCamera,
+        icon: camera,
     },
     {
-        title: 'Bikes',
+        title: 'Headphone',
         to: '/',
-        icon: faMotorcycle,
+        icon: headphone,
     },
     {
-        title: 'Automotive',
+        title: 'Accessories',
         to: '/',
-        icon: faCar,
+        icon: accessories,
+    },
+    {
+        title: 'Music Speaker',
+        to: '/',
+        icon: speaker,
     },
 ];
 
@@ -77,6 +77,7 @@ function Header() {
         },
     });
 
+    // header scroll
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY >= 280) {
@@ -149,6 +150,7 @@ function Header() {
                                 />
                             </Button>
                         </ThemeProvider>
+                        {/* Sub menu */}
                         <PopoverCate
                             data={CATE_LIST}
                             handleHideMenuCate={handleHideMenuCate}
@@ -163,29 +165,34 @@ function Header() {
                     <Search />
                     {/* Search input */}
 
+                    {/* action */}
                     <div className={cx('action')}>
                         <ModalUser />
                         <Cart />
                     </div>
+                    {/* action */}
                 </div>
             </div>
+            {/* sub header */}
             <div className={cx('sub-header')}>
                 <Category data={CATE_LIST} />
                 <div className={cx('sub-header-right')}>
-                    <Button
-                        sx={{
-                            minWidth: '80px',
-                            height: '36px',
-                            border: 'none',
-                            color: '#7d879c',
-                            fontSize: '1.4rem',
-                            textTransform: 'capitalize',
-                            marginLeft: '12px',
-                        }}
-                        className={cx('all-shop-btn')}
-                    >
-                        Home
-                    </Button>
+                    <Link to={'/'}>
+                        <Button
+                            sx={{
+                                minWidth: '80px',
+                                height: '36px',
+                                border: 'none',
+                                color: '#7d879c',
+                                fontSize: '1.4rem',
+                                textTransform: 'capitalize',
+                                marginLeft: '12px',
+                            }}
+                            className={cx('all-shop-btn')}
+                        >
+                            Home
+                        </Button>
+                    </Link>
                     <Button
                         sx={{
                             minWidth: '80px',
@@ -232,6 +239,7 @@ function Header() {
                     </Link>
                 </div>
             </div>
+            {/* sub header */}
         </div>
     );
 }

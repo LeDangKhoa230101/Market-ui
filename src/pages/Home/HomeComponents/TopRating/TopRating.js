@@ -22,6 +22,7 @@ function TopRating() {
     return (
         <Grid item xs={6}>
             <TitleSection
+                to={'top-rating'}
                 icon={
                     <WorkspacePremiumOutlinedIcon
                         sx={{

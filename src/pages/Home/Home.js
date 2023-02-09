@@ -1,7 +1,5 @@
 import styles from './Home.module.scss';
 import Slide from './HomeComponents/Slide';
-import TitleSection from '~/components/TitleSection';
-import FlashDeals from './HomeComponents/FlashDeals';
 import TopCate from './HomeComponents/TopCate';
 import TopRating from './HomeComponents/TopRating';
 import FeartureBrand from './HomeComponents/FeartureBrand';
@@ -13,9 +11,9 @@ import LaptopLayout from './HomeComponents/LaptopLayout';
 import Banner from './HomeComponents/Banner';
 import MoreForYou from './HomeComponents/MoreForYou';
 import Support from './HomeComponents/Support';
+import FlashDeals from './HomeComponents/FlashDeals';
 
 import classNames from 'classnames/bind';
-import BoltIcon from '@mui/icons-material/Bolt';
 import Grid from '@mui/material/Grid';
 
 const cx = classNames.bind(styles);
@@ -26,24 +24,7 @@ function Home() {
             <Slide />
             <div className={cx('home-container')}>
                 {/* Flash Deals */}
-                <div className={cx('deals')}>
-                    <TitleSection
-                        icon={
-                            <BoltIcon
-                                sx={{
-                                    width: '24px',
-                                    height: '24px',
-                                    marginTop: '2px',
-                                    color: 'var(--primary-color)',
-                                }}
-                            />
-                        }
-                        title={'Flash Deals'}
-                    />
-                    {/* Slide deals */}
-                    <FlashDeals />
-                    {/* Slide deals */}
-                </div>
+                <FlashDeals />
                 {/* Flash Deals */}
 
                 {/* Top Categories */}

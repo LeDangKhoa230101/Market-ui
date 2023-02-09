@@ -22,19 +22,27 @@ const ALL_CATE = [
         title: 'All Categories',
     },
     {
-        title: 'Fashion',
+        title: 'Laptop',
         to: '/',
     },
     {
-        title: 'Electronics',
+        title: 'Mobile Phone',
         to: '/',
     },
     {
-        title: 'Automotive',
+        title: 'Camera',
         to: '/',
     },
     {
-        title: 'Bike',
+        title: 'Headphone',
+        to: '/',
+    },
+    {
+        title: 'Accessories',
+        to: '/',
+    },
+    {
+        title: 'Music Speaker',
         to: '/',
     },
 ];

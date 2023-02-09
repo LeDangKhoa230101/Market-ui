@@ -21,6 +21,7 @@ function FeartureBrand() {
     return (
         <Grid item xs={6}>
             <TitleSection
+                to={'feature-brand'}
                 icon={
                     <StarsIcon
                         sx={{

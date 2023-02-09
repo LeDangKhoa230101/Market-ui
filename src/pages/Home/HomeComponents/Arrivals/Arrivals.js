@@ -19,6 +19,7 @@ function Arrivals() {
     return (
         <div className={cx('arrival')}>
             <TitleSection
+                to={'new-arrival'}
                 icon={
                     <FiberNewRoundedIcon
                         sx={{

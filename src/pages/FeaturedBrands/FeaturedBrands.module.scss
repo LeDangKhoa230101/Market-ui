@@ -13,11 +13,11 @@
     font-weight: 700;
     margin-bottom: 32px;
 
-    & span:first-child {
+    & span:nth-child(1) {
         color: var(--primary-color);
     }
 
-    & span:last-child {
+    & span:nth-child(2) {
         color: #7d879c;
     }
 }

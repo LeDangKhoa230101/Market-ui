@@ -85,6 +85,7 @@ function BigDiscount() {
     return (
         <div className={cx('discount')}>
             <TitleSection
+                to={'big-discount'}
                 icon={
                     <CardGiftcardOutlinedIcon
                         sx={{

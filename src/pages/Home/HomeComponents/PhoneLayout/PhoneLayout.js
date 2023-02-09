@@ -1,134 +1,253 @@
 import styles from './PhoneLayout.module.scss';
-import Sidebar from '~/layouts/components/Sidebar';
 import TitleSection from '~/components/TitleSection';
+import { useGetListBrandPhoneQuery } from '~/reducers/productApi';
+import ProductItem from '~/components/ProductItem';
+import PaginationControl from '~/components/PaginationControl';
+import { addToCart } from '~/reducers/cartSlice';
+import Image from '~/components/Image/Image';
 
-import { Routes, Route } from 'react-router-dom';
-import Apple from '~/phones/brands/Apple';
-import Asus from '~/phones/brands/Asus';
-import Oppo from '~/phones/brands/Oppo';
-import Samsung from '~/phones/brands/Samsung';
-import Vivo from '~/phones/brands/Vivo';
-import Xiaomi from '~/phones/brands/Xiaomi';
-import AllBrandsPhone from '~/phones/brands/AllBrandsPhone';
-import AllShopsPhone from '~/phones/shops/AllShopsPhone';
-
-import AZparts from '~/phones/shops/AZparts';
-import BiStore45 from '~/phones/shops/BiStore45';
-import CDStore from '~/phones/shops/CDStore';
-import KTsmartphone from '~/phones/shops/KTsmartphone';
-import SkyPhoneCity from '~/phones/shops/SkyPhoneCity';
 import classNames from 'classnames/bind';
+import { Grid } from '@mui/material';
+import { useState } from 'react';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/system';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
+import TabsListUnstyled from '@mui/base/TabsListUnstyled';
+import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+import { useDispatch } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 
 const cx = classNames.bind(styles);
 
-const SIDE_BAR_brand_PHONE = [
+const SIDEBAR_BRAND = [
     {
         name: 'Apple',
         image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbrands%2Fapple.png&w=32&q=75',
-        to: 'phone/brands/apple',
+        brand: '&brand=apple',
     },
     {
         name: 'Xiaomi',
         image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbrands%2Fxiaomi.png&w=32&q=75',
-        to: 'phone/brands/xiaomi',
+        brand: '&brand=xiaomi',
     },
     {
         name: 'Samsung',
         image: 'https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/256_144_3.png?$512_N_PNG$',
-        to: 'phone/brands/samsung',
+        brand: '&brand=samsung',
     },
     {
         name: 'Asus',
         image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbrands%2Fasus.png&w=32&q=75',
-        to: 'phone/brands/asus',
+        brand: '&brand=asus',
     },
     {
         name: 'Oppo',
         image: 'https://media.loveitopcdn.com/3807/logo-oppo-1.jpg',
-        to: 'phone/brands/oppo',
+        brand: '&brand=oppo',
     },
     {
         name: 'Vivo',
         image: 'https://www.vivosmartphone.vn/themes/vivo/img/vivo-fb-page.png',
-        to: 'phone/brands/vivo',
+        brand: '&brand=vivo',
     },
 ];
 
-const SIDE_BAR_SHOP_PHONE = [
+const SIDEBAR_SHOP = [
     {
         name: 'KTsmartphone',
         image: 'https://img.ws.mms.shopee.vn/4370fa204e94be8c491a29561517bf6e_tn',
-        to: 'phone/shops/ktsmartphone',
+        shop: '',
     },
     {
         name: 'Bi Store45',
         image: 'https://cf.shopee.vn/file/3e7d3afb321d835f5ed68f01df2434d9_tn',
-        to: 'phone/shops/bistore45',
+        shop: '',
     },
     {
         name: 'CD_Store',
         image: 'https://cf.shopee.vn/file/6e1c4b11f729d0fbffe806e09866802f_tn',
-        to: 'phone/shops/cdstore',
+        shop: '',
     },
     {
         name: 'Sky Phone City',
         image: 'https://cf.shopee.vn/file/ae669fb68de8d7d8840e83b1e99d0798_tn',
-        to: 'phone/shops/skyphonecity',
+        shop: '',
     },
     {
         name: 'AZparts',
         image: 'https://cf.shopee.vn/file/359f6678beebda758341cf0a4b6e8b65_tn',
-        to: 'phone/shops/azparts',
+        shop: '',
     },
 ];
 
 function PhoneLayout() {
+    const Tab = styled(TabUnstyled)`
+        color: #7d879c;
+        cursor: pointer;
+        font-size: 2.2rem;
+        font-weight: 600;
+        padding: 8px;
+        border: none;
+        min-width: 100px;
+        background-color: transparent;
+
+        &.${tabUnstyledClasses.selected} {
+            color: var(--text-color);
+        }
+    `;
+
+    const TabsList = styled(TabsListUnstyled)(
+        () => `
+    margin-bottom: 8px;
+`,
+    );
+
+    const [brand, setBrand] = useState('');
+    const [active, setActive] = useState(null);
+
+    const { data } = useGetListBrandPhoneQuery(brand);
+    // console.log(data);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [limit] = useState(6);
+
+    const indexOfLast = currentPage * limit;
+    const indexOfFirst = indexOfLast - limit;
+    const currentData = data?.slice(indexOfFirst, indexOfLast);
+
+    const onPageChange = ({ selected }) => {
+        setCurrentPage(selected + 1);
+    };
+
+    const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handlePlusItem = (product) => {
+        dispatch(addToCart(product));
+        enqueueSnackbar(
+            <div className={cx('snackbar')}>
+                <CheckCircleSharpIcon
+                    sx={{
+                        marginRight: '8px',
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: 'var(--white)',
+                        color: '#33d067',
+                        borderRadius: '999px',
+                    }}
+                />
+                <span className={cx('snackbar-title')}>Added to cart</span>
+            </div>,
+        );
+    };
+
+    const handleActive = (item) => {
+        setBrand(item.brand);
+        setActive(item);
+    };
+
     return (
         <div className={cx('phone-layout')}>
-            {/* Side bar */}
-            <Sidebar
-                brandData={SIDE_BAR_brand_PHONE}
-                shopData={SIDE_BAR_SHOP_PHONE}
-                allBrands={'/phone/brands/all'}
-                allShops={'/phone/shops/all'}
-            />
-            {/* Side bar */}
+            <Grid
+                container
+                spacing={3}
+                sx={{
+                    width: 'calc(100% + 34px)',
+                    alignItems: 'flex-start',
+                }}
+            >
+                {/* Side bar */}
+                <Grid item xs={3}>
+                    <Box className={cx('sidebar')}>
+                        <TabsUnstyled defaultValue={0}>
+                            <TabsList>
+                                <Tab>Brands</Tab>
+                                <span className={cx('sidebar-separation')}>
+                                    |
+                                </span>
+                                <Tab>Shops</Tab>
+                            </TabsList>
+                            <TabPanelUnstyled value={0}>
+                                {SIDEBAR_BRAND.map((item, index) => {
+                                    return (
+                                        <button
+                                            key={index}
+                                            onClick={() => handleActive(item)}
+                                            className={cx(
+                                                'sidebar-item',
+                                                active === item
+                                                    ? 'active'
+                                                    : null,
+                                            )}
+                                        >
+                                            <Image
+                                                className={cx('sidebar-img')}
+                                                src={item.image}
+                                            />
+                                            <span
+                                                className={cx('sidebar-name')}
+                                            >
+                                                {item.name}
+                                            </span>
+                                        </button>
+                                    );
+                                })}
+                            </TabPanelUnstyled>
+                            <TabPanelUnstyled value={2}>
+                                {SIDEBAR_SHOP.map((item, index) => {
+                                    return (
+                                        <button
+                                            key={index}
+                                            className={cx('sidebar-item')}
+                                        >
+                                            <Image
+                                                className={cx('sidebar-img')}
+                                                src={item.image}
+                                            />
+                                            <span
+                                                className={cx('sidebar-name')}
+                                            >
+                                                {item.name}
+                                            </span>
+                                        </button>
+                                    );
+                                })}
+                            </TabPanelUnstyled>
+                        </TabsUnstyled>
+                    </Box>
+                </Grid>
+                {/* Side bar */}
 
-            <div className={cx('phone-container')}>
-                <TitleSection title="Mobile Phones" />
-                <Routes>
-                    <Route path="phone/brands/apple" element={<Apple />} />
-                    <Route path="phone/brands/asus" element={<Asus />} />
-                    <Route path="phone/brands/oppo" element={<Oppo />} />
-                    <Route path="phone/brands/samsung" element={<Samsung />} />
-                    <Route path="phone/brands/vivo" element={<Vivo />} />
-                    <Route path="phone/brands/xiaomi" element={<Xiaomi />} />
+                <Grid item xs={9}>
+                    <TitleSection title="Mobile Phones" />
+                    <div className={cx('wrapper')}>
+                        <Grid container rowSpacing={3}>
+                            {currentData?.map((product) => {
+                                return (
+                                    <Grid item xs={4} key={product.id}>
+                                        <ProductItem
+                                            product={product}
+                                            handlePlusItem={() =>
+                                                handlePlusItem(product)
+                                            }
+                                        />
+                                    </Grid>
+                                );
+                            })}
+                        </Grid>
 
-                    <Route path="phone/shops/azparts" element={<AZparts />} />
-                    <Route
-                        path="phone/shops/bistore45"
-                        element={<BiStore45 />}
-                    />
-                    <Route path="phone/shops/cdstore" element={<CDStore />} />
-                    <Route
-                        path="phone/shops/ktsmartphone"
-                        element={<KTsmartphone />}
-                    />
-                    <Route
-                        path="phone/shops/skyphonecity"
-                        element={<SkyPhoneCity />}
-                    />
-
-                    <Route
-                        path="/phone/brands/all"
-                        element={<AllBrandsPhone />}
-                    />
-                    <Route
-                        path="/phone/shops/all"
-                        element={<AllShopsPhone />}
-                    />
-                </Routes>
-            </div>
+                        {currentData && (
+                            <PaginationControl
+                                totalCount={data?.length}
+                                limit={limit}
+                                onPageChange={onPageChange}
+                            />
+                        )}
+                    </div>
+                </Grid>
+            </Grid>
         </div>
     );
 }

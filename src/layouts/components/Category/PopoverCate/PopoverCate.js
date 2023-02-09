@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import Popover from '@mui/material/Popover';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const cx = classNames.bind(styles);
 
@@ -44,11 +43,10 @@ function PopoverCate({ data, handleHideMenuCate, id, open, anchorEl }) {
                         }}
                         onClick={handleHideMenuCate}
                     >
-                        <FontAwesomeIcon
-                            className={cx('cate-item-icon')}
-                            icon={item.icon}
-                        />
-                        <span>{item.title}</span>
+                        <span className={cx('cate-item-icon')}>
+                            {item.icon}
+                        </span>
+                        <span className={cx('title')}>{item.title}</span>
                     </Button>
                 ))}
             </Box>
