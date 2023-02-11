@@ -17,7 +17,7 @@ function LoginForm() {
     const [requiredEmail, setRequiredEmail] = useState('none');
     const [invalidEmail, setInvalidEmail] = useState('none');
     const [borderEmail, setBorderEmail] = useState('');
-    const [emaildValue, setEmailValue] = useState('');
+    const [emailValue, setEmailValue] = useState('');
 
     // handle error password
     const [requiredPass, setRequiredPass] = useState('none');
@@ -34,6 +34,7 @@ function LoginForm() {
         setTypePassword('password');
     };
 
+    //handle validated form
     const handleValidated = (e) => {
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
@@ -45,6 +46,23 @@ function LoginForm() {
 
             setRequiredEmail('block');
             setRequiredPass('block');
+        }
+        if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(emailValue)) {
+            setBorderEmail('1px solid #00e676');
+            setRequiredEmail('none');
+            setInvalidEmail('none');
+        }
+        if (
+            emailValue !== '' &&
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(emailValue)
+        ) {
+            setBorderEmail('1px solid var(--primary-color)');
+            setRequiredEmail('none');
+            setInvalidEmail('block');
+        }
+        if (passwordValue !== '') {
+            setBorderPass('1px solid #00e676');
+            setRequiredPass('none');
         }
     };
 
@@ -132,7 +150,7 @@ function LoginForm() {
                 </Form.Label>
                 <Form.Control
                     required
-                    value={emaildValue}
+                    value={emailValue}
                     onBlur={onBlurEmail}
                     onChange={onChangeEmail}
                     onFocus={onFocusEmail}

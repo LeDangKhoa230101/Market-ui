@@ -76,6 +76,49 @@ function SignupForm() {
             setBorderErrorPass('1px solid var(--primary-color)');
             setBorderErrorRetypePass('1px solid var(--primary-color)');
         }
+        if (fullNameValue !== '') {
+            setBorderFullName('1px solid #00e676');
+            setRequiredFullName('none');
+        }
+        if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(emailValue)) {
+            setBorderEmail('1px solid #00e676');
+            setRequiredEmail('none');
+            setInvalidEmail('none');
+        }
+        if (
+            emailValue !== '' &&
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(emailValue)
+        ) {
+            setBorderEmail('1px solid var(--primary-color)');
+            setRequiredEmail('none');
+            setInvalidEmail('block');
+        }
+        if (passwordValue !== '' && passwordValue.length >= 6) {
+            setBorderErrorPass('1px solid #00e676');
+            setRequiredPassword('none');
+            setCharacterPass('none');
+        }
+        if (passwordValue.length >= 1 && passwordValue.length < 6) {
+            setBorderErrorPass('1px solid var(--primary-color)');
+            setRequiredPassword('none');
+            setCharacterPass('block');
+        }
+        if (
+            retypePasswordValue.length >= 1 &&
+            retypePasswordValue === passwordValue
+        ) {
+            setBorderErrorRetypePass('1px solid #00e676');
+            setShowErrorRetypePassword('none');
+            setPasswordsMustMatch('none');
+        }
+        if (
+            retypePasswordValue.length >= 1 &&
+            retypePasswordValue !== passwordValue
+        ) {
+            setBorderErrorRetypePass('1px solid var(--primary-color)');
+            setShowErrorRetypePassword('none');
+            setPasswordsMustMatch('block');
+        }
     };
 
     //handle error full name
