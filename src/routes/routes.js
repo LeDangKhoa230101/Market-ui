@@ -12,6 +12,9 @@ import FeaturedBrands from '~/pages/FeaturedBrands';
 import NewArrivals from '~/pages/NewArrivals';
 import BigDiscount from '~/pages/BigDiscount';
 import User from '~/pages/User';
+import SignupModal from '~/pages/SignupModal';
+import LoginModal from '~/pages/LoginModal';
+import ResetPassModal from '~/pages/ResetPassModal';
 
 import { routes } from '~/config';
 
@@ -31,6 +34,9 @@ const publicRoutes = [
     { path: routes.newarrival, component: NewArrivals },
     { path: routes.bigdiscount, component: BigDiscount },
     { path: routes.user, component: User },
+    { path: routes.signup, component: SignupModal, layout: null },
+    { path: routes.login, component: LoginModal, layout: null },
+    { path: routes.resetpass, component: ResetPassModal, layout: null },
 ];
 
 // cần đăng nhập

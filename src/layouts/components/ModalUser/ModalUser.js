@@ -1,8 +1,7 @@
 import styles from './ModalUser.module.scss';
 import Image from '~/components/Image/Image';
 import Button from '~/components/Button/Button';
-import images from '~/assets/image';
-import LoginForm from '~/layouts/components/LoginForm/LoginForm';
+import LoginForm from '~/layouts/components/LoginForm';
 import Menu from '~/components/Popper/Menu';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,17 +11,18 @@ import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const MENU_USER = [
     {
         title: 'Orders',
-        to: '/',
+        to: 'user/orders',
     },
     {
         title: 'Profile',
-        to: '/',
+        to: 'user/profile',
     },
     {
         title: 'Log out',
@@ -33,7 +33,7 @@ const MENU_USER = [
 function ModalUser() {
     const [showModal, setShowModal] = useState(false);
 
-    const currentUser = true;
+    const currentUser = false;
 
     const handleShowModalUser = () => {
         setShowModal(true);
@@ -72,7 +72,10 @@ function ModalUser() {
                     >
                         <Box className={cx('modal_user-container')}>
                             <div className={cx('modal_user-header')}>
-                                <Image src={images.logoUser} />
+                                <Image
+                                    src="https://bazaar.ui-lib.com/assets/images/bazaar-black-sm.svg"
+                                    alt="logo-user"
+                                />
                                 <span className={cx('modal_user-heading')}>
                                     Welcome To Bazaar
                                 </span>
@@ -90,7 +93,7 @@ function ModalUser() {
                                             className={cx(
                                                 'modal_user-face-icon',
                                             )}
-                                            src={images.facebook}
+                                            src="https://bazaar.ui-lib.com/assets/images/icons/facebook-filled-white.svg"
                                             alt="facebook"
                                         />
                                         Continue With Facebook
@@ -104,7 +107,7 @@ function ModalUser() {
                                             className={cx(
                                                 'modal_user-google-icon',
                                             )}
-                                            src={images.google}
+                                            src="https://bazaar.ui-lib.com/assets/images/icons/google-1.svg"
                                             alt="google"
                                         />
                                         Continue With Google
@@ -114,11 +117,18 @@ function ModalUser() {
                             <div>
                                 <div className={cx('modal_user-footer')}>
                                     Don't have account?
-                                    <Button
-                                        className={cx('modal_user-footer-link')}
+                                    <Link
+                                        to={'signup'}
+                                        onClick={handleHideModalUser}
                                     >
-                                        Sign Up
-                                    </Button>
+                                        <Button
+                                            className={cx(
+                                                'modal_user-footer-link',
+                                            )}
+                                        >
+                                            Sign Up
+                                        </Button>
+                                    </Link>
                                 </div>
                                 <div
                                     className={cx(
@@ -127,11 +137,15 @@ function ModalUser() {
                                     )}
                                 >
                                     Forgot your password?{' '}
-                                    <Button
-                                        className={cx('modal_user-footer-link')}
-                                    >
-                                        Reset It
-                                    </Button>
+                                    <Link to={'/reset-password'}>
+                                        <Button
+                                            className={cx(
+                                                'modal_user-footer-link',
+                                            )}
+                                        >
+                                            Reset It
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                         </Box>

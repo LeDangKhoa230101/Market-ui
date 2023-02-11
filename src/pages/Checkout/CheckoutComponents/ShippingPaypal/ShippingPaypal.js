@@ -47,7 +47,13 @@ function ShippingPaypal() {
 
                                 '& .MuiFormLabel-root': {
                                     fontSize: '1.4rem',
-                                    top: '-7px',
+                                },
+                                '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                    {
+                                        top: '-7px',
+                                    },
+                                '& .MuiInputBase-root': {
+                                    fontSize: '1.4rem',
                                 },
 
                                 '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
@@ -56,7 +62,6 @@ function ShippingPaypal() {
                                     },
 
                                 '& .MuiInputBase-root .MuiInputBase-input': {
-                                    fontSize: '1.4rem',
                                     padding: '8.5px 14px',
                                 },
                                 '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
@@ -68,6 +73,7 @@ function ShippingPaypal() {
                         <TextField
                             id="outlined-basic"
                             label="Email Address"
+                            type="email"
                             variant="outlined"
                             sx={{
                                 width: '100%',
@@ -75,16 +81,21 @@ function ShippingPaypal() {
 
                                 '& .MuiFormLabel-root': {
                                     fontSize: '1.4rem',
-                                    top: '-7px',
                                 },
+                                '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                    {
+                                        top: '-7px',
+                                    },
 
+                                '& .MuiInputBase-root': {
+                                    fontSize: '1.4rem',
+                                },
                                 '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
                                     {
                                         color: 'var(--primary-color)',
                                     },
 
                                 '& .MuiInputBase-root .MuiInputBase-input': {
-                                    fontSize: '1.4rem',
                                     padding: '8.5px 14px',
                                 },
                                 '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
@@ -98,6 +109,7 @@ function ShippingPaypal() {
                         <TextField
                             id="outlined-basic"
                             label="Phone Number"
+                            type="tel"
                             variant="outlined"
                             sx={{
                                 width: '100%',
@@ -105,7 +117,14 @@ function ShippingPaypal() {
 
                                 '& .MuiFormLabel-root': {
                                     fontSize: '1.4rem',
-                                    top: '-7px',
+                                },
+                                '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                    {
+                                        top: '-7px',
+                                    },
+
+                                '& .MuiInputBase-root': {
+                                    fontSize: '1.4rem',
                                 },
 
                                 '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
@@ -114,7 +133,6 @@ function ShippingPaypal() {
                                     },
 
                                 '& .MuiInputBase-root .MuiInputBase-input': {
-                                    fontSize: '1.4rem',
                                     padding: '8.5px 14px',
                                 },
                                 '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
@@ -133,7 +151,14 @@ function ShippingPaypal() {
 
                                 '& .MuiFormLabel-root': {
                                     fontSize: '1.4rem',
-                                    top: '-7px',
+                                },
+                                '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                    {
+                                        top: '-7px',
+                                    },
+
+                                '& .MuiInputBase-root': {
+                                    fontSize: '1.4rem',
                                 },
 
                                 '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
@@ -142,7 +167,6 @@ function ShippingPaypal() {
                                     },
 
                                 '& .MuiInputBase-root .MuiInputBase-input': {
-                                    fontSize: '1.4rem',
                                     padding: '8.5px 14px',
                                 },
                                 '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
@@ -201,7 +225,14 @@ function ShippingPaypal() {
 
                                             '& .MuiFormLabel-root': {
                                                 fontSize: '1.4rem',
-                                                top: '-7px',
+                                            },
+                                            '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                                {
+                                                    top: '-7px',
+                                                },
+
+                                            '& .MuiInputBase-root': {
+                                                fontSize: '1.4rem',
                                             },
 
                                             '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
@@ -211,7 +242,6 @@ function ShippingPaypal() {
 
                                             '& .MuiInputBase-root .MuiInputBase-input':
                                                 {
-                                                    fontSize: '1.4rem',
                                                     padding: '8.5px 14px',
                                                 },
                                             '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
@@ -233,7 +263,14 @@ function ShippingPaypal() {
 
                                             '& .MuiFormLabel-root': {
                                                 fontSize: '1.4rem',
-                                                top: '-7px',
+                                            },
+                                            '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                                {
+                                                    top: '-7px',
+                                                },
+
+                                            '& .MuiInputBase-root': {
+                                                fontSize: '1.4rem',
                                             },
 
                                             '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
@@ -243,7 +280,6 @@ function ShippingPaypal() {
 
                                             '& .MuiInputBase-root .MuiInputBase-input':
                                                 {
-                                                    fontSize: '1.4rem',
                                                     padding: '8.5px 14px',
                                                 },
                                             '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
@@ -294,7 +330,14 @@ function ShippingPaypal() {
 
                                     '& .MuiFormLabel-root': {
                                         fontSize: '1.4rem',
-                                        top: '-7px',
+                                    },
+                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                        {
+                                            top: '-7px',
+                                        },
+
+                                    '& .MuiInputBase-root': {
+                                        fontSize: '1.4rem',
                                     },
 
                                     '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
@@ -304,7 +347,6 @@ function ShippingPaypal() {
 
                                     '& .MuiInputBase-root .MuiInputBase-input':
                                         {
-                                            fontSize: '1.4rem',
                                             padding: '8.5px 14px',
                                         },
                                     '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':

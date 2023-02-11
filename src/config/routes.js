@@ -13,6 +13,9 @@ const config = {
     newarrival: '/new-arrival',
     bigdiscount: '/big-discount',
     user: '/user/*',
+    signup: '/signup',
+    login: '/login',
+    resetpass: '/reset-password',
 };
 
 export default config;

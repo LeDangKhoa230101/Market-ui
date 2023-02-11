@@ -32,16 +32,21 @@ function SidebarCart() {
                     sx={{
                         '& .MuiFormLabel-root': {
                             fontSize: '1.4rem',
+                        },
+                        '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
                             top: '-7px',
+                        },
+                        '& .MuiInputBase-root': {
+                            fontSize: '1.4rem',
                         },
 
                         '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
                             {
                                 color: 'var(--primary-color)',
+                                transform: 'translate(14px, -9px) scale(0.75)',
                             },
 
                         '& .MuiInputBase-root .MuiInputBase-input': {
-                            fontSize: '1.4rem',
                             padding: '8.5px 14px',
                         },
                         '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':

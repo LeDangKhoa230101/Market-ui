@@ -13,7 +13,16 @@ function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [typePassword, setTypePassword] = useState('password');
 
-    const [validated, setValidated] = useState(false);
+    // handle error email
+    const [requiredEmail, setRequiredEmail] = useState('none');
+    const [invalidEmail, setInvalidEmail] = useState('none');
+    const [borderEmail, setBorderEmail] = useState('');
+    const [emaildValue, setEmailValue] = useState('');
+
+    // handle error password
+    const [requiredPass, setRequiredPass] = useState('none');
+    const [borderPass, setBorderPass] = useState('');
+    const [passwordValue, setPasswordValue] = useState('');
 
     const handleShowPassword = () => {
         setShowPassword(true);
@@ -30,12 +39,90 @@ function LoginForm() {
         if (form.checkValidity() === false) {
             e.preventDefault();
             e.stopPropagation();
+
+            setBorderEmail('1px solid var(--primary-color)');
+            setBorderPass('1px solid var(--primary-color)');
+
+            setRequiredEmail('block');
+            setRequiredPass('block');
         }
-        setValidated(true);
+    };
+
+    // handle error email
+    const onBlurEmail = (e) => {
+        setRequiredEmail('block');
+        setBorderEmail('1px solid var(--primary-color)');
+        if (e.target.value) {
+            setInvalidEmail('block');
+            setRequiredEmail('none');
+        }
+        if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(e.target.value)) {
+            setRequiredEmail('none');
+            setInvalidEmail('none');
+            setBorderEmail('1px solid #00e676');
+        }
+    };
+
+    const onChangeEmail = (e) => {
+        setEmailValue(e.target.value);
+        if (e.target.value) {
+            setInvalidEmail('block');
+            setRequiredEmail('none');
+        } else if (e.target.value === '') {
+            setRequiredEmail('block');
+            setInvalidEmail('none');
+        }
+
+        if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(e.target.value)) {
+            setRequiredEmail('none');
+            setInvalidEmail('none');
+            setBorderEmail('1px solid #00e676');
+        } else {
+            setBorderEmail('1px solid var(--primary-color)');
+        }
+    };
+
+    const onFocusEmail = (e) => {
+        if (
+            e.target.value === '' ||
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5}$/i.test(e.target.value)
+        ) {
+            setBorderEmail('2px solid var(--primary-color)');
+        }
+    };
+
+    // handle error pass
+    const onBlurPass = (e) => {
+        setRequiredPass('block');
+        setBorderPass('1px solid var(--primary-color)');
+        if (e.target.value) {
+            setRequiredPass('none');
+            setBorderPass('1px solid #00e676');
+        }
+    };
+
+    const onChangePass = (e) => {
+        setPasswordValue(e.target.value);
+        if (e.target.value) {
+            setRequiredPass('none');
+            setBorderPass('1px solid #00e676');
+        } else if (e.target.value === '') {
+            setRequiredPass('block');
+            setBorderPass('1px solid var(--primary-color)');
+        }
+    };
+
+    const onFocusPass = (e) => {
+        if (e.target.value) {
+            setBorderPass('1px solid #00e676');
+        } else if (e.target.value === '') {
+            setBorderPass('2px solid var(--primary-color)');
+        }
     };
 
     return (
-        <Form noValidate validated={validated} onSubmit={handleValidated}>
+        <Form noValidate onSubmit={handleValidated}>
+            {/* Email */}
             <Form.Group
                 controlId="validationCustomEmail"
                 className={cx('modal_user-body')}
@@ -45,18 +132,40 @@ function LoginForm() {
                 </Form.Label>
                 <Form.Control
                     required
+                    value={emaildValue}
+                    onBlur={onBlurEmail}
+                    onChange={onChangeEmail}
+                    onFocus={onFocusEmail}
                     aria-describedby="inputGroupPrepend"
                     className={cx('modal_user-input')}
                     type="email"
-                    placeholder="exmple@mail.com"
+                    placeholder="exmple@gmail.com"
+                    style={{
+                        border: borderEmail,
+                    }}
                 />
-                <Form.Control.Feedback
-                    type="invalid"
+                <span
                     className={cx('mes-error')}
+                    style={{
+                        display: requiredEmail,
+                        marginTop: '3px',
+                        marginLeft: '2px',
+                    }}
                 >
                     Email is required
-                </Form.Control.Feedback>
+                </span>
+                <span
+                    className={cx('mes-error')}
+                    style={{
+                        display: invalidEmail,
+                        marginTop: '3px',
+                        marginLeft: '2px',
+                    }}
+                >
+                    Invalid email
+                </span>
             </Form.Group>
+            {/* Password */}
             <Form.Group
                 className={cx('modal_user-body', 'modal_user-body--position')}
             >
@@ -65,16 +174,27 @@ function LoginForm() {
                 </Form.Label>
                 <Form.Control
                     required
+                    value={passwordValue}
+                    onChange={onChangePass}
+                    onBlur={onBlurPass}
+                    onFocus={onFocusPass}
                     className={cx('modal_user-input')}
                     type={typePassword}
                     placeholder="*********"
+                    style={{
+                        border: borderPass,
+                    }}
                 />
-                <Form.Control.Feedback
-                    type="invalid"
+                <span
                     className={cx('mes-error')}
+                    style={{
+                        display: requiredPass,
+                        marginTop: '3px',
+                        marginLeft: '2px',
+                    }}
                 >
                     Password is required
-                </Form.Control.Feedback>
+                </span>
                 {showPassword ? (
                     <Button
                         onClick={handleHidePassword}
