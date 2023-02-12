@@ -12,6 +12,7 @@ import {
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Popover from '@mui/material/Popover';
+import PropTypes from 'prop-types';
 
 import styles from './Search.module.scss';
 
@@ -47,7 +48,7 @@ const ALL_CATE = [
     },
 ];
 
-function Search() {
+function Search({ className }) {
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [showResults, setShowResults] = useState(true);
@@ -81,7 +82,7 @@ function Search() {
     const id = openCate ? 'simple-popover' : undefined;
 
     return (
-        <div className={cx('container')}>
+        <div className={cx('container', className)}>
             <HeadlessTippy
                 visible={searchResult.length > 0 && showResults}
                 interactive
@@ -125,6 +126,7 @@ function Search() {
                             icon={faAngleDown}
                         />
                     </button>
+                    {/* popper category */}
                     <Popover
                         id={id}
                         open={openCate}
@@ -155,5 +157,9 @@ function Search() {
         </div>
     );
 }
+
+Search.propTypes = {
+    className: PropTypes.string,
+};
 
 export default Search;

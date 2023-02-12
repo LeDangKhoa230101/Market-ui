@@ -13,6 +13,7 @@ import {
     accessories,
     speaker,
 } from '~/assets/icons/icons';
+import PopoverCate from '~/layouts/components/Category/PopoverCate/PopoverCate';
 
 import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
@@ -22,7 +23,12 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Image from '~/components/Image/Image';
 import { Link } from 'react-router-dom';
-import PopoverCate from '~/layouts/components/Category/PopoverCate/PopoverCate';
+
+import { useMediaQuery } from 'react-responsive';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import Drawer from '@mui/material/Drawer';
+import CloseIcon from '@mui/icons-material/Close';
 
 const cx = classNames.bind(styles);
 
@@ -60,10 +66,32 @@ const CATE_LIST = [
 ];
 
 function Header() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const [anchorEl, setAnchorEl] = useState(null);
 
     const [classHeader, setClassHeader] = useState('');
     const [showSubCate, setShowSubCate] = useState('none');
+
+    // handle drawer menu tablet mobile
+    const [showDrawerMenu, setShowDrawerMenu] = useState(false);
+
+    // handle drawer search tablet mobile
+    const [showDrawerSearch, setShowDrawerSearch] = useState(false);
 
     // custom color btn category
     const { palette } = createTheme();
@@ -93,7 +121,7 @@ function Header() {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [classHeader, showSubCate]);
 
     const handleShowMenuCate = (e) => {
         setAnchorEl(e.currentTarget);
@@ -110,6 +138,84 @@ function Header() {
         <div className={cx('header', classHeader)}>
             <div className={cx('wrapper')}>
                 <div className={cx('top-header')}>
+                    {/* Drawer menu responsive */}
+                    <Drawer
+                        open={showDrawerMenu}
+                        onClose={() => setShowDrawerMenu(false)}
+                    >
+                        <div className={cx('drawer-menu')}>
+                            <div className={cx('drawer-close-btn')}>
+                                <Button
+                                    onClick={() => setShowDrawerMenu(false)}
+                                    sx={{
+                                        minWidth: '40px',
+                                        height: '40px',
+                                        color: '#7d879c',
+                                    }}
+                                >
+                                    <CloseIcon
+                                        sx={{
+                                            width: '20px',
+                                            height: '20px',
+                                        }}
+                                    />
+                                </Button>
+                            </div>
+                            <ul className={cx('drawer-menu-list')}>
+                                <li>
+                                    <Button className={cx('drawer-item')}>
+                                        Laptop
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button className={cx('drawer-item')}>
+                                        Mobile
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button className={cx('drawer-item')}>
+                                        Camera
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button className={cx('drawer-item')}>
+                                        Headphone
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button className={cx('drawer-item')}>
+                                        Accessories
+                                    </Button>
+                                </li>
+                                <li>
+                                    <Button className={cx('drawer-item')}>
+                                        Speaker
+                                    </Button>
+                                </li>
+                            </ul>
+                        </div>
+                    </Drawer>
+                    {/* Drawer menu responsive */}
+
+                    {/* Menu reponsive */}
+                    {isTabletAndMobile && (
+                        <div className={cx('menu-res')}>
+                            <button
+                                onClick={() => setShowDrawerMenu(true)}
+                                className={cx('menu-res-btn')}
+                            >
+                                <MenuIcon
+                                    sx={{
+                                        width: '20px',
+                                        height: '20px',
+                                        color: '#7d879c',
+                                    }}
+                                />
+                            </button>
+                        </div>
+                    )}
+                    {/* Menu reponsive */}
+
                     <div className={cx('top-header-right')}>
                         <Link to="/">
                             <Image
@@ -118,7 +224,6 @@ function Header() {
                                 alt="bazaar"
                             />
                         </Link>
-                        {/* Sub menu */}
                         <ThemeProvider theme={theme}>
                             <Button
                                 aria-describedby={id}
@@ -162,11 +267,56 @@ function Header() {
                     </div>
 
                     {/* Search input */}
-                    <Search />
+                    <Search className={cx('search-respon')} />
                     {/* Search input */}
+
+                    {/* Drawer search */}
+                    <Drawer open={showDrawerSearch} anchor="top">
+                        <div className={cx('drawer-search')}>
+                            <div className={cx('drawer-close-btn')}>
+                                <Button
+                                    onClick={() => setShowDrawerSearch(false)}
+                                    sx={{
+                                        minWidth: '40px',
+                                        height: '40px',
+                                        color: '#7d879c',
+                                    }}
+                                >
+                                    <CloseIcon
+                                        sx={{
+                                            width: '20px',
+                                            height: '20px',
+                                        }}
+                                    />
+                                </Button>
+                            </div>
+                            <Search className={cx('search-container-res')} />
+                        </div>
+                    </Drawer>
+                    {/* Drawer search */}
 
                     {/* action */}
                     <div className={cx('action')}>
+                        {isTabletAndMobile && (
+                            <Button
+                                onClick={() => setShowDrawerSearch(true)}
+                                sx={{
+                                    minWidth: '38px',
+                                    height: '38px',
+                                    color: '#7d879c',
+                                    borderRadius: '999px',
+                                    marginRight: '10px',
+                                    backgroundColor: '#f3f5f9',
+                                }}
+                            >
+                                <SearchIcon
+                                    sx={{
+                                        width: '20px',
+                                        height: '20px',
+                                    }}
+                                />
+                            </Button>
+                        )}
                         <ModalUser />
                         <Cart />
                     </div>
@@ -174,10 +324,26 @@ function Header() {
                 </div>
             </div>
             {/* sub header */}
-            <div className={cx('sub-header')}>
-                <Category data={CATE_LIST} />
-                <div className={cx('sub-header-right')}>
-                    <Link to={'/'}>
+            {isDesktop && (
+                <div className={cx('sub-header')}>
+                    <Category data={CATE_LIST} />
+                    <div className={cx('sub-header-right')}>
+                        <Link to={'/'}>
+                            <Button
+                                sx={{
+                                    minWidth: '80px',
+                                    height: '36px',
+                                    border: 'none',
+                                    color: '#7d879c',
+                                    fontSize: '1.4rem',
+                                    textTransform: 'capitalize',
+                                    marginLeft: '12px',
+                                }}
+                                className={cx('all-shop-btn')}
+                            >
+                                Home
+                            </Button>
+                        </Link>
                         <Button
                             sx={{
                                 minWidth: '80px',
@@ -190,38 +356,8 @@ function Header() {
                             }}
                             className={cx('all-shop-btn')}
                         >
-                            Home
+                            Phones
                         </Button>
-                    </Link>
-                    <Button
-                        sx={{
-                            minWidth: '80px',
-                            height: '36px',
-                            border: 'none',
-                            color: '#7d879c',
-                            fontSize: '1.4rem',
-                            textTransform: 'capitalize',
-                            marginLeft: '12px',
-                        }}
-                        className={cx('all-shop-btn')}
-                    >
-                        Phones
-                    </Button>
-                    <Button
-                        sx={{
-                            minWidth: '80px',
-                            height: '36px',
-                            border: 'none',
-                            color: '#7d879c',
-                            fontSize: '1.4rem',
-                            textTransform: 'capitalize',
-                            marginLeft: '12px',
-                        }}
-                        className={cx('all-shop-btn')}
-                    >
-                        Laptops
-                    </Button>
-                    <Link to={'/all-shops'}>
                         <Button
                             sx={{
                                 minWidth: '80px',
@@ -234,11 +370,27 @@ function Header() {
                             }}
                             className={cx('all-shop-btn')}
                         >
-                            All Shops
+                            Laptops
                         </Button>
-                    </Link>
+                        <Link to={'/all-shops'}>
+                            <Button
+                                sx={{
+                                    minWidth: '80px',
+                                    height: '36px',
+                                    border: 'none',
+                                    color: '#7d879c',
+                                    fontSize: '1.4rem',
+                                    textTransform: 'capitalize',
+                                    marginLeft: '12px',
+                                }}
+                                className={cx('all-shop-btn')}
+                            >
+                                All Shops
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            )}
             {/* sub header */}
         </div>
     );
