@@ -16,9 +16,27 @@ import {
     faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function Footer() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const Item = styled(Box)(({ theme }) => ({
         padding: theme.spacing(0),
     }));
@@ -27,11 +45,14 @@ function Footer() {
         <div className={cx('wrapper')}>
             <div className={cx('footer')}>
                 <Grid container spacing={3} sx={{ padding: '80px 0' }}>
-                    <Grid item xs={4}>
+                    <Grid
+                        item
+                        xs={isDesktop ? 4 : isTabletAndMobile ? 6 : null}
+                    >
                         <Item>
                             <Image
                                 className={cx('footer-logo')}
-                                src={images.logoFooter}
+                                src="https://bazaar.ui-lib.com/assets/images/logo.svg"
                             />
                             <span className={cx('desc')}>
                                 Lorem ipsum dolor sit amet, consectetur
@@ -91,7 +112,10 @@ function Footer() {
                         </Item>
                     </Grid>
 
-                    <Grid item xs={2}>
+                    <Grid
+                        item
+                        xs={isDesktop ? 2 : isTabletAndMobile ? 6 : null}
+                    >
                         <Item>
                             <h3 className={cx('title')}>About Us</h3>
                             <ul className={cx('list')}>
@@ -106,7 +130,10 @@ function Footer() {
                         </Item>
                     </Grid>
 
-                    <Grid item xs={3}>
+                    <Grid
+                        item
+                        xs={isDesktop ? 3 : isTabletAndMobile ? 6 : null}
+                    >
                         <Item>
                             <h3 className={cx('title')}>Customer Care</h3>
                             <ul className={cx('list')}>
@@ -123,7 +150,10 @@ function Footer() {
                         </Item>
                     </Grid>
 
-                    <Grid item xs={3}>
+                    <Grid
+                        item
+                        xs={isDesktop ? 3 : isTabletAndMobile ? 6 : null}
+                    >
                         <Item>
                             <h3 className={cx('title')}>Contact Us</h3>
                             <ul className={cx('list')}>

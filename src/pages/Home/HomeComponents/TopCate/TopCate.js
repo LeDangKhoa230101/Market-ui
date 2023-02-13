@@ -7,9 +7,28 @@ import Image from '~/components/Image/Image';
 import { styled } from '@mui/material/styles';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import Box from '@mui/material/Box';
+
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function TopCate() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const Item = styled(Box)(({ theme }) => ({
         padding: theme.spacing(2),
         position: 'relative',
@@ -42,10 +61,22 @@ function TopCate() {
                                 src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbanners%2Fcategory-1.png&w=1920&q=75"
                             />
                             <div className={cx('top-cate-body')}>
-                                <span className={cx('top-cate-body-left')}>
+                                <span
+                                    className={cx(
+                                        'top-cate-body-left',
+                                        isTabletAndMobile &&
+                                            'top-cate-body-left-respon',
+                                    )}
+                                >
                                     Headphone
                                 </span>
-                                <span className={cx('top-cate-body-right')}>
+                                <span
+                                    className={cx(
+                                        'top-cate-body-right',
+                                        isTabletAndMobile &&
+                                            'top-cate-body-left-respon',
+                                    )}
+                                >
                                     3k orders this week
                                 </span>
                             </div>
@@ -58,10 +89,22 @@ function TopCate() {
                                 src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbanners%2Fcategory-2.png&w=1920&q=75"
                             />
                             <div className={cx('top-cate-body')}>
-                                <span className={cx('top-cate-body-left')}>
+                                <span
+                                    className={cx(
+                                        'top-cate-body-left',
+                                        isTabletAndMobile &&
+                                            'top-cate-body-left-respon',
+                                    )}
+                                >
                                     Watch
                                 </span>
-                                <span className={cx('top-cate-body-right')}>
+                                <span
+                                    className={cx(
+                                        'top-cate-body-right',
+                                        isTabletAndMobile &&
+                                            'top-cate-body-left-respon',
+                                    )}
+                                >
                                     3k orders this week
                                 </span>
                             </div>
@@ -74,10 +117,22 @@ function TopCate() {
                                 src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fbanners%2Fcategory-3.png&w=1920&q=75"
                             />
                             <div className={cx('top-cate-body')}>
-                                <span className={cx('top-cate-body-left')}>
+                                <span
+                                    className={cx(
+                                        'top-cate-body-left',
+                                        isTabletAndMobile &&
+                                            'top-cate-body-left-respon',
+                                    )}
+                                >
                                     Sunglass
                                 </span>
-                                <span className={cx('top-cate-body-right')}>
+                                <span
+                                    className={cx(
+                                        'top-cate-body-right',
+                                        isTabletAndMobile &&
+                                            'top-cate-body-left-respon',
+                                    )}
+                                >
                                     3k orders this week
                                 </span>
                             </div>

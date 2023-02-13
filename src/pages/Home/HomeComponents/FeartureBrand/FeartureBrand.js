@@ -8,9 +8,27 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function FeartureBrand() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(2),
@@ -19,7 +37,7 @@ function FeartureBrand() {
         height: '229px',
     }));
     return (
-        <Grid item xs={6}>
+        <Grid item xs={isDesktop ? 6 : isTabletAndMobile ? 12 : null}>
             <TitleSection
                 to={'feature-brand'}
                 icon={

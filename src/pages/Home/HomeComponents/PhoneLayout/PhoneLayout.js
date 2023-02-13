@@ -19,6 +19,8 @@ import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 const SIDEBAR_BRAND = [
@@ -83,6 +85,22 @@ const SIDEBAR_SHOP = [
 ];
 
 function PhoneLayout() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const Tab = styled(TabUnstyled)`
         color: #7d879c;
         cursor: pointer;
@@ -101,6 +119,9 @@ function PhoneLayout() {
     const TabsList = styled(TabsListUnstyled)(
         () => `
     margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `,
     );
 
@@ -108,7 +129,6 @@ function PhoneLayout() {
     const [active, setActive] = useState(null);
 
     const { data } = useGetListBrandPhoneQuery(brand);
-    // console.log(data);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [limit] = useState(6);
@@ -159,7 +179,7 @@ function PhoneLayout() {
                 }}
             >
                 {/* Side bar */}
-                <Grid item xs={3}>
+                <Grid item xs={isDesktop ? 3 : isTabletAndMobile ? 4 : null}>
                     <Box className={cx('sidebar')}>
                         <TabsUnstyled defaultValue={0}>
                             <TabsList>
@@ -220,13 +240,23 @@ function PhoneLayout() {
                 </Grid>
                 {/* Side bar */}
 
-                <Grid item xs={9}>
+                <Grid item xs={isDesktop ? 9 : isTabletAndMobile ? 8 : null}>
                     <TitleSection title="Mobile Phones" />
                     <div className={cx('wrapper')}>
                         <Grid container rowSpacing={3}>
                             {currentData?.map((product) => {
                                 return (
-                                    <Grid item xs={4} key={product.id}>
+                                    <Grid
+                                        item
+                                        xs={
+                                            isDesktop
+                                                ? 4
+                                                : isTabletAndMobile
+                                                ? 6
+                                                : null
+                                        }
+                                        key={product.id}
+                                    >
                                         <ProductItem
                                             product={product}
                                             handlePlusItem={() =>

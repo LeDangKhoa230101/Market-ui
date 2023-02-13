@@ -100,3 +100,24 @@
 .discount-slide-btn--right {
     right: -11px;
 }
+
+// --------------------------------
+// --------------------------------
+
+// tablet and mobile
+@media (max-width: 1223px) {
+    .discount-price {
+        justify-content: flex-start;
+        & .discount-price-current {
+            margin-right: 6px;
+        }
+    }
+}
+
+// tablet
+@media (min-width: 787px) and (max-width: 1223px) {
+}
+
+// mobile
+@media (max-width: 786px) {
+}

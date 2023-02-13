@@ -7,11 +7,29 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 
+import { useMediaQuery } from 'react-responsive';
+
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
 function MoreForYou() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const data = useSelector((state) => state.productsFlashDeals.items);
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -38,7 +56,11 @@ function MoreForYou() {
             >
                 {currentData?.map((product) => {
                     return (
-                        <Grid item xs={3} key={product.id}>
+                        <Grid
+                            item
+                            xs={isDesktop ? 3 : isTabletAndMobile ? 4 : null}
+                            key={product.id}
+                        >
                             <ProductItem product={product} />
                         </Grid>
                     );

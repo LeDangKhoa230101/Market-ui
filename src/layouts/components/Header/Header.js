@@ -224,45 +224,50 @@ function Header() {
                                 alt="bazaar"
                             />
                         </Link>
-                        <ThemeProvider theme={theme}>
-                            <Button
-                                aria-describedby={id}
-                                onClick={handleShowMenuCate}
-                                sx={{
-                                    height: '32px',
-                                    color: '#7d879c',
-                                    marginLeft: '16px',
-                                    display: showSubCate,
-
-                                    '&:hover': {
-                                        backgroundColor:
-                                            'rgba(43, 52, 69, 0.04)',
-                                    },
-                                }}
-                            >
-                                <WidgetsRoundedIcon
-                                    sx={{
-                                        width: '20px',
-                                        height: '20px',
-                                        rotate: '90deg',
-                                    }}
-                                />
-                                <ExpandMoreIcon
-                                    sx={{
-                                        width: '20px',
-                                        height: '20px',
-                                    }}
-                                />
-                            </Button>
-                        </ThemeProvider>
                         {/* Sub menu */}
-                        <PopoverCate
-                            data={CATE_LIST}
-                            handleHideMenuCate={handleHideMenuCate}
-                            id={id}
-                            open={open}
-                            anchorEl={anchorEl}
-                        />
+                        {isDesktop && (
+                            <ThemeProvider theme={theme}>
+                                <Button
+                                    aria-describedby={id}
+                                    onClick={handleShowMenuCate}
+                                    sx={{
+                                        height: '32px',
+                                        color: '#7d879c',
+                                        marginLeft: '16px',
+                                        display: showSubCate,
+
+                                        '&:hover': {
+                                            backgroundColor:
+                                                'rgba(43, 52, 69, 0.04)',
+                                        },
+                                    }}
+                                >
+                                    <WidgetsRoundedIcon
+                                        sx={{
+                                            width: '20px',
+                                            height: '20px',
+                                            rotate: '90deg',
+                                        }}
+                                    />
+                                    <ExpandMoreIcon
+                                        sx={{
+                                            width: '20px',
+                                            height: '20px',
+                                        }}
+                                    />
+                                </Button>
+                            </ThemeProvider>
+                        )}
+
+                        {isDesktop && (
+                            <PopoverCate
+                                data={CATE_LIST}
+                                handleHideMenuCate={handleHideMenuCate}
+                                id={id}
+                                open={open}
+                                anchorEl={anchorEl}
+                            />
+                        )}
                         {/* Sub menu */}
                     </div>
 

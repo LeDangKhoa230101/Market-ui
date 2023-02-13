@@ -18,9 +18,27 @@ import { addToCart } from '~/reducers/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function FlashDeals() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const data = useSelector((state) => state.productsFlashDeals.items);
     const status = useSelector((state) => state.productsFlashDeals.status);
 
@@ -52,7 +70,6 @@ function FlashDeals() {
         arrows: false,
         infinite: true,
         speed: 400,
-        slidesToShow: 4,
         slidesToScroll: 1,
     };
 
@@ -88,7 +105,11 @@ function FlashDeals() {
                         This is an error alert — check it out!
                     </Alert>
                 ) : (
-                    <Slider {...settings} ref={sliderRef}>
+                    <Slider
+                        slidesToShow={isDesktop ? 4 : isTablet ? 3 : null}
+                        {...settings}
+                        ref={sliderRef}
+                    >
                         {data.map((product) => {
                             return (
                                 <ProductItem

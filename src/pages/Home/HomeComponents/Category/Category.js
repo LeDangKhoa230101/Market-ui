@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import Image from '~/components/Image/Image';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 const CATE_LIST = [
@@ -45,6 +47,22 @@ const CATE_LIST = [
 ];
 
 function Category() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const Item = styled(Box)(({ theme }) => ({
         padding: theme.spacing(2),
         backgroundColor: 'var(--white)',
@@ -58,6 +76,7 @@ function Category() {
             boxShadow: '0px 8px 45px rgb(3 0 71 / 9%)',
         },
     }));
+
     return (
         <div className={cx('category')}>
             <TitleSection
@@ -76,7 +95,11 @@ function Category() {
             <Grid container spacing={2}>
                 {CATE_LIST.map((item, index) => {
                     return (
-                        <Grid item xs={2} key={index}>
+                        <Grid
+                            item
+                            xs={isDesktop ? 2 : isTabletAndMobile ? 4 : null}
+                            key={index}
+                        >
                             <Item>
                                 <Image
                                     className={cx('cate-img')}
