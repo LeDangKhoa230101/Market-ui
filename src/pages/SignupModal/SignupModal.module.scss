@@ -1,11 +1,17 @@
 // modal user
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .modal_user {
-    margin: auto;
-    max-width: 500px;
-    max-height: 720px;
-    text-align: center;
+    width: 500px;
+    max-height: 860px;
     border: none;
     outline: none;
+    text-align: center;
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 

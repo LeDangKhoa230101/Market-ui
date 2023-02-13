@@ -48,3 +48,23 @@
         opacity: 0.9 !important;
     }
 }
+
+// tablet and mobile
+@media (max-width: 1223px) {
+    .slide-item {
+        padding: 0;
+        justify-content: center;
+    }
+    .slide-img {
+        max-width: 100%;
+        max-height: 290px;
+    }
+}
+
+// tablet
+@media (min-width: 787px) and (max-width: 1223px) {
+}
+
+// mobile
+@media (max-width: 786px) {
+}

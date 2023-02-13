@@ -1,8 +1,14 @@
 // modal user
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .modal_user {
-    margin: 12px auto;
-    max-width: 500px;
-    max-height: 720px;
+    width: 500px;
+    max-height: 757px;
     text-align: center;
     border: none;
     outline: none;
