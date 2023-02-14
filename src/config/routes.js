@@ -16,6 +16,7 @@ const config = {
     signup: '/signup',
     login: '/login',
     resetpass: '/reset-password',
+    catetabletmobile: '/cate-nav',
 };
 
 export default config;

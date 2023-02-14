@@ -1,0 +1,29 @@
+.wrapper {
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--text-color);
+
+    & .title {
+        margin-top: 4px;
+        font-weight: 500;
+    }
+
+    &.active {
+        color: var(--primary-color);
+    }
+}

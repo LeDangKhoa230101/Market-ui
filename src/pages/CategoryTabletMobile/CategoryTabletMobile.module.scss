@@ -1,0 +1,25 @@
+//drawer-menu
+.drawer-menu {
+    padding: 40px 28px;
+}
+
+.drawer-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f6f9fc;
+    padding: 12px;
+    box-shadow: 0px 4px 16px rgb(43 52 69 / 10%);
+
+    & .drawer-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    & .drawer-name {
+        font-size: 1.6rem;
+        margin-top: 6px;
+        font-weight: 500;
+    }
+}
