@@ -32,11 +32,11 @@ function FlashDeals() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const data = useSelector((state) => state.productsFlashDeals.items);
@@ -106,7 +106,9 @@ function FlashDeals() {
                     </Alert>
                 ) : (
                     <Slider
-                        slidesToShow={isDesktop ? 4 : isTablet ? 3 : null}
+                        slidesToShow={
+                            isDesktop ? 4 : isTablet ? 3 : isMobile ? 1 : null
+                        }
                         {...settings}
                         ref={sliderRef}
                     >
@@ -115,6 +117,7 @@ function FlashDeals() {
                                 <ProductItem
                                     key={product.id}
                                     product={product}
+                                    className={cx('product-item-img')}
                                     handlePlusItem={() =>
                                         handlePlusItem(product)
                                     }

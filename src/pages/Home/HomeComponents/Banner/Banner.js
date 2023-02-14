@@ -1,15 +1,32 @@
 import styles from './Banner.module.scss';
+import Image from '~/components/Image/Image';
 
 import classNames from 'classnames/bind';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
-import Image from '~/components/Image/Image';
+import { useMediaQuery } from 'react-responsive';
 
 const cx = classNames.bind(styles);
 
 function Banner() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const Item = styled(Box)(({ theme }) => ({
         padding: theme.spacing(0),
     }));
@@ -18,7 +35,7 @@ function Banner() {
             <Grid container spacing={2}>
                 <Grid
                     item
-                    xs={4}
+                    xs={isDesktop ? 4 : isTablet ? 4 : isMobile ? 12 : null}
                     sx={{
                         cursor: 'not-allowed',
                     }}
@@ -32,7 +49,7 @@ function Banner() {
                 </Grid>
                 <Grid
                     item
-                    xs={8}
+                    xs={isDesktop ? 8 : isTablet ? 8 : isMobile ? 12 : null}
                     sx={{
                         cursor: 'not-allowed',
                     }}

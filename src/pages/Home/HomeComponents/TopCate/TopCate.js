@@ -22,11 +22,11 @@ function TopCate() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const Item = styled(Box)(({ theme }) => ({
@@ -54,7 +54,7 @@ function TopCate() {
             />
             <div>
                 <Grid container spacing={3}>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={4} lg={4}>
                         <Item>
                             <Image
                                 className={cx('top-cate-img')}
@@ -82,7 +82,7 @@ function TopCate() {
                             </div>
                         </Item>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={4} lg={4}>
                         <Item>
                             <Image
                                 className={cx('top-cate-img')}
@@ -110,7 +110,7 @@ function TopCate() {
                             </div>
                         </Item>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={4} lg={4}>
                         <Item>
                             <Image
                                 className={cx('top-cate-img')}

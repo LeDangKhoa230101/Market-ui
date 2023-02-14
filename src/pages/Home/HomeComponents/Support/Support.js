@@ -75,11 +75,11 @@ function Support() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const Item = styled(Box)(({ theme }) => ({
@@ -106,7 +106,15 @@ function Support() {
                         <Grid
                             key={index}
                             item
-                            xs={isDesktop ? 3 : isTabletAndMobile ? 6 : null}
+                            xs={
+                                isDesktop
+                                    ? 3
+                                    : isTablet
+                                    ? 6
+                                    : isMobile
+                                    ? 12
+                                    : null
+                            }
                         >
                             <Item>
                                 <Button

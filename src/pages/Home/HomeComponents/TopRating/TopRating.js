@@ -13,6 +13,29 @@ import { useMediaQuery } from 'react-responsive';
 
 const cx = classNames.bind(styles);
 
+const datas = [
+    {
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75',
+        name: 'Camera',
+        price: '3,333,00',
+    },
+    {
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75',
+        name: 'Camera',
+        price: '3,333,00',
+    },
+    {
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75',
+        name: 'Camera',
+        price: '3,333,00',
+    },
+    {
+        image: 'https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75',
+        name: 'Camera',
+        price: '3,333,00',
+    },
+];
+
 function TopRating() {
     const isDesktop = useMediaQuery({
         query: '(min-width: 1223px)',
@@ -23,11 +46,11 @@ function TopRating() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -35,7 +58,6 @@ function TopRating() {
         padding: theme.spacing(2),
         backgroundColor: 'var(--white)',
         borderRadius: '8px',
-        height: '229px',
     }));
 
     return (
@@ -56,98 +78,44 @@ function TopRating() {
             />
             <Item>
                 <Grid container spacing={3}>
-                    <Grid
-                        item
-                        xs={3}
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        <div className={cx('container-img-top-rating')}>
-                            <Image
-                                className={cx('top-rating-img')}
-                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
-                            />
-                            <div className={cx('overlay')}></div>
-                        </div>
+                    {datas.map((item, index) => {
+                        return (
+                            <Grid
+                                item
+                                xs={
+                                    isDesktop
+                                        ? 3
+                                        : isTablet
+                                        ? 3
+                                        : isMobile
+                                        ? 6
+                                        : null
+                                }
+                                key={index}
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                <div className={cx('container-img-top-rating')}>
+                                    <Image
+                                        className={cx('top-rating-img')}
+                                        src={item.image}
+                                    />
+                                    <div className={cx('overlay')}></div>
+                                </div>
 
-                        <Rating value={5} size="large" />
-                        <span className={cx('top-rating-name')}>Camera</span>
-                        <span className={cx('top-rating-price')}>
-                            3.300,00 US$
-                        </span>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={3}
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        <div className={cx('container-img-top-rating')}>
-                            <Image
-                                className={cx('top-rating-img')}
-                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
-                            />
-                            <div className={cx('overlay')}></div>
-                        </div>
-
-                        <Rating value={5} size="large" />
-                        <span className={cx('top-rating-name')}>Camera</span>
-                        <span className={cx('top-rating-price')}>
-                            3.300,00 US$
-                        </span>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={3}
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        <div className={cx('container-img-top-rating')}>
-                            <Image
-                                className={cx('top-rating-img')}
-                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
-                            />
-                            <div className={cx('overlay')}></div>
-                        </div>
-
-                        <Rating value={5} size="large" />
-                        <span className={cx('top-rating-name')}>Camera</span>
-                        <span className={cx('top-rating-price')}>
-                            3.300,00 US$
-                        </span>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={3}
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        <div className={cx('container-img-top-rating')}>
-                            <Image
-                                className={cx('top-rating-img')}
-                                src="https://bazaar.ui-lib.com/_next/image?url=%2Fassets%2Fimages%2Fproducts%2Fcamera-1.png&w=1920&q=75"
-                            />
-                            <div className={cx('overlay')}></div>
-                        </div>
-
-                        <Rating value={5} size="large" />
-                        <span className={cx('top-rating-name')}>Camera</span>
-                        <span className={cx('top-rating-price')}>
-                            3.300,00 US$
-                        </span>
-                    </Grid>
+                                <Rating value={5} size="large" />
+                                <span className={cx('top-rating-name')}>
+                                    {item.name}
+                                </span>
+                                <span className={cx('top-rating-price')}>
+                                    {item.price} US$
+                                </span>
+                            </Grid>
+                        );
+                    })}
                 </Grid>
             </Item>
         </Grid>

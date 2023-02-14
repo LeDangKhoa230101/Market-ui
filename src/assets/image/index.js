@@ -6,6 +6,7 @@ const images = {
     headphone: require('~/assets/Image/headphone.png'),
     accessories: require('~/assets/Image/accessories.png'),
     speaker: require('~/assets/Image/speaker.png'),
+    logotabletmobile: require('~/assets/Image/logotabletmobile.svg').default,
 };
 
 export default images;

@@ -5,6 +5,8 @@ import images from '~/assets/image';
 import classNames from 'classnames/bind';
 import { Grid } from '@mui/material';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 const category = [
@@ -30,23 +32,35 @@ const category = [
     },
     {
         image: images.accessories,
-        name: 'Accessories Computer',
+        name: 'Accessories',
         to: '/',
     },
     {
         image: images.speaker,
-        name: 'Music Speaker',
+        name: 'Speaker',
         to: '/',
     },
 ];
 
 function CategoryTabletMobile() {
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     return (
         <div className={cx('drawer-menu')}>
             <Grid container spacing={4}>
                 {category.map((item, index) => {
                     return (
-                        <Grid key={index} item xs={4}>
+                        <Grid
+                            key={index}
+                            item
+                            xs={isTablet ? 4 : isMobile ? 6 : null}
+                        >
                             <div className={cx('drawer-item')}>
                                 <Image
                                     className={cx('drawer-img')}

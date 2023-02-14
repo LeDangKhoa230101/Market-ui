@@ -30,11 +30,11 @@ function Footer() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const Item = styled(Box)(({ theme }) => ({
@@ -47,7 +47,7 @@ function Footer() {
                 <Grid container spacing={3} sx={{ padding: '80px 0' }}>
                     <Grid
                         item
-                        xs={isDesktop ? 4 : isTabletAndMobile ? 6 : null}
+                        xs={isDesktop ? 4 : isTablet ? 6 : isMobile ? 12 : null}
                     >
                         <Item>
                             <Image
@@ -114,7 +114,7 @@ function Footer() {
 
                     <Grid
                         item
-                        xs={isDesktop ? 2 : isTabletAndMobile ? 6 : null}
+                        xs={isDesktop ? 2 : isTablet ? 6 : isMobile ? 12 : null}
                     >
                         <Item>
                             <h3 className={cx('title')}>About Us</h3>
@@ -132,7 +132,7 @@ function Footer() {
 
                     <Grid
                         item
-                        xs={isDesktop ? 3 : isTabletAndMobile ? 6 : null}
+                        xs={isDesktop ? 3 : isTablet ? 6 : isMobile ? 12 : null}
                     >
                         <Item>
                             <h3 className={cx('title')}>Customer Care</h3>
@@ -152,7 +152,7 @@ function Footer() {
 
                     <Grid
                         item
-                        xs={isDesktop ? 3 : isTabletAndMobile ? 6 : null}
+                        xs={isDesktop ? 3 : isTablet ? 6 : isMobile ? 12 : null}
                     >
                         <Item>
                             <h3 className={cx('title')}>Contact Us</h3>

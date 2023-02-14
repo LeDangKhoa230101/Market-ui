@@ -75,11 +75,11 @@ function Header() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -217,13 +217,24 @@ function Header() {
                     {/* Menu reponsive */}
 
                     <div className={cx('top-header-right')}>
-                        <Link to="/">
-                            <Image
-                                className={cx('logo')}
-                                src={images.logo}
-                                alt="bazaar"
-                            />
-                        </Link>
+                        {isMobile ? null : (
+                            <Link to="/">
+                                <Image
+                                    className={cx('logo')}
+                                    src={images.logo}
+                                    alt="bazaar"
+                                />
+                            </Link>
+                        )}
+                        {isMobile && (
+                            <Link to="/">
+                                <Image
+                                    className={cx('logo')}
+                                    src={images.logotabletmobile}
+                                    alt="bazaar"
+                                />
+                            </Link>
+                        )}
                         {/* Sub menu */}
                         {isDesktop && (
                             <ThemeProvider theme={theme}>
@@ -302,12 +313,32 @@ function Header() {
 
                     {/* action */}
                     <div className={cx('action')}>
-                        {isTabletAndMobile && (
+                        {isTablet && (
                             <Button
                                 onClick={() => setShowDrawerSearch(true)}
                                 sx={{
                                     minWidth: '38px',
                                     height: '38px',
+                                    color: '#7d879c',
+                                    borderRadius: '999px',
+                                    marginRight: '10px',
+                                    backgroundColor: '#f3f5f9',
+                                }}
+                            >
+                                <SearchIcon
+                                    sx={{
+                                        width: '20px',
+                                        height: '20px',
+                                    }}
+                                />
+                            </Button>
+                        )}
+                        {isMobile && (
+                            <Button
+                                onClick={() => setShowDrawerSearch(true)}
+                                sx={{
+                                    minWidth: '36px',
+                                    height: '36px',
                                     color: '#7d879c',
                                     borderRadius: '999px',
                                     marginRight: '10px',

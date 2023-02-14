@@ -55,11 +55,11 @@ function Arrivals() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -91,7 +91,13 @@ function Arrivals() {
                                 key={index}
                                 item
                                 xs={
-                                    isDesktop ? 2 : isTabletAndMobile ? 4 : null
+                                    isDesktop
+                                        ? 2
+                                        : isTablet
+                                        ? 4
+                                        : isMobile
+                                        ? 6
+                                        : null
                                 }
                                 sx={{
                                     display: 'flex',

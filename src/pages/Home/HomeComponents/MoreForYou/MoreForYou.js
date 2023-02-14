@@ -23,13 +23,12 @@ function MoreForYou() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
-
     const data = useSelector((state) => state.productsFlashDeals.items);
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -48,7 +47,7 @@ function MoreForYou() {
             <TitleSection title="More For You" />
             <Grid
                 container
-                rowSpacing={3}
+                rowSpacing={isDesktop ? 3 : isTablet ? 3 : isMobile ? 2 : null}
                 sx={{
                     width: 'calc(100% + 10px)',
                     marginLeft: '-5px',
@@ -58,7 +57,15 @@ function MoreForYou() {
                     return (
                         <Grid
                             item
-                            xs={isDesktop ? 3 : isTabletAndMobile ? 4 : null}
+                            xs={
+                                isDesktop
+                                    ? 3
+                                    : isTablet
+                                    ? 4
+                                    : isMobile
+                                    ? 6
+                                    : null
+                            }
                             key={product.id}
                         >
                             <ProductItem product={product} />

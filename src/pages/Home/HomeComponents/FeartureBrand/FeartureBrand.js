@@ -22,11 +22,11 @@ function FeartureBrand() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const Item = styled(Paper)(({ theme }) => ({
@@ -34,7 +34,6 @@ function FeartureBrand() {
         padding: theme.spacing(2),
         backgroundColor: 'var(--white)',
         borderRadius: '8px',
-        height: '229px',
     }));
     return (
         <Grid item xs={isDesktop ? 6 : isTabletAndMobile ? 12 : null}>

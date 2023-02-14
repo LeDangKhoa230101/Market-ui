@@ -94,11 +94,11 @@ function PhoneLayout() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const Tab = styled(TabUnstyled)`
@@ -179,7 +179,13 @@ function PhoneLayout() {
                 }}
             >
                 {/* Side bar */}
-                <Grid item xs={isDesktop ? 3 : isTabletAndMobile ? 4 : null}>
+                <Grid
+                    sx={{
+                        display: isMobile && 'none',
+                    }}
+                    item
+                    xs={isDesktop ? 3 : isTabletAndMobile ? 4 : null}
+                >
                     <Box className={cx('sidebar')}>
                         <TabsUnstyled defaultValue={0}>
                             <TabsList>
@@ -240,10 +246,24 @@ function PhoneLayout() {
                 </Grid>
                 {/* Side bar */}
 
-                <Grid item xs={isDesktop ? 9 : isTabletAndMobile ? 8 : null}>
+                <Grid
+                    item
+                    xs={isDesktop ? 9 : isTablet ? 8 : isMobile ? 12 : null}
+                >
                     <TitleSection title="Mobile Phones" />
                     <div className={cx('wrapper')}>
-                        <Grid container rowSpacing={3}>
+                        <Grid
+                            container
+                            rowSpacing={
+                                isDesktop
+                                    ? 3
+                                    : isTablet
+                                    ? 3
+                                    : isMobile
+                                    ? 2
+                                    : null
+                            }
+                        >
                             {currentData?.map((product) => {
                                 return (
                                     <Grid

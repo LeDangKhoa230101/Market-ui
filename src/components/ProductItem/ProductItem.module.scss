@@ -93,8 +93,15 @@
     text-align: left;
 }
 
+.stack {
+    margin: 9px 0;
+}
+
 .product__item-price {
     font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .product__item-price-curr {
@@ -121,4 +128,40 @@
 .product__item-qt {
     color: rgb(43, 52, 69);
     font-weight: 600;
+}
+
+// response
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+// tablet and mobile
+@media (max-width: 1223px) {
+}
+
+// tablet
+@media (min-width: 768px) and (max-width: 1223px) {
+}
+
+// mobile
+@media (max-width: 767px) {
+    .product-item {
+        width: calc(100% - 1.4rem);
+    }
+
+    .product__item-img {
+        height: 170px;
+    }
+
+    .product__item-body {
+        padding: 14px;
+        align-items: flex-end;
+    }
+
+    .stack {
+        margin: 0;
+    }
+
+    .product__item-price {
+        font-size: 1.3rem;
+    }
 }

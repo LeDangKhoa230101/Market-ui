@@ -84,11 +84,11 @@ function BigDiscount() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const settings = {
@@ -120,7 +120,9 @@ function BigDiscount() {
             <div className={cx('discount-slide')}>
                 <Slider
                     {...settings}
-                    slidesToShow={isDesktop ? 6 : isTabletAndMobile ? 3 : null}
+                    slidesToShow={
+                        isDesktop ? 6 : isTablet ? 3 : isMobile ? 2 : null
+                    }
                     ref={sliderRef}
                 >
                     {DISCOUNT.map((item) => {

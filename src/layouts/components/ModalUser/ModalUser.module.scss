@@ -131,3 +131,26 @@
         text-decoration: underline;
     }
 }
+
+// response
+// ------------------------------------------
+// ------------------------------------------
+// ------------------------------------------
+// tablet and mobile
+@media (max-width: 1223px) {
+}
+
+// tablet
+@media (min-width: 768px) and (max-width: 1223px) {
+}
+
+// mobile
+@media (max-width: 767px) {
+    .action-btn {
+        padding: 8px;
+    }
+
+    .modal_user {
+        width: 348px;
+    }
+}

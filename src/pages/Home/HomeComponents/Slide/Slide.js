@@ -36,11 +36,11 @@ function Slide() {
     });
 
     const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
+        query: '(min-width: 768px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
-        query: '(max-width: 786px)',
+        query: '(max-width: 767px)',
     });
 
     const theme = createTheme({
@@ -83,7 +83,7 @@ function Slide() {
                         container
                         spacing={3}
                     >
-                        <Grid item lg={6} sm={5}>
+                        <Grid item lg={6} sm={5} xs={12}>
                             <div className={cx('silde-item-body')}>
                                 <h3 className={cx('slide-title')}>
                                     {slide.title}
@@ -104,7 +104,7 @@ function Slide() {
                                 </Button>
                             </div>
                         </Grid>
-                        <Grid item lg={6} sm={5}>
+                        <Grid item lg={6} sm={5} xs={12}>
                             <Image
                                 className={cx('slide-img')}
                                 alt="Image Slide"

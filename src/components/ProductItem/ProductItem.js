@@ -16,9 +16,27 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
-function ProductItem({ product, handlePlusItem }) {
+function ProductItem({ product, handlePlusItem, className }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 787px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 786px)',
+    });
+
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = () => {
@@ -34,7 +52,10 @@ function ProductItem({ product, handlePlusItem }) {
             <div className={cx('product-item')}>
                 <Link to={`/products/${product.id}`}>
                     <Image
-                        className={cx('product__item-img')}
+                        className={cx(
+                            'product__item-img',
+                            isMobile ? className : null,
+                        )}
                         src={product.image}
                     />
                 </Link>
@@ -96,12 +117,19 @@ function ProductItem({ product, handlePlusItem }) {
                                 {product.name}
                             </span>
                         </Link>
-                        <Stack
-                            sx={{
-                                margin: '9px 0',
-                            }}
-                        >
-                            <Rating value={product.rating} size="large" />
+                        <Stack className={cx('stack')}>
+                            <Rating
+                                value={product.rating}
+                                size={
+                                    isDesktop
+                                        ? 'large'
+                                        : isTablet
+                                        ? 'large'
+                                        : isMobile
+                                        ? 'medium'
+                                        : null
+                                }
+                            />
                         </Stack>
                         <div className={cx('product__item-price')}>
                             <span className={cx('product__item-price-curr')}>
@@ -154,6 +182,7 @@ ProductItem.propTypes = {
     product: PropTypes.object,
     handleShowModal: PropTypes.func,
     handlePlusItem: PropTypes.func,
+    className: PropTypes.string,
 };
 
 export default ProductItem;

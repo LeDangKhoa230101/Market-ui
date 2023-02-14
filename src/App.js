@@ -6,7 +6,12 @@ import { Fragment } from 'react';
 function App() {
     return (
         <Router>
-            <div className="App">
+            <div
+                className="App"
+                style={{
+                    overflow: 'hidden',
+                }}
+            >
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;

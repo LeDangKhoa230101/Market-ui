@@ -5,9 +5,27 @@ import classNames from 'classnames/bind';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function PaginationControl({ totalCount, limit, onPageChange, className }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const pageCount = Math.ceil(totalCount / limit);
 
     const styles = {
@@ -20,7 +38,9 @@ function PaginationControl({ totalCount, limit, onPageChange, className }) {
         <>
             <ReactPaginate
                 className={cx('paginate', className)}
-                breakLabel="..."
+                breakLabel={
+                    isDesktop ? '...' : isTablet ? '...' : isMobile ? '' : null
+                }
                 nextLabel={<NavigateNextIcon sx={styles} />}
                 onPageChange={onPageChange}
                 pageRangeDisplayed={5}
