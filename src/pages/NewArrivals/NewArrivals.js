@@ -16,6 +16,8 @@ import { useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 const CATE = [
@@ -33,7 +35,7 @@ const CATE = [
         ),
     },
     {
-        name: 'Mobile Phone',
+        name: 'Mobile',
         cate: '?cate=phone',
         icon: (
             <StayCurrentPortraitOutlinedIcon
@@ -72,7 +74,7 @@ const CATE = [
         ),
     },
     {
-        name: 'Accessories Computer',
+        name: 'Accessories',
         cate: '?cate=accessories',
         icon: (
             <MouseOutlinedIcon
@@ -85,7 +87,7 @@ const CATE = [
         ),
     },
     {
-        name: 'Music Speaker',
+        name: 'Speaker',
         cate: 'speaker',
         icon: (
             <SpeakerOutlinedIcon
@@ -100,6 +102,18 @@ const CATE = [
 ];
 
 function NewArrivals() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const [cate, setCate] = useState('');
     const [active, setActive] = useState(null);
 
@@ -133,7 +147,19 @@ function NewArrivals() {
                     <Grid container spacing={3}>
                         {CATE.map((item, index) => {
                             return (
-                                <Grid item xs={2} key={index}>
+                                <Grid
+                                    item
+                                    xs={
+                                        isDesktop
+                                            ? 2
+                                            : isTablet
+                                            ? 4
+                                            : isMobile
+                                            ? 6
+                                            : null
+                                    }
+                                    key={index}
+                                >
                                     <button
                                         onClick={() => handleActive(item)}
                                         className={cx(
@@ -177,7 +203,19 @@ function NewArrivals() {
                             ) : (
                                 currentData?.map((product) => {
                                     return (
-                                        <Grid item xs={3} key={product.id}>
+                                        <Grid
+                                            item
+                                            xs={
+                                                isDesktop
+                                                    ? 3
+                                                    : isTablet
+                                                    ? 4
+                                                    : isMobile
+                                                    ? 6
+                                                    : null
+                                            }
+                                            key={product.id}
+                                        >
                                             <ProductItem product={product} />
                                         </Grid>
                                     );
