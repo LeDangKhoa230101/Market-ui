@@ -20,6 +20,7 @@ function FilterPanel() {
         backgroundColor: 'var(--white)',
         boxShadow: '0px 1px 3px rgb(3 0 71 / 9%)',
     }));
+
     return (
         <Item>
             <div className={cx('section')}>

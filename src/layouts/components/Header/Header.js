@@ -163,34 +163,28 @@ function Header() {
                             </div>
                             <ul className={cx('drawer-menu-list')}>
                                 <li>
-                                    <Button className={cx('drawer-item')}>
-                                        Laptop
-                                    </Button>
+                                    <Link>
+                                        <Button className={cx('drawer-item')}>
+                                            Laptop
+                                        </Button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <Button className={cx('drawer-item')}>
-                                        Mobile
-                                    </Button>
+                                    <Link>
+                                        <Button className={cx('drawer-item')}>
+                                            Mobile
+                                        </Button>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <Button className={cx('drawer-item')}>
-                                        Camera
-                                    </Button>
-                                </li>
-                                <li>
-                                    <Button className={cx('drawer-item')}>
-                                        Headphone
-                                    </Button>
-                                </li>
-                                <li>
-                                    <Button className={cx('drawer-item')}>
-                                        Accessories
-                                    </Button>
-                                </li>
-                                <li>
-                                    <Button className={cx('drawer-item')}>
-                                        Speaker
-                                    </Button>
+                                    <Link
+                                        to={'/all-shops'}
+                                        onClick={() => setShowDrawerMenu(false)}
+                                    >
+                                        <Button className={cx('drawer-item')}>
+                                            All shops
+                                        </Button>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

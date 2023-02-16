@@ -9,14 +9,36 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EastIcon from '@mui/icons-material/East';
 import { Link } from 'react-router-dom';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function AllShopItem({ datas }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     return (
         <Grid container spacing={3}>
             {datas.map((item) => {
                 return (
-                    <Grid item xs={4} key={item.id}>
+                    <Grid
+                        item
+                        xs={isDesktop ? 4 : isTablet ? 6 : isMobile ? 12 : null}
+                        key={item.id}
+                    >
                         <div className={cx('shop-item')}>
                             <Image
                                 className={cx('shop-img')}

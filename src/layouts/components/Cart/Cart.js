@@ -19,6 +19,7 @@ import { addToCart, getTotalMoneys } from '~/reducers/cartSlice';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { removeFromCart, removeItem } from '~/reducers/cartSlice';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -168,22 +169,26 @@ function Cart() {
                         </div>
                     )}
                     <div className={cx('footer_cart')}>
-                        <Button
-                            className={cx(
-                                'footer_cart-btn',
-                                'footer_cart-btn-checkout',
-                            )}
-                        >
-                            Checkout Now ({cart.totalMoneyFromCart} US$)
-                        </Button>
-                        <Button
-                            className={cx(
-                                'footer_cart-btn',
-                                'footer_cart-btn-view',
-                            )}
-                        >
-                            View Cart
-                        </Button>
+                        <Link to={'/checkout'} onClick={handleHideCart}>
+                            <Button
+                                className={cx(
+                                    'footer_cart-btn',
+                                    'footer_cart-btn-checkout',
+                                )}
+                            >
+                                Checkout Now ({cart.totalMoneyFromCart} US$)
+                            </Button>
+                        </Link>
+                        <Link to={'/cart'} onClick={handleHideCart}>
+                            <Button
+                                className={cx(
+                                    'footer_cart-btn',
+                                    'footer_cart-btn-view',
+                                )}
+                            >
+                                View Cart
+                            </Button>
+                        </Link>
                     </div>
                 </Box>
             </Drawer>
