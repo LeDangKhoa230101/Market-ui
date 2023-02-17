@@ -7,13 +7,18 @@ import UserAddresses from './UserComponents/UserAddresses';
 import UserPayment from './UserComponents/UserPayment';
 
 import classNames from 'classnames/bind';
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import PaymentRoundedIcon from '@mui/icons-material/PaymentRounded';
+
+import { useMediaQuery } from 'react-responsive';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import Drawer from '@mui/material/Drawer';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -94,19 +99,77 @@ const USER_SETTINGS = [
 ];
 
 function User() {
+    const [showMenuDashboard, setShowMenuDashboard] = useState(false);
+
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     return (
         <div className={cx('wrapper-user')}>
             <div className={cx('container')}>
                 <Grid container spacing={3}>
                     {/* Side bar */}
-                    <Grid item xs={3}>
+                    <Grid
+                        item
+                        xs={3}
+                        sx={{
+                            display: isTabletAndMobile && 'none',
+                        }}
+                    >
                         <UserSidebar
                             USER_DASHBOARD={USER_DASHBOARD}
                             USER_SETTINGS={USER_SETTINGS}
                         />
                     </Grid>
                     {/* Side bar */}
-                    <Grid item xs={9}>
+
+                    {/* Menu dashboard */}
+                    {isTabletAndMobile && (
+                        <div className={cx('menu-dash')}>
+                            <Button
+                                className={cx('menu-btn')}
+                                onClick={() => setShowMenuDashboard(true)}
+                            >
+                                <DashboardIcon
+                                    sx={{
+                                        width: '20px',
+                                        height: '20px',
+                                    }}
+                                />
+                            </Button>
+                        </div>
+                    )}
+                    {/* Menu dashboard */}
+
+                    {/* Drawer menu dashboard */}
+                    <Drawer
+                        open={showMenuDashboard}
+                        onClose={() => setShowMenuDashboard(false)}
+                    >
+                        <UserSidebar
+                            USER_DASHBOARD={USER_DASHBOARD}
+                            USER_SETTINGS={USER_SETTINGS}
+                        />
+                    </Drawer>
+                    {/* Drawer menu dashboard */}
+
+                    <Grid
+                        item
+                        xs={isDesktop ? 9 : isTabletAndMobile ? 12 : null}
+                    >
                         <Routes>
                             <Route path="orders" element={<UserOrders />} />
                             <Route path="wishlist" element={<UserWishlist />} />

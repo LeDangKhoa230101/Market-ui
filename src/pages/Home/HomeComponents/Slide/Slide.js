@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
 import { useMediaQuery } from 'react-responsive';
-import { createTheme } from '@mui/material';
 
 const cx = classNames.bind(styles);
 
@@ -43,17 +42,6 @@ function Slide() {
         query: '(max-width: 767px)',
     });
 
-    const theme = createTheme({
-        breakpoints: {
-            values: {
-                mobile: 0,
-                tablet: 640,
-                laptop: 1024,
-                desktop: 1200,
-            },
-        },
-    });
-
     return (
         <div className={cx('slide')}>
             <Carousel
@@ -83,7 +71,18 @@ function Slide() {
                         container
                         spacing={3}
                     >
-                        <Grid item lg={6} sm={5} xs={12}>
+                        <Grid
+                            item
+                            xs={
+                                isDesktop
+                                    ? 6
+                                    : isTablet
+                                    ? 6
+                                    : isMobile
+                                    ? 12
+                                    : null
+                            }
+                        >
                             <div className={cx('silde-item-body')}>
                                 <h3 className={cx('slide-title')}>
                                     {slide.title}
@@ -104,7 +103,18 @@ function Slide() {
                                 </Button>
                             </div>
                         </Grid>
-                        <Grid item lg={6} sm={5} xs={12}>
+                        <Grid
+                            item
+                            xs={
+                                isDesktop
+                                    ? 6
+                                    : isTablet
+                                    ? 6
+                                    : isMobile
+                                    ? 12
+                                    : null
+                            }
+                        >
                             <Image
                                 className={cx('slide-img')}
                                 alt="Image Slide"

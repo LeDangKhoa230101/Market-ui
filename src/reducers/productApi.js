@@ -3,17 +3,17 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const appleApi = createApi({
     reducerPath: 'appleApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:3000/flash-deals-products',
+        baseUrl: 'http://localhost:3000',
     }),
     endpoints: (builder) => ({
         getListApples: builder.query({
-            query: () => `?cate=phone`,
+            query: () => `/flash-deals-products?cate=phone`,
         }),
         getListOrders: builder.query({
-            query: () => 'orders',
+            query: () => '/orders',
         }),
         getListBrandPhone: builder.query({
-            query: (brand = '') => `?cate=phone${brand}`,
+            query: (brand = '') => `/flash-deals-products?cate=phone${brand}`,
         }),
     }),
 });

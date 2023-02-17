@@ -1,4 +1,6 @@
 import styles from './UserPayment.module.scss';
+import UserPaymentAdd from './UserPaymentAdd';
+import UserPaymentEdit from './UserPaymentEdit';
 
 import classNames from 'classnames/bind';
 import PaymentIcon from '@mui/icons-material/Payment';
@@ -6,15 +8,26 @@ import { Button, Grid } from '@mui/material';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Link } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
 
 import { useState } from 'react';
+
+import { useMediaQuery } from 'react-responsive';
 
 const cx = classNames.bind(styles);
 
 function UserPayment() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const [showModalAdd, setShowModalAdd] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
 
@@ -45,10 +58,22 @@ function UserPayment() {
                 <Button
                     onClick={handleShowModalAdd}
                     sx={{
-                        minWidth: '138px',
+                        minWidth: isDesktop
+                            ? '138px'
+                            : isTablet
+                            ? '138px'
+                            : isMobile
+                            ? '100px'
+                            : null,
                         fontSize: '1.4rem',
                         fontWeight: '600',
-                        padding: '6px 32px',
+                        padding: isDesktop
+                            ? '6px 32px'
+                            : isTablet
+                            ? '6px 32px'
+                            : isMobile
+                            ? '6px 10px'
+                            : null,
                         color: 'var(--primary-color)',
                         backgroundColor: 'rgb(252, 233, 236)',
                         textTransform: 'capitalize',
@@ -64,266 +89,17 @@ function UserPayment() {
             {/* Header */}
 
             {/* Modal Add Payment Methods */}
-            <Modal open={showModalAdd} onClose={handleHideModalAdd}>
-                <Fade in={showModalAdd}>
-                    <div className={cx('modal-container')}>
-                        <div className={cx('modal-body')}>
-                            <PaymentIcon className={cx('icon')} />
-                            <span className={cx('heading')}>
-                                Add New Payment Methods
-                            </span>
-                        </div>
-                        <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Name on Card"
-                                    sx={{
-                                        marginBottom: '20px',
-                                        '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                            {
-                                                color: 'var(--primary-color)',
-                                            },
-                                        '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                            {
-                                                top: '-7px',
-                                            },
-                                        '& .MuiFormLabel-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root .MuiInputBase-input':
-                                            {
-                                                padding: '8.5px 14px',
-                                            },
-                                        '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                            {
-                                                borderColor:
-                                                    'var(--primary-color)',
-                                            },
-                                    }}
-                                />
-                                <TextField
-                                    fullWidth
-                                    label="Exp. Date"
-                                    sx={{
-                                        marginBottom: '20px',
-                                        '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                            {
-                                                color: 'var(--primary-color)',
-                                            },
-                                        '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                            {
-                                                top: '-7px',
-                                            },
-                                        '& .MuiFormLabel-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root .MuiInputBase-input':
-                                            {
-                                                padding: '8.5px 14px',
-                                            },
-                                        '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                            {
-                                                borderColor:
-                                                    'var(--primary-color)',
-                                            },
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Card Number"
-                                    sx={{
-                                        marginBottom: '20px',
-                                        '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                            {
-                                                color: 'var(--primary-color)',
-                                            },
-                                        '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                            {
-                                                top: '-7px',
-                                            },
-                                        '& .MuiFormLabel-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root .MuiInputBase-input':
-                                            {
-                                                padding: '8.5px 14px',
-                                            },
-                                        '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                            {
-                                                borderColor:
-                                                    'var(--primary-color)',
-                                            },
-                                    }}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Button
-                            sx={{
-                                minWidth: '60px',
-                                color: 'var(--white)',
-                                fontSize: '1.4rem',
-                                fontWeight: '600',
-                                padding: '6px 24px',
-                                marginTop: '10px',
-                                backgroundColor: 'var(--primary-color)',
-                                textTransform: 'capitalize',
-
-                                '&:hover': {
-                                    backgroundColor: 'var(--primary-color)',
-                                    opacity: '0.9',
-                                },
-                            }}
-                        >
-                            Add New
-                        </Button>
-                    </div>
-                </Fade>
-            </Modal>
+            <UserPaymentAdd
+                showModalAdd={showModalAdd}
+                handleHideModalAdd={handleHideModalAdd}
+            />
             {/* Modal Add Payment Methods */}
 
             {/* Modal Edit Payment Methods */}
-            <Modal open={showModalEdit} onClose={handleHideModalEdit}>
-                <Fade in={showModalEdit}>
-                    <div className={cx('modal-container')}>
-                        <div className={cx('modal-body')}>
-                            <PaymentIcon className={cx('icon')} />
-                            <span className={cx('heading')}>
-                                Edit Payment Methods
-                            </span>
-                        </div>
-                        <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Name on Card"
-                                    defaultValue="Office"
-                                    sx={{
-                                        marginBottom: '20px',
-                                        '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                            {
-                                                color: 'var(--primary-color)',
-                                            },
-                                        '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                            {
-                                                top: '-7px',
-                                            },
-                                        '& .MuiFormLabel-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root .MuiInputBase-input':
-                                            {
-                                                padding: '8.5px 14px',
-                                            },
-                                        '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                            {
-                                                borderColor:
-                                                    'var(--primary-color)',
-                                            },
-                                    }}
-                                />
-                                <TextField
-                                    fullWidth
-                                    label="Exp. Date"
-                                    defaultValue="2/2000"
-                                    sx={{
-                                        marginBottom: '20px',
-                                        '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                            {
-                                                color: 'var(--primary-color)',
-                                            },
-                                        '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                            {
-                                                top: '-7px',
-                                            },
-                                        '& .MuiFormLabel-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root .MuiInputBase-input':
-                                            {
-                                                padding: '8.5px 14px',
-                                            },
-                                        '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                            {
-                                                borderColor:
-                                                    'var(--primary-color)',
-                                            },
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Card Numver"
-                                    defaultValue="887209237638472"
-                                    sx={{
-                                        marginBottom: '20px',
-                                        '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                            {
-                                                color: 'var(--primary-color)',
-                                            },
-                                        '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                            {
-                                                top: '-7px',
-                                            },
-                                        '& .MuiFormLabel-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root .MuiInputBase-input':
-                                            {
-                                                padding: '8.5px 14px',
-                                            },
-                                        '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                            {
-                                                borderColor:
-                                                    'var(--primary-color)',
-                                            },
-                                    }}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Button
-                            sx={{
-                                minWidth: '60px',
-                                color: 'var(--white)',
-                                fontSize: '1.4rem',
-                                fontWeight: '600',
-                                padding: '6px 24px',
-                                marginTop: '10px',
-                                backgroundColor: 'var(--primary-color)',
-                                textTransform: 'capitalize',
-
-                                '&:hover': {
-                                    backgroundColor: 'var(--primary-color)',
-                                    opacity: '0.9',
-                                },
-                            }}
-                        >
-                            Save Changes
-                        </Button>
-                    </div>
-                </Fade>
-            </Modal>
+            <UserPaymentEdit
+                showModalEdit={showModalEdit}
+                handleHideModalEdit={handleHideModalEdit}
+            />
             {/* Modal Edit Payment Methods */}
 
             {/* content */}
@@ -333,6 +109,44 @@ function UserPayment() {
                     marginTop: '20px',
                 }}
             >
+                <Grid item xs={12}>
+                    <div className={cx('payment-item')}>
+                        <div className={cx('name')}>
+                            <span>Ralf Edward</span>
+                        </div>
+                        <div>
+                            <span>123829374638273</span>
+                        </div>
+                        <div className={cx('day-exp')}>
+                            <span>08 / 2022</span>
+                        </div>
+                        <div className={cx('action')}>
+                            <Link
+                                onClick={handleShowModalEdit}
+                                className={cx('action-btn')}
+                            >
+                                <CreateIcon
+                                    sx={{
+                                        width: '20px',
+                                        height: '20px',
+                                        color: '#0000008a',
+                                        marginBottom: '4px',
+                                    }}
+                                />
+                            </Link>
+                            <Link className={cx('action-btn')}>
+                                <DeleteForeverIcon
+                                    sx={{
+                                        width: '20px',
+                                        height: '20px',
+                                        color: '#0000008a',
+                                        marginBottom: '4px',
+                                    }}
+                                />
+                            </Link>
+                        </div>
+                    </div>
+                </Grid>
                 <Grid item xs={12}>
                     <div className={cx('payment-item')}>
                         <div className={cx('name')}>

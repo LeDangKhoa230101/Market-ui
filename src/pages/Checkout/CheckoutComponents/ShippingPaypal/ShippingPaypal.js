@@ -10,9 +10,23 @@ import RadioGroup from '@mui/material/RadioGroup';
 
 import { useState } from 'react';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function ShippingPaypal() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const [showPayCard, setShowPayCard] = useState('none');
     const [showPaypal, setShowPaypal] = useState('none');
 
@@ -35,10 +49,12 @@ function ShippingPaypal() {
         <>
             <div className={cx('content')}>
                 <h3>Shipping Address</h3>
-                <Grid container spacing={6}>
-                    <Grid item xs={6}>
+                <Grid
+                    container
+                    spacing={isDesktop ? 6 : isTabletAndMobile ? 0 : null}
+                >
+                    <Grid item xs={isDesktop ? 6 : isMobile ? 12 : null}>
                         <TextField
-                            id="outlined-basic"
                             label="Full Name"
                             variant="outlined"
                             sx={{
@@ -71,7 +87,6 @@ function ShippingPaypal() {
                             }}
                         />
                         <TextField
-                            id="outlined-basic"
                             label="Email Address"
                             type="email"
                             variant="outlined"
@@ -105,9 +120,8 @@ function ShippingPaypal() {
                             }}
                         />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={isDesktop ? 6 : isMobile ? 12 : null}>
                         <TextField
-                            id="outlined-basic"
                             label="Phone Number"
                             type="tel"
                             variant="outlined"
@@ -142,7 +156,6 @@ function ShippingPaypal() {
                             }}
                         />
                         <TextField
-                            id="outlined-basic"
                             label="Delivery Address"
                             variant="outlined"
                             sx={{
@@ -212,16 +225,37 @@ function ShippingPaypal() {
                                     marginTop: '-34px',
                                 }}
                                 container
-                                spacing={6}
+                                spacing={
+                                    isDesktop ? 6 : isTabletAndMobile ? 2 : null
+                                }
                             >
-                                <Grid item xs={6}>
+                                <Grid
+                                    item
+                                    xs={
+                                        isDesktop
+                                            ? 6
+                                            : isTabletAndMobile
+                                            ? 12
+                                            : null
+                                    }
+                                    sx={{
+                                        marginTop: isDesktop
+                                            ? ''
+                                            : isTabletAndMobile
+                                            ? '20px'
+                                            : null,
+                                    }}
+                                >
                                     <TextField
-                                        id="outlined-basic"
                                         label="Card Number"
                                         variant="outlined"
                                         sx={{
                                             width: '100%',
-                                            marginBottom: '16px',
+                                            marginBottom: isDesktop
+                                                ? '16px'
+                                                : isTabletAndMobile
+                                                ? ''
+                                                : null,
 
                                             '& .MuiFormLabel-root': {
                                                 fontSize: '1.4rem',
@@ -252,14 +286,26 @@ function ShippingPaypal() {
                                         }}
                                     />
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid
+                                    item
+                                    xs={
+                                        isDesktop
+                                            ? 6
+                                            : isTabletAndMobile
+                                            ? 12
+                                            : null
+                                    }
+                                >
                                     <TextField
-                                        id="outlined-basic"
                                         label="Exp Date"
                                         variant="outlined"
                                         sx={{
                                             width: '100%',
-                                            marginBottom: '16px',
+                                            marginBottom: isDesktop
+                                                ? '16px'
+                                                : isTabletAndMobile
+                                                ? ''
+                                                : null,
 
                                             '& .MuiFormLabel-root': {
                                                 fontSize: '1.4rem',
@@ -319,14 +365,21 @@ function ShippingPaypal() {
                             />
                             <hr className={cx('hr')}></hr>
                             <TextField
-                                id="outlined-basic"
                                 label="Paypal Email"
                                 variant="outlined"
                                 sx={{
                                     display: showPaypal,
                                     width: '100%',
-                                    marginBottom: '16px',
-                                    marginTop: '14px',
+                                    marginBottom: isDesktop
+                                        ? '16px'
+                                        : isTabletAndMobile
+                                        ? ''
+                                        : null,
+                                    marginTop: isDesktop
+                                        ? '14px'
+                                        : isTabletAndMobile
+                                        ? ''
+                                        : null,
 
                                     '& .MuiFormLabel-root': {
                                         fontSize: '1.4rem',

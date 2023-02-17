@@ -3,7 +3,7 @@ import styles from './Navigation.module.scss';
 import classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined';
+import GridViewIcon from '@mui/icons-material/GridView';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
@@ -24,7 +24,7 @@ const navigation = [
     },
     {
         icon: (
-            <WidgetsOutlinedIcon
+            <GridViewIcon
                 sx={{
                     width: '24px',
                     height: '24px',

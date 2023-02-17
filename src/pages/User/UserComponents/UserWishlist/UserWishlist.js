@@ -8,9 +8,23 @@ import { useSelector } from 'react-redux';
 import PaginationControl from '~/components/PaginationControl';
 import { useState } from 'react';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function UserWishlist() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const data = useSelector((state) => state.productsFlashDeals.items);
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -47,7 +61,19 @@ function UserWishlist() {
             >
                 {currentData?.map((product) => {
                     return (
-                        <Grid item xs={4} key={product.id}>
+                        <Grid
+                            item
+                            xs={
+                                isDesktop
+                                    ? 4
+                                    : isTablet
+                                    ? 4
+                                    : isMobile
+                                    ? 6
+                                    : null
+                            }
+                            key={product.id}
+                        >
                             <ProductItem product={product} />
                         </Grid>
                     );

@@ -1,5 +1,6 @@
 import styles from './UserOrders.module.scss';
 import PaginationControl from '~/components/PaginationControl';
+import OrderDetail from './OrderDetail';
 
 import classNames from 'classnames/bind';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -8,11 +9,24 @@ import EastIcon from '@mui/icons-material/East';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useGetListOrdersQuery } from '~/reducers/productApi';
-import Image from '~/components/Image/Image';
+
+import { useMediaQuery } from 'react-responsive';
 
 const cx = classNames.bind(styles);
 
 function UserOrders() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const [showOrder, setShowOrder] = useState('block');
     const [showOrderDetail, setShowOrderDetail] = useState('none');
 
@@ -63,13 +77,26 @@ function UserOrders() {
                     </span>
                 </div>
                 <Button
+                    className={cx('back-btn')}
                     onClick={handleShowOrder}
                     sx={{
                         display: showOrderDetail,
-                        minWidth: '138px',
+                        minWidth: isDesktop
+                            ? '138px'
+                            : isTablet
+                            ? '138px'
+                            : isMobile
+                            ? '100px'
+                            : null,
                         fontSize: '1.4rem',
                         fontWeight: '600',
-                        padding: '6px 32px',
+                        padding: isDesktop
+                            ? '6px 32px'
+                            : isTablet
+                            ? '6px 32px'
+                            : isMobile
+                            ? '4 20px'
+                            : null,
                         color: 'var(--primary-color)',
                         backgroundColor: 'rgb(252, 233, 236)',
                         textTransform: 'capitalize',
@@ -94,7 +121,7 @@ function UserOrders() {
                     display: showOrder,
                 }}
             >
-                <Grid item xs={12}>
+                <Grid item xs={12} sx={{ display: isMobile ? 'none' : null }}>
                     <div className={cx('content-title')}>
                         <p>Order #</p>
                         <p>Status</p>
@@ -106,7 +133,13 @@ function UserOrders() {
                 {currentData?.map((item) => {
                     return (
                         <Grid item xs={12} key={item.id}>
-                            <div className={cx('content-item')}>
+                            {/* content desktop tablet */}
+                            <div
+                                className={cx('content-item')}
+                                style={{
+                                    display: isMobile ? 'none' : null,
+                                }}
+                            >
                                 <p>#{item.id}</p>
                                 {item.status === 'pending' ? (
                                     <div className={cx('status-pending')}>
@@ -141,6 +174,47 @@ function UserOrders() {
                                     </Link>
                                 </p>
                             </div>
+                            {/* content mobile */}
+                            <div
+                                onClick={handleShowDetail}
+                                className={cx('content-item')}
+                                style={{
+                                    display: isDesktop
+                                        ? 'none'
+                                        : isTablet
+                                        ? 'none'
+                                        : isMobile
+                                        ? ''
+                                        : null,
+                                }}
+                            >
+                                <div className={cx('content-mobile')}>
+                                    <p>#{item.id}</p>
+                                    {item.status === 'pending' ? (
+                                        <div className={cx('status-pending')}>
+                                            <span>Pending</span>
+                                        </div>
+                                    ) : item.status === 'processing' ? (
+                                        <div
+                                            className={cx('status-processing')}
+                                        >
+                                            <span>Processing</span>
+                                        </div>
+                                    ) : item.status === 'delivered' ? (
+                                        <div className={cx('status-delivered')}>
+                                            <span>Delivered</span>
+                                        </div>
+                                    ) : (
+                                        <div className={cx('status-cancel')}>
+                                            <span>Cancelled</span>
+                                        </div>
+                                    )}
+                                    <p>{item.purchase_date}</p>
+                                </div>
+                                <div className={cx('content-mobile')}>
+                                    <p>{item.total} US$</p>
+                                </div>
+                            </div>
                         </Grid>
                     );
                 })}
@@ -155,109 +229,8 @@ function UserOrders() {
             </Grid>
             {/* content */}
 
-            {/* order detail */}
-            <div
-                style={{
-                    display: showOrderDetail,
-                }}
-            >
-                <Grid
-                    container
-                    sx={{
-                        margin: '20px 0 30px 0',
-                        borderRadius: '8px',
-                        boxShadow: '0px 1px 3px rgb(3 0 71 / 9%)',
-                    }}
-                >
-                    <Grid item xs={12}>
-                        <div className={cx('detail-item--modify')}>
-                            <div>
-                                <span>OrderID:</span>
-                                <p>1</p>
-                            </div>
-                            <div>
-                                <span>Date purchased:</span>
-                                <p>4/2/2022</p>
-                            </div>
-                            <div>
-                                <span>Delivery Date:</span>
-                                <p>7/5/2022</p>
-                            </div>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <div className={cx('detail-item')}>
-                            <div className={cx('left')}>
-                                <Image
-                                    className={cx('image')}
-                                    src="https://bazaar.ui-lib.com/assets/images/products/Automotive/2.Audi2017.png"
-                                />
-                                <div className={cx('body')}>
-                                    <span>Resla 233</span>
-                                    <p>226,00 US$ x 4</p>
-                                </div>
-                            </div>
-                            <span className={cx('properties')}>
-                                Product properties: Black, L
-                            </span>
-                            <Button
-                                sx={{
-                                    minWidth: '112px',
-                                    padding: '6px 8px',
-                                    fontSize: '1.4rem',
-                                    color: 'var(--primary-color)',
-                                    fontWeight: '500',
-                                    textTransform: 'capitalize',
-                                    '&:hover': {
-                                        backgroundColor:
-                                            'rgba(210, 63, 87, 0.04)',
-                                    },
-                                }}
-                            >
-                                Write A Review
-                            </Button>
-                        </div>
-                    </Grid>
-                </Grid>
-
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                        <div className={cx('shipping-address')}>
-                            <span>Shipping Address</span>
-                            <p>
-                                Kelly Williams 777 Brockton Avenue, Abington MA
-                                2351
-                            </p>
-                        </div>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <div className={cx('total')}>
-                            <span className={cx('title')}>Total Summary</span>
-                            <div className={cx('body')}>
-                                <span>Subtotal:</span>
-                                <p>500,00 US$</p>
-                            </div>
-                            <div className={cx('body')}>
-                                <span>Shipping fee:</span>
-                                <p>500,00 US$</p>
-                            </div>
-                            <div className={cx('body')}>
-                                <span>Discount:</span>
-                                <p>500,00 US$</p>
-                            </div>
-                            <hr className={cx('hr')}></hr>
-                            <div className={cx('summary')}>
-                                <span>Total</span>
-                                <p>500,00 US$</p>
-                            </div>
-                            <span className={cx('payment')}>
-                                Paid by Credit/Debit Card
-                            </span>
-                        </div>
-                    </Grid>
-                </Grid>
-            </div>
-            {/* order detail */}
+            {/* Order Detail */}
+            <OrderDetail showOrderDetail={showOrderDetail} />
         </div>
     );
 }

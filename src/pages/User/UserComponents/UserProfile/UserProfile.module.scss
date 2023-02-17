@@ -133,3 +133,15 @@
         display: none;
     }
 }
+
+// mobile
+@media (max-width: 767px) {
+    .view-body {
+        display: flex;
+        align-items: center;
+
+        & span {
+            margin-right: 6px;
+        }
+    }
+}

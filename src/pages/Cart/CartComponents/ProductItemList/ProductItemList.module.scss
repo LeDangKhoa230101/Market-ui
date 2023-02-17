@@ -59,3 +59,33 @@
         font-weight: 600;
     }
 }
+
+// mobile
+@media (max-width: 767px) {
+    .product-item {
+        & > div {
+            flex: 1;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        & img {
+            width: 300px;
+        }
+    }
+
+    .product-body {
+        padding: 20px;
+
+        & .product-name {
+            font-size: 2rem;
+        }
+
+        & .price {
+            font-size: 1.6rem;
+        }
+
+        & .total-price {
+            font-size: 1.6rem;
+        }
+    }
+}

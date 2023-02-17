@@ -108,7 +108,7 @@ function Header() {
     // header scroll
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY >= 280) {
+            if (window.scrollY >= 240) {
                 setClassHeader('sticky');
                 setShowSubCate('block');
             } else {

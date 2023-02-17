@@ -88,3 +88,21 @@
         }
     }
 }
+
+// -----------------
+// mobile
+@media (max-width: 767px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .address-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .modal-container {
+        min-width: 360px;
+    }
+}

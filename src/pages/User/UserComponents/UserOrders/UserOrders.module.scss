@@ -129,17 +129,16 @@
 .detail-item--modify {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: #e7e7e7;
     padding: 12px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 
-    & > div {
-        flex: 1;
+    & .detail-item-id {
         display: flex;
         align-items: center;
         font-size: 1.4rem;
+        margin-right: 120px;
 
         & span {
             margin-right: 8px;
@@ -149,6 +148,27 @@
 
         & p {
             margin: 0;
+        }
+    }
+
+    & .detail-body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & .detail-body-date {
+            display: flex;
+            align-items: center;
+            margin-right: 120px;
+
+            & p {
+                margin-left: 4px;
+                margin-bottom: 0;
+            }
+
+            & span {
+                color: #7d879c;
+            }
         }
     }
 }
@@ -257,4 +277,71 @@
 
 .hr {
     color: #a1a1a1;
+}
+
+// -----------------
+// tablet
+@media (min-width: 768px) and (max-width: 1223px) {
+    .detail-item--modify {
+        & .detail-item-id {
+            margin-right: 70px;
+        }
+
+        & .detail-body {
+            & .detail-body-date {
+                margin-right: 70px;
+            }
+        }
+    }
+}
+
+// mobile
+@media (max-width: 767px) {
+    .content-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .content-mobile {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .detail-item--modify {
+        flex-direction: column;
+        align-items: flex-start;
+
+        & .detail-item-id {
+            margin-right: 0;
+            font-size: 1.4rem;
+        }
+
+        & .detail-body {
+            & .detail-body-date {
+                margin-right: 8px;
+                font-size: 1.4rem;
+            }
+        }
+    }
+
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+
+        & .image {
+            width: 110px;
+            height: 110px;
+        }
+
+        & .body {
+            & span {
+                font-size: 1.6rem;
+            }
+        }
+
+        & .properties {
+            font-size: 1.6rem;
+        }
+    }
 }
