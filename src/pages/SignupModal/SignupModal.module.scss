@@ -7,7 +7,7 @@
 }
 
 .modal_user {
-    width: 500px;
+    min-width: 500px;
     max-height: 860px;
     border: none;
     outline: none;
@@ -123,5 +123,12 @@
         color: var(--primary-color);
         background-color: transparent;
         text-decoration: underline;
+    }
+}
+
+// mobile
+@media (max-width: 767px) {
+    .modal_user {
+        min-width: 378px;
     }
 }

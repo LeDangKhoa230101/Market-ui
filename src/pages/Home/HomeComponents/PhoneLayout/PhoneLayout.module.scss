@@ -104,3 +104,10 @@
     margin-top: 18px;
     padding: 0 10px;
 }
+
+// mobile
+@media (max-width: 767px) {
+    .product-item-phone {
+        height: 170px;
+    }
+}

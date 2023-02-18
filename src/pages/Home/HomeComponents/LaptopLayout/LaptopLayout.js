@@ -268,6 +268,7 @@ function LaptopLayout() {
                                     >
                                         <ProductItem
                                             product={product}
+                                            className={cx('product-item-phone')}
                                             handlePlusItem={() =>
                                                 handlePlusItem(product)
                                             }

@@ -9,7 +9,6 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
-import Stack from '@mui/material/Stack';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PropTypes from 'prop-types';
 
@@ -21,16 +20,8 @@ import { useMediaQuery } from 'react-responsive';
 const cx = classNames.bind(styles);
 
 function ProductItem({ product, handlePlusItem, className }) {
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1223px)',
-    });
-
     const isTabletAndMobile = useMediaQuery({
         query: '(max-width: 1223px)',
-    });
-
-    const isTablet = useMediaQuery({
-        query: '(min-width: 787px) and (max-width: 1223px)',
     });
 
     const isMobile = useMediaQuery({
@@ -54,7 +45,7 @@ function ProductItem({ product, handlePlusItem, className }) {
                     <Image
                         className={cx(
                             'product__item-img',
-                            isMobile ? className : null,
+                            isMobile ? className : '',
                         )}
                         src={product.image}
                     />
@@ -63,7 +54,13 @@ function ProductItem({ product, handlePlusItem, className }) {
                     <span className={cx('product__item-sale')}>
                         {product.deals} off
                     </span>
-                    <div className={cx('product__item-follow')}>
+                    <div
+                        className={cx('product__item-follow')}
+                        style={{
+                            display: isTabletAndMobile && 'block',
+                        }}
+                    >
+                        {/* eye */}
                         <VisibilityIcon
                             onClick={handleShowModal}
                             sx={{
@@ -117,20 +114,17 @@ function ProductItem({ product, handlePlusItem, className }) {
                                 {product.name}
                             </span>
                         </Link>
-                        <Stack className={cx('stack')}>
-                            <Rating
-                                value={product.rating}
-                                size={
-                                    isDesktop
-                                        ? 'large'
-                                        : isTablet
-                                        ? 'large'
-                                        : isMobile
-                                        ? 'medium'
-                                        : null
-                                }
-                            />
-                        </Stack>
+                        <Rating
+                            className={cx('rating-list')}
+                            value={product.rating}
+                            sx={{
+                                '& .css-dqr9h-MuiRating-label .MuiRating-icon .MuiSvgIcon-root':
+                                    {
+                                        width: '20px',
+                                        height: '20px',
+                                    },
+                            }}
+                        />
                         <div className={cx('product__item-price')}>
                             <span className={cx('product__item-price-curr')}>
                                 {product.curPrice} US$

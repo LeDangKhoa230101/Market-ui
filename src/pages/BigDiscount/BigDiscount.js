@@ -217,7 +217,12 @@ function BigDiscount() {
                                             }
                                             key={product.id}
                                         >
-                                            <ProductItem product={product} />
+                                            <ProductItem
+                                                className={cx(
+                                                    'product-item-modify',
+                                                )}
+                                                product={product}
+                                            />
                                         </Grid>
                                     );
                                 })

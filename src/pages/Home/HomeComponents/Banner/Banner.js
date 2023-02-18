@@ -15,10 +15,6 @@ function Banner() {
         query: '(min-width: 1223px)',
     });
 
-    const isTabletAndMobile = useMediaQuery({
-        query: '(max-width: 1223px)',
-    });
-
     const isTablet = useMediaQuery({
         query: '(min-width: 768px) and (max-width: 1223px)',
     });

@@ -47,20 +47,9 @@
     color: var(--text-color);
 }
 
-// tablet and mobile
-@media (max-width: 1223px) {
-}
-
-// tablet
-@media (min-width: 768px) and (max-width: 1223px) {
-}
-
 // mobile
 @media (max-width: 767px) {
     .deal-slide {
         margin: 0 -4px;
-    }
-    .product-item-img {
-        height: 290px;
     }
 }

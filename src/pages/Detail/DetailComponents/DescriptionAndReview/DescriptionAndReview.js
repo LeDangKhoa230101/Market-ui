@@ -13,6 +13,7 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { Button } from '@mui/material';
 
 const cx = classNames.bind(styles);
+
 function DescriptionAndReview() {
     const Tab = styled(TabUnstyled)`
         color: #373f50;
@@ -38,7 +39,7 @@ function DescriptionAndReview() {
     return (
         <Box
             sx={{
-                width: 'var(--width-website)',
+                maxWidth: 'var(--width-website)',
                 marginTop: '80px',
             }}
         >
@@ -47,6 +48,7 @@ function DescriptionAndReview() {
                     <Tab>Description</Tab>
                     <Tab>Reviews</Tab>
                 </TabsList>
+                {/* Description Product */}
                 <TabPanelUnstyled value={0}>
                     <h3 className={cx('desc-heading')}>Specification:</h3>
                     <ul className={cx('desc-list')}>
@@ -60,6 +62,9 @@ function DescriptionAndReview() {
                         <li>Bộ nhớ ngoài: Thẻ SIM kép, TF</li>
                     </ul>
                 </TabPanelUnstyled>
+                {/* Description Product */}
+
+                {/* Review Product */}
                 <TabPanelUnstyled value={1}>
                     <ul className={cx('review-list')}>
                         <li className={cx('review-item')}>
@@ -186,7 +191,7 @@ function DescriptionAndReview() {
                                 minRows={6}
                                 className={cx('textarea')}
                                 style={{
-                                    width: 'calc(100% - 48px)',
+                                    width: '100%',
                                     padding: '12px',
                                     fontSize: '1.4rem',
                                     color: 'rgb(43, 52, 69)',
@@ -215,6 +220,7 @@ function DescriptionAndReview() {
                         </Button>
                     </form>
                 </TabPanelUnstyled>
+                {/* Review Product */}
             </TabsUnstyled>
         </Box>
     );

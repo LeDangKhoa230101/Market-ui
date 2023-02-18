@@ -109,14 +109,6 @@ function User() {
         query: '(max-width: 1223px)',
     });
 
-    const isTablet = useMediaQuery({
-        query: '(min-width: 768px) and (max-width: 1223px)',
-    });
-
-    const isMobile = useMediaQuery({
-        query: '(max-width: 767px)',
-    });
-
     return (
         <div className={cx('wrapper-user')}>
             <div className={cx('container')}>

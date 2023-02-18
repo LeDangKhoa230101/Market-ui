@@ -8,9 +8,19 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '~/reducers/cartSlice';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function OtherShop() {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
     const data = useSelector((state) => state.productsFlashDeals.items);
 
     const dispatch = useDispatch();
@@ -30,7 +40,13 @@ function OtherShop() {
                 {data.map((product, index) => {
                     if (index <= 3) {
                         return (
-                            <Grid item xs={3} key={product.id}>
+                            <Grid
+                                item
+                                xs={
+                                    isDesktop ? 3 : isTabletAndMobile ? 6 : null
+                                }
+                                key={product.id}
+                            >
                                 <ProductItem
                                     product={product}
                                     handlePlusItem={() =>

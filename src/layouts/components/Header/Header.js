@@ -163,27 +163,22 @@ function Header() {
                             </div>
                             <ul className={cx('drawer-menu-list')}>
                                 <li>
-                                    <Link>
-                                        <Button className={cx('drawer-item')}>
-                                            Laptop
-                                        </Button>
+                                    <Link className={cx('drawer-item')}>
+                                        Laptop
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link>
-                                        <Button className={cx('drawer-item')}>
-                                            Mobile
-                                        </Button>
+                                    <Link className={cx('drawer-item')}>
+                                        Mobile
                                     </Link>
                                 </li>
                                 <li>
                                     <Link
+                                        className={cx('drawer-item')}
                                         to={'/all-shops'}
                                         onClick={() => setShowDrawerMenu(false)}
                                     >
-                                        <Button className={cx('drawer-item')}>
-                                            All shops
-                                        </Button>
+                                        All Shops
                                     </Link>
                                 </li>
                             </ul>

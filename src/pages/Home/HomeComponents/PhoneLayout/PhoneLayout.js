@@ -279,6 +279,7 @@ function PhoneLayout() {
                                     >
                                         <ProductItem
                                             product={product}
+                                            className={cx('product-item-phone')}
                                             handlePlusItem={() =>
                                                 handlePlusItem(product)
                                             }

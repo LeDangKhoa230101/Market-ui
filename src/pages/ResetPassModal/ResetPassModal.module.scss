@@ -56,3 +56,10 @@
         text-decoration: underline;
     }
 }
+
+// mobile
+@media (max-width: 767px) {
+    .modal_user {
+        min-width: 378px;
+    }
+}

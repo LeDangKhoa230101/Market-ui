@@ -75,3 +75,10 @@
         margin: 0;
     }
 }
+
+// mobile
+@media (max-width: 767px) {
+    .product-item-modify {
+        height: 170px;
+    }
+}

@@ -14,16 +14,40 @@ import { addToCart } from '~/reducers/cartSlice';
 import { useSnackbar } from 'notistack';
 import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 const OPTION_COLOR = ['Black', 'White', 'Blue'];
 const OPTION_TYPE = ['12GB+128GB', '12GB+256GB', '12GB+512GB'];
 
 function DetailProduct({ product }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const Item = styled(Box)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(0),
-        maxWidth: '87%',
+        maxWidth: isDesktop
+            ? '87%'
+            : isTablet
+            ? '87%'
+            : isMobile
+            ? '100%'
+            : null,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -97,8 +121,11 @@ function DetailProduct({ product }) {
     };
 
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={6}>
+        <Grid
+            container
+            spacing={isDesktop ? 1 : isTablet ? 1 : isMobile ? 5 : null}
+        >
+            <Grid item xs={isDesktop ? 6 : isTablet ? 6 : isMobile ? 12 : null}>
                 <SlickSlider
                     {...settings1}
                     asNavFor={nav2}
@@ -137,7 +164,7 @@ function DetailProduct({ product }) {
                 </SlickSlider>
             </Grid>
 
-            <Grid item xs={6}>
+            <Grid item xs={isDesktop ? 6 : isTablet ? 6 : isMobile ? 12 : null}>
                 <Item>
                     <h1 className={cx('product-name')}>{product.name}</h1>
                     <div className={cx('product-brand-rate')}>
@@ -222,6 +249,11 @@ function DetailProduct({ product }) {
                                 fontWeight: 600,
                                 color: 'var(--primary-color)',
                                 fontSize: '1.3rem',
+                                marginBottom: isDesktop
+                                    ? '0'
+                                    : isTabletAndMobile
+                                    ? '16px'
+                                    : null,
                                 boxShadow: '0px 4px 16px rgb(43 52 69 / 10%)',
                                 border: '1px solid var(--primary-color)',
                                 '&:hover': {
@@ -246,7 +278,11 @@ function DetailProduct({ product }) {
                                 fontWeight: 600,
                                 color: 'var(--white)',
                                 fontSize: '1.3rem',
-                                marginLeft: '14px',
+                                marginLeft: isDesktop
+                                    ? '14px'
+                                    : isTabletAndMobile
+                                    ? '0'
+                                    : null,
                                 boxShadow: '0px 4px 16px rgb(43 52 69 / 10%)',
                                 backgroundColor: 'var(--primary-color)',
                                 '&:hover': {

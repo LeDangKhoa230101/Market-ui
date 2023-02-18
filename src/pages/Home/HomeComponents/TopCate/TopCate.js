@@ -13,20 +13,8 @@ import { useMediaQuery } from 'react-responsive';
 const cx = classNames.bind(styles);
 
 function TopCate() {
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1223px)',
-    });
-
     const isTabletAndMobile = useMediaQuery({
         query: '(max-width: 1223px)',
-    });
-
-    const isTablet = useMediaQuery({
-        query: '(min-width: 768px) and (max-width: 1223px)',
-    });
-
-    const isMobile = useMediaQuery({
-        query: '(max-width: 767px)',
     });
 
     const Item = styled(Box)(({ theme }) => ({
@@ -36,6 +24,7 @@ function TopCate() {
         borderRadius: '8px',
         cursor: 'not-allowed',
     }));
+
     return (
         <div className={cx('top-cate')}>
             <TitleSection

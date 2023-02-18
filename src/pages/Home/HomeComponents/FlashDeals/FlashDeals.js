@@ -18,27 +18,9 @@ import { addToCart } from '~/reducers/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 
-import { useMediaQuery } from 'react-responsive';
-
 const cx = classNames.bind(styles);
 
 function FlashDeals() {
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1223px)',
-    });
-
-    const isTabletAndMobile = useMediaQuery({
-        query: '(max-width: 1223px)',
-    });
-
-    const isTablet = useMediaQuery({
-        query: '(min-width: 768px) and (max-width: 1223px)',
-    });
-
-    const isMobile = useMediaQuery({
-        query: '(max-width: 767px)',
-    });
-
     const data = useSelector((state) => state.productsFlashDeals.items);
     const status = useSelector((state) => state.productsFlashDeals.status);
 
@@ -70,7 +52,22 @@ function FlashDeals() {
         arrows: false,
         infinite: true,
         speed: 400,
+        slidesToShow: 4,
         slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1223,
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+        ],
     };
 
     const sliderRef = useRef(null);
@@ -102,22 +99,15 @@ function FlashDeals() {
                         }}
                         severity="error"
                     >
-                        This is an error alert — check it out!
+                        This is an error alert - check it out!
                     </Alert>
                 ) : (
-                    <Slider
-                        slidesToShow={
-                            isDesktop ? 4 : isTablet ? 3 : isMobile ? 1 : null
-                        }
-                        {...settings}
-                        ref={sliderRef}
-                    >
+                    <Slider {...settings} ref={sliderRef}>
                         {data.map((product) => {
                             return (
                                 <ProductItem
                                     key={product.id}
                                     product={product}
-                                    className={cx('product-item-img')}
                                     handlePlusItem={() =>
                                         handlePlusItem(product)
                                     }

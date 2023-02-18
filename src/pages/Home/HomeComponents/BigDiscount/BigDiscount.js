@@ -11,8 +11,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Box } from '@mui/material';
 
-import { useMediaQuery } from 'react-responsive';
-
 const cx = classNames.bind(styles);
 
 const DISCOUNT = [
@@ -75,28 +73,27 @@ const DISCOUNT = [
 ];
 
 function BigDiscount() {
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1223px)',
-    });
-
-    const isTabletAndMobile = useMediaQuery({
-        query: '(max-width: 1223px)',
-    });
-
-    const isTablet = useMediaQuery({
-        query: '(min-width: 768px) and (max-width: 1223px)',
-    });
-
-    const isMobile = useMediaQuery({
-        query: '(max-width: 767px)',
-    });
-
     const settings = {
         dots: false,
         arrows: false,
         infinite: true,
         speed: 500,
+        slidesToShow: 6,
         slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1223,
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+        ],
     };
 
     const sliderRef = useRef(null);
@@ -118,13 +115,7 @@ function BigDiscount() {
                 title={'Big Discounts'}
             />
             <div className={cx('discount-slide')}>
-                <Slider
-                    {...settings}
-                    slidesToShow={
-                        isDesktop ? 6 : isTablet ? 3 : isMobile ? 2 : null
-                    }
-                    ref={sliderRef}
-                >
+                <Slider {...settings} ref={sliderRef}>
                     {DISCOUNT.map((item) => {
                         return (
                             <Box key={item.id}>

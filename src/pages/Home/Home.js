@@ -28,7 +28,6 @@ function Home() {
                 {/* Flash Deals */}
 
                 {/* Top Categories */}
-
                 <TopCate />
                 {/* Top Categories */}
 
@@ -38,6 +37,7 @@ function Home() {
                         {/* Top rate */}
                         <TopRating />
                         {/* Top rate */}
+
                         {/* Featured Brands */}
                         <FeartureBrand />
                         {/* Featured Brands */}

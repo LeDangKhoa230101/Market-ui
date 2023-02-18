@@ -6,8 +6,6 @@ import Carousel from 'react-material-ui-carousel';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
-import { useMediaQuery } from 'react-responsive';
-
 const cx = classNames.bind(styles);
 
 const SLIDES = [
@@ -26,22 +24,6 @@ const SLIDES = [
 ];
 
 function Slide() {
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1223px)',
-    });
-
-    const isTabletAndMobile = useMediaQuery({
-        query: '(max-width: 1223px)',
-    });
-
-    const isTablet = useMediaQuery({
-        query: '(min-width: 768px) and (max-width: 1223px)',
-    });
-
-    const isMobile = useMediaQuery({
-        query: '(max-width: 767px)',
-    });
-
     return (
         <div className={cx('slide')}>
             <Carousel
@@ -71,18 +53,7 @@ function Slide() {
                         container
                         spacing={3}
                     >
-                        <Grid
-                            item
-                            xs={
-                                isDesktop
-                                    ? 6
-                                    : isTablet
-                                    ? 6
-                                    : isMobile
-                                    ? 12
-                                    : null
-                            }
-                        >
+                        <Grid item lg={6} sm={6} xs={12}>
                             <div className={cx('silde-item-body')}>
                                 <h3 className={cx('slide-title')}>
                                     {slide.title}
@@ -103,18 +74,7 @@ function Slide() {
                                 </Button>
                             </div>
                         </Grid>
-                        <Grid
-                            item
-                            xs={
-                                isDesktop
-                                    ? 6
-                                    : isTablet
-                                    ? 6
-                                    : isMobile
-                                    ? 12
-                                    : null
-                            }
-                        >
+                        <Grid item lg={6} sm={6} xs={12}>
                             <Image
                                 className={cx('slide-img')}
                                 alt="Image Slide"

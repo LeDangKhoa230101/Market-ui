@@ -12,7 +12,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 
 const cx = classNames.bind(styles);
 
-function Header() {
+function SearchHeader() {
     const [age, setAge] = useState('');
 
     const handleChange = (event) => {
@@ -130,4 +130,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default SearchHeader;
