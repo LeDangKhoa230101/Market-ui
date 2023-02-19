@@ -50,7 +50,7 @@ function ModalDetail({
                         borderRadius: '999px',
                     }}
                 />
-                <span>Added to cart</span>
+                <span className={cx('snackbar-title')}>Added to cart</span>
             </div>,
         );
     };
@@ -65,23 +65,9 @@ function ModalDetail({
             }}
         >
             <Fade in={open}>
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: '900px',
-                        height: '440px',
-                        padding: '20px 24px',
-                        border: 'none',
-                        outline: 'none',
-                        borderRadius: '8px',
-                        backgroundColor: 'var(--white)',
-                    }}
-                >
+                <Box className={cx('modail-detail')}>
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item lg={6} sm={6} xs={12}>
                             <Carousel
                                 fullHeightHover={false}
                                 navButtonsAlwaysVisible
@@ -117,7 +103,9 @@ function ModalDetail({
                         </Grid>
                         <Grid
                             item
-                            xs={6}
+                            lg={6}
+                            sm={6}
+                            xs={12}
                             sx={{
                                 display: 'flex',
                                 justifyContent: 'center',

@@ -13,8 +13,6 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-import { useMediaQuery } from 'react-responsive';
-
 const cx = classNames.bind(styles);
 
 const MENU_USER = [
@@ -33,22 +31,6 @@ const MENU_USER = [
 ];
 
 function ModalUser() {
-    const isDesktop = useMediaQuery({
-        query: '(min-width: 1223px)',
-    });
-
-    const isTabletAndMobile = useMediaQuery({
-        query: '(max-width: 1223px)',
-    });
-
-    const isTablet = useMediaQuery({
-        query: '(min-width: 768px) and (max-width: 1223px)',
-    });
-
-    const isMobile = useMediaQuery({
-        query: '(max-width: 767px)',
-    });
-
     const [showModal, setShowModal] = useState(false);
 
     const currentUser = false;

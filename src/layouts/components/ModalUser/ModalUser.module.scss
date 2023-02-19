@@ -136,14 +136,6 @@
 // ------------------------------------------
 // ------------------------------------------
 // ------------------------------------------
-// tablet and mobile
-@media (max-width: 1223px) {
-}
-
-// tablet
-@media (min-width: 768px) and (max-width: 1223px) {
-}
-
 // mobile
 @media (max-width: 767px) {
     .action-btn {
@@ -151,6 +143,6 @@
     }
 
     .modal_user {
-        width: 348px;
+        max-width: 348px;
     }
 }

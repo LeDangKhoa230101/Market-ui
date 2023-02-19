@@ -58,3 +58,52 @@
     display: flex;
     align-items: center;
 }
+
+.modail-detail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 900px;
+    width: 900px;
+    max-height: 440px;
+    padding: 20px 24px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background-color: var(--white);
+}
+
+//snackbar
+.snackbar {
+    display: flex;
+    align-items: center;
+}
+
+.snackbar-title {
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+
+// tablet
+@media (min-width: 768px) and (max-width: 1223px) {
+    .modail-detail {
+        width: 700px;
+    }
+
+    .modal-img {
+        height: 310px;
+    }
+}
+
+// mobile
+@media (max-width: 767px) {
+    .modail-detail {
+        width: 330px;
+        max-height: 700px;
+    }
+
+    .modal-img {
+        height: 270px;
+    }
+}
