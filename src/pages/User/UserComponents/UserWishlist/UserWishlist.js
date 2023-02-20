@@ -69,7 +69,7 @@ function UserWishlist() {
                                     : isTablet
                                     ? 4
                                     : isMobile
-                                    ? 6
+                                    ? 12
                                     : null
                             }
                             key={product.id}

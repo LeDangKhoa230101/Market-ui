@@ -63,9 +63,14 @@
 .box {
     padding: 16px 20px;
     border-radius: 8px;
-    text-align: center;
     background-color: var(--white);
     box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    min-height: 98px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
 
     & span {
         font-size: 2rem;
@@ -142,6 +147,15 @@
 
         & span {
             margin-right: 6px;
+        }
+    }
+
+    .header {
+        & div {
+            & .title {
+                font-size: 2.2rem;
+                margin-bottom: 0;
+            }
         }
     }
 }

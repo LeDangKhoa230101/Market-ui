@@ -21,3 +21,12 @@
         }
     }
 }
+
+.header {
+    & div {
+        & .title {
+            font-size: 2.2rem;
+            margin-bottom: 0;
+        }
+    }
+}

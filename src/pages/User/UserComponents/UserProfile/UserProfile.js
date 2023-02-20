@@ -127,7 +127,7 @@ function UserProfile() {
                             item
                             xs={isDesktop ? 6 : isTabletAndMobile ? 12 : null}
                             container
-                            spacing={3}
+                            spacing={2}
                         >
                             <Grid
                                 item
@@ -202,13 +202,7 @@ function UserProfile() {
                     {/* infomation */}
 
                     {/* view info */}
-                    <Grid
-                        container
-                        rowSpacing={
-                            isDesktop ? 0 : isTablet ? 0 : isMobile ? 1 : null
-                        }
-                        className={cx('view-info')}
-                    >
+                    <Grid container rowSpacing={0} className={cx('view-info')}>
                         <Grid
                             item
                             xs={

@@ -344,4 +344,13 @@
             font-size: 1.6rem;
         }
     }
+
+    .header {
+        & div {
+            & .title {
+                font-size: 2.2rem;
+                margin-bottom: 0;
+            }
+        }
+    }
 }

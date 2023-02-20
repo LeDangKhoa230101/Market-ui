@@ -18,6 +18,14 @@ function EditProfile({ showEdit }) {
         query: '(max-width: 1223px)',
     });
 
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     return (
         <Grid
             container
@@ -58,12 +66,23 @@ function EditProfile({ showEdit }) {
                     {/* Content */}
                     <Grid
                         container
-                        spacing={isDesktop ? 3 : isTabletAndMobile ? 2 : null}
+                        spacing={3}
                         sx={{
                             marginTop: '-6px',
                         }}
                     >
-                        <Grid item xs={6}>
+                        <Grid
+                            item
+                            xs={
+                                isDesktop
+                                    ? 6
+                                    : isTablet
+                                    ? 6
+                                    : isMobile
+                                    ? 12
+                                    : null
+                            }
+                        >
                             <TextField
                                 label="First Name"
                                 defaultValue="Nick"
@@ -149,7 +168,21 @@ function EditProfile({ showEdit }) {
                                 }}
                             />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid
+                            sx={{
+                                marginTop: isMobile && '-20px',
+                            }}
+                            item
+                            xs={
+                                isDesktop
+                                    ? 6
+                                    : isTablet
+                                    ? 6
+                                    : isMobile
+                                    ? 12
+                                    : null
+                            }
+                        >
                             <TextField
                                 label="Last Name"
                                 defaultValue="DuBuque"
@@ -213,7 +246,13 @@ function EditProfile({ showEdit }) {
                                 fontSize: '1.4rem',
                                 color: 'var(--white)',
                                 padding: '6px 16px',
-                                margin: '30px 0 0 24px',
+                                margin: isDesktop
+                                    ? '30px 0 0 24px'
+                                    : isTablet
+                                    ? '30px 0 0 24px'
+                                    : isMobile
+                                    ? '30px 0 0 24px'
+                                    : null,
                                 textTransform: 'capitalize',
                                 backgroundColor: 'var(--primary-color)',
 

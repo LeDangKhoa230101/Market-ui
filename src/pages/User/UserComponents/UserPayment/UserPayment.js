@@ -77,6 +77,7 @@ function UserPayment() {
                         color: 'var(--primary-color)',
                         backgroundColor: 'rgb(252, 233, 236)',
                         textTransform: 'capitalize',
+                        marginTop: isMobile && '10px',
 
                         '&:hover': {
                             backgroundColor: 'rgba(210, 63, 87, 0.04)',

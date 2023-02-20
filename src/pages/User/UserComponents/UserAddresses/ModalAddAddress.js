@@ -5,9 +5,23 @@ import classNames from 'classnames/bind';
 import { Button, Fade, Grid, Modal, TextField } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function ModalAddAddress({ showModalAdd, handleHideModalAdd }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     return (
         <Modal open={showModalAdd} onClose={handleHideModalAdd}>
             <Fade in={showModalAdd}>
@@ -17,7 +31,18 @@ function ModalAddAddress({ showModalAdd, handleHideModalAdd }) {
                         <span className={cx('heading')}>Add New Address</span>
                     </div>
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid
+                            item
+                            xs={
+                                isDesktop
+                                    ? 6
+                                    : isTablet
+                                    ? 6
+                                    : isMobile
+                                    ? 12
+                                    : null
+                            }
+                        >
                             <TextField
                                 fullWidth
                                 label="Name"
@@ -77,7 +102,21 @@ function ModalAddAddress({ showModalAdd, handleHideModalAdd }) {
                                 }}
                             />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid
+                            sx={{
+                                marginTop: isMobile && '-14px',
+                            }}
+                            item
+                            xs={
+                                isDesktop
+                                    ? 6
+                                    : isTablet
+                                    ? 6
+                                    : isMobile
+                                    ? 12
+                                    : null
+                            }
+                        >
                             <TextField
                                 fullWidth
                                 label="Address"

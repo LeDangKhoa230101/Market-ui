@@ -94,6 +94,13 @@
     .header {
         flex-direction: column;
         align-items: flex-start;
+
+        & div {
+            & .title {
+                font-size: 2.2rem;
+                margin-bottom: 0;
+            }
+        }
     }
 
     .payment-item {
@@ -102,11 +109,12 @@
     }
 
     .modal-container {
-        min-width: 360px;
+        min-width: 330px;
 
         & .modal-body {
             & .heading {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin-bottom: 0;
             }
         }
     }

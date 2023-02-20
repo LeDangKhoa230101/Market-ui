@@ -57,4 +57,14 @@
         align-items: flex-start;
         margin-bottom: 20px;
     }
+
+    .header-right {
+        align-items: flex-start;
+        flex-direction: column;
+
+        & .view {
+            margin-left: 0;
+            margin-top: 10px;
+        }
+    }
 }

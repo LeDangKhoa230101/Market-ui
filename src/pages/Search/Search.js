@@ -100,24 +100,52 @@ function Search() {
                     container
                     spacing={2}
                     sx={{
-                        margin: '0 -24px',
-                        width: 'calc(100% + 44px)',
+                        margin: isDesktop
+                            ? '0 -24px'
+                            : isTablet
+                            ? '0 -14px'
+                            : isMobile
+                            ? '0 -22px'
+                            : null,
+                        width: isDesktop
+                            ? 'calc(100% + 44px)'
+                            : isTablet
+                            ? 'calc(100% + 26px)'
+                            : isMobile
+                            ? 'calc(100% + 27px)'
+                            : null,
                         alignItems: 'flex-start',
                     }}
                 >
                     <Grid
                         item
-                        xs={3}
+                        xs={isDesktop ? 3 : isTablet ? 4 : null}
                         sx={{
                             display: isMobile ? 'none' : '',
                         }}
                     >
                         <FilterPanel />
                     </Grid>
-                    <Grid item xs={9} container>
+                    <Grid
+                        item
+                        xs={isDesktop ? 9 : isTablet ? 8 : isMobile ? 12 : null}
+                        container
+                    >
                         {currentData?.map((product) => {
                             return (
-                                <Grid item xs={4} key={product.id}>
+                                <Grid
+                                    item
+                                    xs={
+                                        isDesktop
+                                            ? 4
+                                            : isTablet
+                                            ? 6
+                                            : isMobile
+                                            ? 12
+                                            : null
+                                    }
+                                    key={product.id}
+                                >
                                     <Item>
                                         <ProductItem
                                             product={product}
