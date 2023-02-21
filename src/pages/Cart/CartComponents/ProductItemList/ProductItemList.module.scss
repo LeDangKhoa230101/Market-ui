@@ -69,15 +69,21 @@
             align-items: flex-start;
         }
         & img {
-            width: 300px;
+            width: 100%;
         }
     }
 
     .product-body {
         padding: 20px;
+        width: 100%;
 
         & .product-name {
             font-size: 2rem;
+            display: -webkit-box;
+            overflow: hidden;
+            height: 26px;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
         }
 
         & .price {

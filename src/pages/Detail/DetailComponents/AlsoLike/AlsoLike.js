@@ -51,6 +51,7 @@ function AlsoLike() {
                                     handlePlusItem={() =>
                                         handlePlusItem(product)
                                     }
+                                    className={cx('pro-item-img')}
                                 />
                             </Grid>
                         );

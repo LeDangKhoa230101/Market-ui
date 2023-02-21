@@ -121,10 +121,7 @@ function DetailProduct({ product }) {
     };
 
     return (
-        <Grid
-            container
-            spacing={isDesktop ? 1 : isTablet ? 1 : isMobile ? 5 : null}
-        >
+        <Grid container spacing={1}>
             <Grid item xs={isDesktop ? 6 : isTablet ? 6 : isMobile ? 12 : null}>
                 <SlickSlider
                     {...settings1}
@@ -164,7 +161,13 @@ function DetailProduct({ product }) {
                 </SlickSlider>
             </Grid>
 
-            <Grid item xs={isDesktop ? 6 : isTablet ? 6 : isMobile ? 12 : null}>
+            <Grid
+                sx={{
+                    marginTop: isMobile ? '40px' : '',
+                }}
+                item
+                xs={isDesktop ? 6 : isTablet ? 6 : isMobile ? 12 : null}
+            >
                 <Item>
                     <h1 className={cx('product-name')}>{product.name}</h1>
                     <div className={cx('product-brand-rate')}>

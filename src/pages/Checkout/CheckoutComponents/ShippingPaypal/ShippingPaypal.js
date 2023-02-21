@@ -49,148 +49,168 @@ function ShippingPaypal() {
         <>
             <div className={cx('content')}>
                 <h3>Shipping Address</h3>
-                <Grid
-                    container
-                    spacing={isDesktop ? 6 : isTabletAndMobile ? 0 : null}
-                >
-                    <Grid item xs={isDesktop ? 6 : isMobile ? 12 : null}>
-                        <TextField
-                            label="Full Name"
-                            variant="outlined"
-                            sx={{
-                                width: '100%',
-                                marginBottom: '16px',
+                <Grid container spacing={4}>
+                    <Grid
+                        item
+                        xs={isDesktop ? 6 : isTabletAndMobile ? 12 : null}
+                        container
+                        rowSpacing={2}
+                    >
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Full Name"
+                                variant="outlined"
+                                sx={{
+                                    width: '100%',
 
-                                '& .MuiFormLabel-root': {
-                                    fontSize: '1.4rem',
-                                },
-                                '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                    {
-                                        top: '-7px',
+                                    '& .MuiFormLabel-root': {
+                                        fontSize: '1.4rem',
                                     },
-                                '& .MuiInputBase-root': {
-                                    fontSize: '1.4rem',
-                                },
-
-                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                    {
-                                        color: 'var(--primary-color)',
+                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                        {
+                                            top: '-7px',
+                                        },
+                                    '& .MuiInputBase-root': {
+                                        fontSize: '1.4rem',
                                     },
 
-                                '& .MuiInputBase-root .MuiInputBase-input': {
-                                    padding: '8.5px 14px',
-                                },
-                                '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                    {
-                                        borderColor: 'var(--primary-color)',
-                                    },
-                            }}
-                        />
-                        <TextField
-                            label="Email Address"
-                            type="email"
-                            variant="outlined"
-                            sx={{
-                                width: '100%',
-                                marginBottom: '16px',
+                                    '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                        {
+                                            color: 'var(--primary-color)',
+                                        },
 
-                                '& .MuiFormLabel-root': {
-                                    fontSize: '1.4rem',
-                                },
-                                '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                    {
-                                        top: '-7px',
-                                    },
+                                    '& .MuiInputBase-root .MuiInputBase-input':
+                                        {
+                                            padding: '8.5px 14px',
+                                        },
+                                    '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                                        {
+                                            borderColor: 'var(--primary-color)',
+                                        },
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Email Address"
+                                type="email"
+                                variant="outlined"
+                                sx={{
+                                    width: '100%',
 
-                                '& .MuiInputBase-root': {
-                                    fontSize: '1.4rem',
-                                },
-                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                    {
-                                        color: 'var(--primary-color)',
+                                    '& .MuiFormLabel-root': {
+                                        fontSize: '1.4rem',
                                     },
+                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                        {
+                                            top: '-7px',
+                                        },
 
-                                '& .MuiInputBase-root .MuiInputBase-input': {
-                                    padding: '8.5px 14px',
-                                },
-                                '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                    {
-                                        borderColor: 'var(--primary-color)',
+                                    '& .MuiInputBase-root': {
+                                        fontSize: '1.4rem',
                                     },
-                            }}
-                        />
+                                    '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                        {
+                                            color: 'var(--primary-color)',
+                                        },
+
+                                    '& .MuiInputBase-root .MuiInputBase-input':
+                                        {
+                                            padding: '8.5px 14px',
+                                        },
+                                    '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                                        {
+                                            borderColor: 'var(--primary-color)',
+                                        },
+                                }}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={isDesktop ? 6 : isMobile ? 12 : null}>
-                        <TextField
-                            label="Phone Number"
-                            type="tel"
-                            variant="outlined"
-                            sx={{
-                                width: '100%',
-                                marginBottom: '16px',
+                    <Grid
+                        item
+                        xs={isDesktop ? 6 : isTabletAndMobile ? 12 : null}
+                        sx={{
+                            marginTop: isTabletAndMobile ? '-30px' : '',
+                        }}
+                        container
+                        rowSpacing={2}
+                    >
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Phone Number"
+                                type="tel"
+                                variant="outlined"
+                                sx={{
+                                    width: '100%',
 
-                                '& .MuiFormLabel-root': {
-                                    fontSize: '1.4rem',
-                                },
-                                '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                    {
-                                        top: '-7px',
+                                    '& .MuiFormLabel-root': {
+                                        fontSize: '1.4rem',
+                                    },
+                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                        {
+                                            top: '-7px',
+                                        },
+
+                                    '& .MuiInputBase-root': {
+                                        fontSize: '1.4rem',
                                     },
 
-                                '& .MuiInputBase-root': {
-                                    fontSize: '1.4rem',
-                                },
+                                    '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                        {
+                                            color: 'var(--primary-color)',
+                                        },
 
-                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                    {
-                                        color: 'var(--primary-color)',
+                                    '& .MuiInputBase-root .MuiInputBase-input':
+                                        {
+                                            padding: '8.5px 14px',
+                                        },
+                                    '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                                        {
+                                            borderColor: 'var(--primary-color)',
+                                        },
+                                }}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Delivery Address"
+                                variant="outlined"
+                                sx={{
+                                    width: '100%',
+
+                                    '& .MuiFormLabel-root': {
+                                        fontSize: '1.4rem',
+                                    },
+                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
+                                        {
+                                            top: '-7px',
+                                        },
+
+                                    '& .MuiInputBase-root': {
+                                        fontSize: '1.4rem',
                                     },
 
-                                '& .MuiInputBase-root .MuiInputBase-input': {
-                                    padding: '8.5px 14px',
-                                },
-                                '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                    {
-                                        borderColor: 'var(--primary-color)',
-                                    },
-                            }}
-                        />
-                        <TextField
-                            label="Delivery Address"
-                            variant="outlined"
-                            sx={{
-                                width: '100%',
-                                marginBottom: '16px',
+                                    '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
+                                        {
+                                            color: 'var(--primary-color)',
+                                        },
 
-                                '& .MuiFormLabel-root': {
-                                    fontSize: '1.4rem',
-                                },
-                                '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root':
-                                    {
-                                        top: '-7px',
-                                    },
-
-                                '& .MuiInputBase-root': {
-                                    fontSize: '1.4rem',
-                                },
-
-                                '& .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root.Mui-focused':
-                                    {
-                                        color: 'var(--primary-color)',
-                                    },
-
-                                '& .MuiInputBase-root .MuiInputBase-input': {
-                                    padding: '8.5px 14px',
-                                },
-                                '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                                    {
-                                        borderColor: 'var(--primary-color)',
-                                    },
-                            }}
-                        />
+                                    '& .MuiInputBase-root .MuiInputBase-input':
+                                        {
+                                            padding: '8.5px 14px',
+                                        },
+                                    '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                                        {
+                                            borderColor: 'var(--primary-color)',
+                                        },
+                                }}
+                            />
+                        </Grid>
                     </Grid>
                 </Grid>
             </div>
+
+            {/* payment */}
             <div className={cx('content')}>
                 <h3>Payment Methods</h3>
                 <Grid container spacing={6}>
@@ -225,9 +245,7 @@ function ShippingPaypal() {
                                     marginTop: '-34px',
                                 }}
                                 container
-                                spacing={
-                                    isDesktop ? 6 : isTabletAndMobile ? 2 : null
-                                }
+                                spacing={4}
                             >
                                 <Grid
                                     item
@@ -242,8 +260,10 @@ function ShippingPaypal() {
                                         marginTop: isDesktop
                                             ? ''
                                             : isTabletAndMobile
-                                            ? '20px'
+                                            ? '4px'
                                             : null,
+                                        marginBottom:
+                                            isTabletAndMobile && '30px',
                                     }}
                                 >
                                     <TextField
@@ -251,11 +271,6 @@ function ShippingPaypal() {
                                         variant="outlined"
                                         sx={{
                                             width: '100%',
-                                            marginBottom: isDesktop
-                                                ? '16px'
-                                                : isTabletAndMobile
-                                                ? ''
-                                                : null,
 
                                             '& .MuiFormLabel-root': {
                                                 fontSize: '1.4rem',
@@ -295,17 +310,17 @@ function ShippingPaypal() {
                                             ? 12
                                             : null
                                     }
+                                    sx={{
+                                        marginTop: isTabletAndMobile
+                                            ? '-40px'
+                                            : '',
+                                    }}
                                 >
                                     <TextField
                                         label="Exp Date"
                                         variant="outlined"
                                         sx={{
                                             width: '100%',
-                                            marginBottom: isDesktop
-                                                ? '16px'
-                                                : isTabletAndMobile
-                                                ? ''
-                                                : null,
 
                                             '& .MuiFormLabel-root': {
                                                 fontSize: '1.4rem',
@@ -371,12 +386,12 @@ function ShippingPaypal() {
                                     display: showPaypal,
                                     width: '100%',
                                     marginBottom: isDesktop
-                                        ? '16px'
+                                        ? '6px'
                                         : isTabletAndMobile
                                         ? ''
                                         : null,
                                     marginTop: isDesktop
-                                        ? '14px'
+                                        ? '6px'
                                         : isTabletAndMobile
                                         ? ''
                                         : null,

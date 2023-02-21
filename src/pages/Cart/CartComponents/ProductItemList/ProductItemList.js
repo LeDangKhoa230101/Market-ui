@@ -12,6 +12,10 @@ import { useMediaQuery } from 'react-responsive';
 const cx = classNames.bind(styles);
 
 function ProductItemList() {
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     return (
         <>
             <div className={cx('product-item')}>
@@ -80,6 +84,9 @@ function ProductItemList() {
                         borderRadius: '999px',
                         margin: '14px 14px 0 0',
                         color: 'rgba(0, 0, 0, 0.54)',
+
+                        position: isMobile && 'absolute',
+                        right: isMobile && '26px',
 
                         '&:hover': {
                             backgroundColor: 'rgba(0, 0, 0, 0.04)',

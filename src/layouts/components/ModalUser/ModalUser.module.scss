@@ -67,7 +67,7 @@
         height: 2px;
         background-color: rgb(224 224 224);
         top: 13px;
-        left: 146px;
+        left: 80px;
     }
 
     &::after {
@@ -77,7 +77,7 @@
         height: 2px;
         background-color: rgb(224 224 224);
         top: 13px;
-        right: 144px;
+        right: 80px;
     }
 }
 
@@ -156,10 +156,12 @@
 
         &::before {
             width: 72px;
+            left: 20px;
         }
 
         &::after {
             width: 72px;
+            right: 20px;
         }
     }
 
