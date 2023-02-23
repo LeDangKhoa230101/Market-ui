@@ -1,0 +1,69 @@
+// sidebar
+.sidebar {
+    width: 280px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #2b3445;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    max-height: 70px;
+
+    & .logo {
+        height: 40px;
+        margin-left: 8px;
+    }
+
+    & .left-icon {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+        border-radius: 999px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.6);
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+}
+
+.admin {
+    padding: 0 16px;
+
+    & .admin-title {
+        color: var(--white);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 20px 0 10px 15px;
+    }
+}
+
+.admin-btn {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    color: var(--white);
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    border-radius: 8px;
+
+    &.active {
+        background-color: #323b4c;
+        color: #4e97fd;
+    }
+
+    & .title {
+        margin-left: 10px;
+    }
+}

@@ -23,6 +23,14 @@ import LoginModal from '~/pages/LoginModal';
 import ResetPassModal from '~/pages/ResetPassModal';
 import CategoryTabletMobile from '~/pages/CategoryTabletMobile';
 
+//admin page
+import Dashboard from '~/admin/pages/Dashboard';
+import Products from '~/admin/pages/Products';
+import Categories from '~/admin/pages/Categories';
+import Brands from '~/admin/pages/Brands';
+import Orders from '~/admin/pages/Orders';
+import Customers from '~/admin/pages/Customers';
+
 // ko cần đăng nhập
 const publicRoutes = [
     { path: routes.home, component: Home },
@@ -52,4 +60,13 @@ const publicRoutes = [
 // cần đăng nhập
 const privateRoutes = [];
 
-export { publicRoutes, privateRoutes };
+const adminRoutes = [
+    { path: routes.dashboard, component: Dashboard },
+    { path: routes.products, component: Products },
+    { path: routes.categories, component: Categories },
+    { path: routes.brands, component: Brands },
+    { path: routes.orders, component: Orders },
+    { path: routes.customers, component: Customers },
+];
+
+export { publicRoutes, privateRoutes, adminRoutes };

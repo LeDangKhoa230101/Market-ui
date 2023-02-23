@@ -17,6 +17,12 @@ const config = {
     login: '/login',
     resetpass: '/reset-password',
     catetabletmobile: '/cate-nav',
+    dashboard: '/admin/dashboard',
+    products: '/admin/products',
+    categories: '/admin/categories',
+    brands: '/admin/brands',
+    orders: '/admin/orders',
+    customers: '/admin/customers',
 };
 
 export default config;

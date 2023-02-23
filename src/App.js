@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from '~/routes/routes';
+import { publicRoutes, adminRoutes } from '~/routes/routes';
 import DefaultLayout from '~/layouts';
 import { Fragment } from 'react';
+import AdminLayout from './admin/AdminLayout';
 
 function App() {
     return (
@@ -12,7 +13,7 @@ function App() {
                     overflow: 'hidden',
                 }}
             >
-                <Routes>
+                {/* <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
 
@@ -32,6 +33,31 @@ function App() {
                                     </Layout>
                                 }
                                 key={index}
+                            />
+                        );
+                    })}
+                </Routes> */}
+                <Routes>
+                    {adminRoutes.map((route, index) => {
+                        const Page = route.component;
+
+                        let Layout = AdminLayout;
+
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
+
+                        return (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
                             />
                         );
                     })}
