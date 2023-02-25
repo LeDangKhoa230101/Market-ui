@@ -1,3 +1,4 @@
+/* eslint-disable react/style-prop-object */
 export const facebook = (
     <svg
         className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-7nssh1"
