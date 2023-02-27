@@ -329,32 +329,26 @@ function Dashboard() {
                                 <span className={cx('analytic-header-title')}>
                                     Analytics
                                 </span>
-                                <Select
-                                    value={age}
-                                    onChange={handleChangeSelect}
-                                    displayEmpty
-                                    sx={{
-                                        '& .MuiSelect-select': {
-                                            fontSize: '1.5rem',
-                                            padding: '0 32px 0 0',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                        },
-                                        '& .MuiSvgIcon-root': {
-                                            fontSize: '25px',
-                                        },
-                                        '& .MuiOutlinedInput-notchedOutline': {
-                                            border: 'none',
-                                            outline: 'none',
-                                        },
-                                    }}
-                                >
-                                    <MenuItem value="">
-                                        <em>Yearly</em>
-                                    </MenuItem>
-                                    <MenuItem value={20}>Monthly</MenuItem>
-                                    <MenuItem value={30}>Weekly</MenuItem>
-                                </Select>
+                                <select className={cx('section3-select')}>
+                                    <option
+                                        value="1"
+                                        className={cx('section3-select-option')}
+                                    >
+                                        Yearly
+                                    </option>
+                                    <option
+                                        value="2"
+                                        className={cx('section3-select-option')}
+                                    >
+                                        Monthly
+                                    </option>
+                                    <option
+                                        value="3"
+                                        className={cx('section3-select-option')}
+                                    >
+                                        Weekly
+                                    </option>
+                                </select>
                             </div>
                             <Chart
                                 options={lineOptionsAnalytics}

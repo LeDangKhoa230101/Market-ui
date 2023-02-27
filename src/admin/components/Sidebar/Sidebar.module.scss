@@ -1,11 +1,12 @@
 // sidebar
 .sidebar {
-    width: 280px;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     background-color: #2b3445;
+    transition: all 0.2s ease 0s;
+    z-index: 99;
 }
 
 .header {

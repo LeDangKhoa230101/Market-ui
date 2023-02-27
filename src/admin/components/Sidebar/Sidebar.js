@@ -13,6 +13,7 @@ import classNames from 'classnames/bind';
 import Button from '@mui/material/Button';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { NavLink } from 'react-router-dom';
+import { Box } from '@mui/material';
 
 const cx = classNames.bind(styles);
 
@@ -49,55 +50,60 @@ const ADMIN = [
     },
 ];
 
-const VENDOR = [
-    {
-        title: 'Dashboard',
-        icon: dashboard,
-        to: '/admin/dashboard',
-    },
-    {
-        title: 'Products',
-        icon: products,
-        to: '/admin/products',
-    },
-    {
-        title: 'Categories',
-        icon: categories,
-        to: '/admin/categories',
-    },
-    {
-        title: 'Brands',
-        icon: brands,
-        to: '/admin/brands',
-    },
-    {
-        title: 'Orders',
-        icon: orders,
-        to: '/admin/orders',
-    },
-    {
-        title: 'Customers',
-        icon: customers,
-        to: '/admin/customers',
-    },
-];
-
-function Sidebar() {
+function Sidebar({
+    widthSidebar,
+    hoverSidebar,
+    rotate,
+    handleSetWidthSidebar,
+    handleMouseOverSidebar,
+    handleMouseOutSidebar,
+}) {
     return (
-        <div className={cx('sidebar')}>
+        <Box
+            onMouseOver={handleMouseOverSidebar}
+            onMouseOut={handleMouseOutSidebar}
+            className={cx('sidebar')}
+            sx={{
+                width: widthSidebar,
+
+                '&:hover': {
+                    width: hoverSidebar,
+                },
+            }}
+        >
             {/* Header */}
             <div className={cx('header')}>
                 <Image
                     className={cx('logo')}
-                    src="https://bazaar.ui-lib.com/assets/images/logo.svg"
+                    src={
+                        hoverSidebar === '280px' || widthSidebar === '280px'
+                            ? 'https://bazaar.ui-lib.com/assets/images/logo.svg'
+                            : 'https://bazaar.ui-lib.com/assets/images/bazaar-white-sm.svg'
+                    }
                     alt="logo"
                 />
-                <NavigateBeforeIcon className={cx('left-icon')} />
+                <NavigateBeforeIcon
+                    onClick={handleSetWidthSidebar}
+                    className={cx('left-icon')}
+                    sx={{
+                        rotate: rotate,
+                    }}
+                />
             </div>
 
             {/* ADMIN */}
             <div className={cx('admin')}>
-                <h4 className={cx('admin-title')}>ADMIN</h4>
+                <h4
+                    className={cx('admin-title')}
+                    style={{
+                        opacity:
+                            hoverSidebar === '280px' || widthSidebar === '280px'
+                                ? '1'
+                                : '0',
+                    }}
+                >
+                    ADMIN
+                </h4>
                 {ADMIN.map((item, index) => {
                     return (
                         <Button
@@ -120,15 +126,18 @@ function Sidebar() {
                                 }
                             >
                                 {item.icon}
-                                <span className={cx('title')}>
-                                    {item.title}
-                                </span>
+                                {hoverSidebar === '280px' ||
+                                widthSidebar === '280px' ? (
+                                    <span className={cx('title')}>
+                                        {item.title}
+                                    </span>
+                                ) : null}
                             </NavLink>
                         </Button>
                     );
                 })}
             </div>
-        </div>
+        </Box>
     );
 }
 

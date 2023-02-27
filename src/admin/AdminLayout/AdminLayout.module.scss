@@ -5,11 +5,11 @@
 
 // admin container
 .admin-container {
-    margin-left: 280px;
     flex: 1;
     background-color: #f6f9fc;
+    transition: margin-left 0.3s;
 }
 
 .content {
-    margin-top: 72px;
+    transition: all 0.3s;
 }

@@ -3,123 +3,104 @@ import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import Image from '~/components/Image/Image';
 
 const cx = classNames.bind(styles);
 
-function Header() {
-    const [anchorEl, setAnchorEl] = useState(false);
+const MENU = [
+    {
+        title: 'Profile',
+    },
+    {
+        title: 'Settings',
+    },
+    {
+        title: 'Logout',
+    },
+];
 
-    const open = Boolean(anchorEl);
-
-    const handleShowMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
+function Header({ leftHeader }) {
     return (
-        <div className={cx('header')}>
-            <div className={cx('header-left')}>
-                <h3>ADMIN</h3>
-            </div>
-            <div className={cx('header-right')}>
-                <div className={cx('header-search')}>
-                    <SearchIcon
-                        sx={{
-                            width: '24px',
-                            height: '24px',
-                            color: '#AEB4BE',
-                        }}
-                    />
-                    <input
-                        className={cx('header-search-input')}
-                        type="text"
-                        placeholder="Search anything..."
-                    />
-                </div>
-                <Avatar
-                    onClick={handleShowMenu}
-                    alt="Remy Sharp"
-                    sx={{
-                        cursor: 'pointer',
-                    }}
-                    src="https://i.pinimg.com/564x/54/15/f0/5415f07a18442ae788afbb6a74dabfa6.jpg"
-                />
-                <Menu
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    sx={{
-                        '& .MuiPaper-root': {
-                            width: '200px',
-                        },
-                    }}
-                    PaperProps={{
-                        elevation: 0,
-                        sx: {
-                            overflow: 'visible',
-                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                            mt: 1.5, //margin-top
-                            '& .MuiAvatar-root': {
-                                width: 32,
-                                height: 32,
-                            },
-
-                            '&:before': {
-                                content: '""',
-                                display: 'block',
-                                position: 'absolute',
-                                top: 0,
-                                right: 24,
-                                width: 10,
-                                height: 10,
-                                bgcolor: 'background.paper',
-                                transform: 'translateY(-50%) rotate(45deg)',
-                                zIndex: 0,
-                            },
-                        },
-                    }}
-                >
-                    <div className={cx('modal-header')}>
-                        <span>Gage Paquette</span>
-                        <p>Admin</p>
+        <div
+            className={cx('header')}
+            style={{
+                left: leftHeader,
+            }}
+        >
+            <div className={cx('container')}>
+                <div className={cx('content')}>
+                    <div className={cx('header-left')}>
+                        <h3>ADMIN</h3>
                     </div>
-                    <div className={cx('hr')}></div>
-                    <MenuItem
-                        sx={{
-                            height: '37px',
-                            fontSize: '1.5rem',
-                        }}
-                        onClick={handleClose}
-                    >
-                        Profile
-                    </MenuItem>
-                    <MenuItem
-                        sx={{
-                            height: '37px',
-                            fontSize: '1.5rem',
-                        }}
-                        onClick={handleClose}
-                    >
-                        Settings
-                    </MenuItem>
-                    <div className={cx('hr')}></div>
-                    <MenuItem
-                        sx={{
-                            height: '37px',
-                            fontSize: '1.5rem',
-                        }}
-                        onClick={handleClose}
-                    >
-                        Logout
-                    </MenuItem>
-                </Menu>
+                    <div className={cx('header-right')}>
+                        <div className={cx('header-search')}>
+                            <SearchIcon
+                                sx={{
+                                    width: '24px',
+                                    height: '24px',
+                                    color: '#AEB4BE',
+                                }}
+                            />
+                            <input
+                                className={cx('header-search-input')}
+                                type="text"
+                                placeholder="Search anything..."
+                            />
+                        </div>
+                        <div className={cx('header-right-body')}>
+                            <Image
+                                className={cx('header-avatar')}
+                                src="https://i.pinimg.com/564x/54/15/f0/5415f07a18442ae788afbb6a74dabfa6.jpg"
+                            />
+                            <div className={cx('menu')}>
+                                <div className={cx('modal-header')}>
+                                    <span>Gage Paquette</span>
+                                    <p>Admin</p>
+                                </div>
+                                <div className={cx('hr')}></div>
+                                <ul className={cx('menu-list')}>
+                                    {MENU.map((item, index) => {
+                                        return (
+                                            <li
+                                                key={index}
+                                                className={cx('menu-list-item')}
+                                            >
+                                                <Link
+                                                    className={cx(
+                                                        'menu-list-link',
+                                                    )}
+                                                >
+                                                    <Button
+                                                        sx={{
+                                                            minWidth: '100%',
+                                                            height: '100%',
+                                                            padding: '8px 16px',
+                                                            fontSize: '1.4rem',
+                                                            textTransform:
+                                                                'capitalize',
+                                                            color: 'var(--text-color)',
+                                                            justifyContent:
+                                                                'flex-start',
+                                                            borderRadius: '0',
+                                                            '&:hover': {
+                                                                backgroundColor:
+                                                                    'rgb(243, 245, 249)',
+                                                            },
+                                                        }}
+                                                    >
+                                                        {item.title}
+                                                    </Button>
+                                                </Link>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

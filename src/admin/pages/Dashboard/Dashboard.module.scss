@@ -148,6 +148,15 @@
     }
 }
 
+.section3-select {
+    border: none;
+    outline: none;
+
+    & .section3-select-option {
+        font-size: 1.4rem;
+    }
+}
+
 // ---------------
 // ---------------
 .section4 {
