@@ -2,7 +2,6 @@ import styles from './Header.module.scss';
 
 import classNames from 'classnames/bind';
 import SearchIcon from '@mui/icons-material/Search';
-import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Image from '~/components/Image/Image';
@@ -35,6 +34,7 @@ function Header({ leftHeader }) {
                         <h3>ADMIN</h3>
                     </div>
                     <div className={cx('header-right')}>
+                        {/* Search */}
                         <div className={cx('header-search')}>
                             <SearchIcon
                                 sx={{
@@ -49,6 +49,7 @@ function Header({ leftHeader }) {
                                 placeholder="Search anything..."
                             />
                         </div>
+                        {/* Search */}
                         <div className={cx('header-right-body')}>
                             <Image
                                 className={cx('header-avatar')}

@@ -107,12 +107,6 @@ function Dashboard() {
         boxShadow: '0px 1px 3px rgb(3 0 71 / 9%)',
     }));
 
-    const [age, setAge] = useState('');
-
-    const handleChangeSelect = (event) => {
-        setAge(event.target.value);
-    };
-
     return (
         <div className={cx('wrapper')}>
             <Box>
