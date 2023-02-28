@@ -1,4 +1,4 @@
-import styles from './ProductList.module.scss';
+import styles from './CategoryList.module.scss';
 
 import classNames from 'classnames/bind';
 import Image from '~/components/Image/Image';
@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function ProductList({ DATA, showProduct, handleShowAdd }) {
+function CategoryList({ DATA, showCategory, handleShowAdd }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [limit] = useState(5);
 
@@ -35,10 +35,10 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
     return (
         <div
             style={{
-                display: showProduct,
+                display: showCategory,
             }}
         >
-            <h3 className={cx('heading')}>Product List</h3>
+            <h3 className={cx('heading')}>Category List</h3>
             {/* Section */}
             <div className={cx('section')}>
                 {/* Search */}
@@ -53,7 +53,7 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
                     <input
                         className={cx('section-search-input')}
                         type="text"
-                        placeholder="Search Product..."
+                        placeholder="Search Category..."
                     />
                 </div>
                 <Button
@@ -74,7 +74,7 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
                     }}
                     startIcon={<AddIcon />}
                 >
-                    Add Product
+                    Add Category
                 </Button>
             </div>
             {/* Section */}
@@ -92,6 +92,14 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
                                     padding: '12px 16px 12px 24px',
                                 }}
                             >
+                                Id
+                            </TableCell>
+                            <TableCell
+                                sx={{
+                                    fontSize: '1.4rem',
+                                    padding: '12px 16px 12px 24px',
+                                }}
+                            >
                                 Name
                             </TableCell>
                             <TableCell
@@ -100,7 +108,7 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
                                     padding: '12px 16px 12px 24px',
                                 }}
                             >
-                                Category
+                                Image
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -108,23 +116,7 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
                                     padding: '12px 16px 12px 24px',
                                 }}
                             >
-                                Brand
-                            </TableCell>
-                            <TableCell
-                                sx={{
-                                    fontSize: '1.4rem',
-                                    padding: '12px 16px 12px 24px',
-                                }}
-                            >
-                                Price
-                            </TableCell>
-                            <TableCell
-                                sx={{
-                                    fontSize: '1.4rem',
-                                    padding: '12px 16px 12px 24px',
-                                }}
-                            >
-                                Published
+                                Featured
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -146,16 +138,9 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
                                             borderBottom: '1px solid #e3e9ef',
                                         }}
                                     >
-                                        <div className={cx('name-item')}>
-                                            <Image
-                                                className={cx('name-image')}
-                                                src={item.image}
-                                            />
-                                            <div className={cx('name-body')}>
-                                                <p>{item.name}</p>
-                                                <span>{item.id}</span>
-                                            </div>
-                                        </div>
+                                        <span className={cx('id')}>
+                                            {item.id}
+                                        </span>
                                     </TableCell>
                                     <TableCell
                                         sx={{
@@ -163,8 +148,8 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
                                             borderBottom: '1px solid #e3e9ef',
                                         }}
                                     >
-                                        <span className={cx('category')}>
-                                            {item.category}
+                                        <span className={cx('name')}>
+                                            {item.name}
                                         </span>
                                     </TableCell>
                                     <TableCell
@@ -175,18 +160,8 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
                                     >
                                         <Image
                                             className={cx('brand-image')}
-                                            src={item.brandImage}
+                                            src={item.image}
                                         />
-                                    </TableCell>
-                                    <TableCell
-                                        sx={{
-                                            padding: '12px 16px 12px 24px',
-                                            borderBottom: '1px solid #e3e9ef',
-                                        }}
-                                    >
-                                        <span className={cx('price')}>
-                                            {item.price} US$
-                                        </span>
                                     </TableCell>
                                     <TableCell
                                         sx={{
@@ -281,10 +256,10 @@ function ProductList({ DATA, showProduct, handleShowAdd }) {
     );
 }
 
-ProductList.propTypes = {
+CategoryList.propTypes = {
     DATA: PropTypes.array,
-    showProduct: PropTypes.string,
+    showCategory: PropTypes.string,
     handleShowAdd: PropTypes.func,
 };
 
-export default ProductList;
+export default CategoryList;

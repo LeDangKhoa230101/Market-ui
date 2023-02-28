@@ -1,8 +1,9 @@
 import styles from './Products.module.scss';
 import ProductList from '~/admin/pages/Products/components/ProductList';
+import AddProduct from '~/admin/pages/Products/components/AddProduct';
 
 import classNames from 'classnames/bind';
-import { Grid } from '@mui/material';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -190,16 +191,30 @@ const DATA = [
 ];
 
 function Products() {
+    const [showProduct, setShowProduct] = useState('block');
+    const [showAdd, setShowAdd] = useState('none');
+
+    const handleShowAdd = () => {
+        setShowProduct('none');
+        setShowAdd('block');
+    };
+
+    const handleShowProduct = () => {
+        setShowAdd('none');
+        setShowProduct('block');
+    };
+
     return (
         <div className={cx('wrapper')}>
-            {/* <ProductList DATA={DATA} /> */}
-
-            <h3 className={cx('heading')}>Add New Product</h3>
-            <Grid container>
-                <Grid item xs={12}>
-                    <div className={cx('')}></div>
-                </Grid>
-            </Grid>
+            <ProductList
+                DATA={DATA}
+                showProduct={showProduct}
+                handleShowAdd={handleShowAdd}
+            />
+            <AddProduct
+                showAdd={showAdd}
+                handleShowProduct={handleShowProduct}
+            />
         </div>
     );
 }
