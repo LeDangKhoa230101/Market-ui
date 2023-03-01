@@ -30,6 +30,8 @@ import Categories from '~/admin/pages/Categories';
 import Brands from '~/admin/pages/Brands';
 import Orders from '~/admin/pages/Orders';
 import Customers from '~/admin/pages/Customers';
+import Signin from '~/admin/pages/Signin';
+import Signup from '~/admin/pages/Signup';
 
 // ko cần đăng nhập
 const publicRoutes = [
@@ -67,6 +69,8 @@ const adminRoutes = [
     { path: routes.brands, component: Brands },
     { path: routes.orders, component: Orders },
     { path: routes.customers, component: Customers },
+    { path: routes.adminSignin, component: Signin, layout: null },
+    { path: routes.adminSignup, component: Signup, layout: null },
 ];
 
 export { publicRoutes, privateRoutes, adminRoutes };

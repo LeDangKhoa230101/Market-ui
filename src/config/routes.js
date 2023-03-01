@@ -23,6 +23,8 @@ const config = {
     brands: '/admin/brands',
     orders: '/admin/orders',
     customers: '/admin/customers',
+    adminSignin: '/admin/signin',
+    adminSignup: '/admin/signup',
 };
 
 export default config;

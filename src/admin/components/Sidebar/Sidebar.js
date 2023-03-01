@@ -14,6 +14,8 @@ import Button from '@mui/material/Button';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { NavLink } from 'react-router-dom';
 import { Box } from '@mui/material';
+import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const cx = classNames.bind(styles);
 
@@ -47,6 +49,16 @@ const ADMIN = [
         title: 'Customers',
         icon: customers,
         to: '/admin/customers',
+    },
+    {
+        title: 'Signin',
+        icon: <LoginIcon sx={{ width: '22px', height: '22px' }} />,
+        to: '/admin/signin',
+    },
+    {
+        title: 'Signup',
+        icon: <PersonAddIcon sx={{ width: '22px', height: '22px' }} />,
+        to: '/admin/signup',
     },
 ];
 
