@@ -1,4 +1,4 @@
-import styles from './CategoryList.module.scss';
+import styles from './BrandsList.module.scss';
 
 import classNames from 'classnames/bind';
 import Image from '~/components/Image/Image';
@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function CategoryList({ DATA, showCategory, handleShowAdd }) {
+function BrandsList({ DATA, showBrands, handleShowAdd }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [limit] = useState(5);
 
@@ -35,10 +35,10 @@ function CategoryList({ DATA, showCategory, handleShowAdd }) {
     return (
         <div
             style={{
-                display: showCategory,
+                display: showBrands,
             }}
         >
-            <h3 className={cx('heading')}>Category List</h3>
+            <h3 className={cx('heading')}>Product Brands</h3>
             {/* Section */}
             <div className={cx('section')}>
                 {/* Search */}
@@ -53,7 +53,7 @@ function CategoryList({ DATA, showCategory, handleShowAdd }) {
                     <input
                         className={cx('section-search-input')}
                         type="text"
-                        placeholder="Search Category..."
+                        placeholder="Search Brands..."
                     />
                 </div>
                 <Button
@@ -74,7 +74,7 @@ function CategoryList({ DATA, showCategory, handleShowAdd }) {
                     }}
                     startIcon={<AddIcon />}
                 >
-                    Add Category
+                    Add Brands
                 </Button>
             </div>
             {/* Section */}
@@ -111,7 +111,7 @@ function CategoryList({ DATA, showCategory, handleShowAdd }) {
                                     padding: '12px 16px 12px 24px',
                                 }}
                             >
-                                Image
+                                Logo
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -216,27 +216,6 @@ function CategoryList({ DATA, showCategory, handleShowAdd }) {
                                                 },
                                             }}
                                         >
-                                            <EditIcon
-                                                sx={{
-                                                    minWidth: '20px',
-                                                    height: '20px',
-                                                }}
-                                            />
-                                        </Button>
-                                        <Button
-                                            sx={{
-                                                minWidth: '35px',
-                                                height: '35px',
-                                                borderRadius: '999px',
-                                                color: 'rgb(125, 135, 156)',
-
-                                                '&:hover': {
-                                                    backgroundColor:
-                                                        'rgba(0, 0, 0, 0.04)',
-                                                    color: 'rgb(78, 151, 253)',
-                                                },
-                                            }}
-                                        >
                                             <DeleteIcon
                                                 sx={{
                                                     minWidth: '20px',
@@ -265,10 +244,10 @@ function CategoryList({ DATA, showCategory, handleShowAdd }) {
     );
 }
 
-CategoryList.propTypes = {
+BrandsList.propTypes = {
     DATA: PropTypes.array,
-    showCategory: PropTypes.string,
+    showBrands: PropTypes.string,
     handleShowAdd: PropTypes.func,
 };
 
-export default CategoryList;
+export default BrandsList;
