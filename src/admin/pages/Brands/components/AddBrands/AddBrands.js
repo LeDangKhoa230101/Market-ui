@@ -80,7 +80,7 @@ function AddBrands({ showAdd, handleShowBrands }) {
                                         className={cx('upload-input')}
                                         onChange={onImageChange}
                                     />
-                                    <h5>Drag & drop product image here</h5>
+                                    <h5>Drag & drop brand image here</h5>
                                     <span className={cx('upload-or')}>OR</span>
                                     <Button
                                         sx={{
@@ -141,7 +141,7 @@ function AddBrands({ showAdd, handleShowBrands }) {
                                         },
                                     }}
                                 >
-                                    Save Brands
+                                    Save Brand
                                 </Button>
                             </Grid>
                         </Grid>

@@ -1,6 +1,7 @@
 import styles from './Products.module.scss';
 import ProductList from '~/admin/pages/Products/components/ProductList';
 import AddProduct from '~/admin/pages/Products/components/AddProduct';
+import EditProduct from '~/admin/pages/Products/components/EditProduct';
 
 import classNames from 'classnames/bind';
 import { useState } from 'react';
@@ -193,6 +194,7 @@ const DATA = [
 function Products() {
     const [showProduct, setShowProduct] = useState('block');
     const [showAdd, setShowAdd] = useState('none');
+    const [showEdit, setShowEdit] = useState('none');
 
     const handleShowAdd = () => {
         setShowProduct('none');
@@ -201,7 +203,14 @@ function Products() {
 
     const handleShowProduct = () => {
         setShowAdd('none');
+        setShowEdit('none');
         setShowProduct('block');
+    };
+
+    const handleShowEdit = () => {
+        setShowAdd('none');
+        setShowProduct('none');
+        setShowEdit('block');
     };
 
     return (
@@ -210,9 +219,14 @@ function Products() {
                 DATA={DATA}
                 showProduct={showProduct}
                 handleShowAdd={handleShowAdd}
+                handleShowEdit={handleShowEdit}
             />
             <AddProduct
                 showAdd={showAdd}
+                handleShowProduct={handleShowProduct}
+            />
+            <EditProduct
+                showEdit={showEdit}
                 handleShowProduct={handleShowProduct}
             />
         </div>

@@ -1,4 +1,4 @@
-import styles from './ProductList.module.scss';
+import styles from './CustomersList.module.scss';
 
 import classNames from 'classnames/bind';
 import Image from '~/components/Image/Image';
@@ -12,7 +12,6 @@ import {
     TableHead,
     TableRow,
 } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
@@ -20,7 +19,7 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
+function CustomersList({ DATA, showCustomer, handleShowEdit }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [limit] = useState(5);
 
@@ -35,10 +34,10 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
     return (
         <div
             style={{
-                display: showProduct,
+                display: showCustomer,
             }}
         >
-            <h3 className={cx('heading')}>Product List</h3>
+            <h3 className={cx('heading')}>Customers</h3>
             {/* Section */}
             <div className={cx('section')}>
                 {/* Search */}
@@ -53,29 +52,9 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                     <input
                         className={cx('section-search-input')}
                         type="text"
-                        placeholder="Search Product..."
+                        placeholder="Search Customer..."
                     />
                 </div>
-                <Button
-                    onClick={handleShowAdd}
-                    sx={{
-                        height: '44px',
-                        color: 'var(--white)',
-                        padding: '6px 16px',
-                        fontSize: '1.5rem',
-                        backgroundColor: 'rgb(78, 151, 253)',
-                        boxShadow: 'rgb(43 52 69 / 10%) 0px 4px 16px',
-                        textTransform: 'capitalize',
-
-                        '&:hover': {
-                            backgroundColor: 'rgb(78, 151, 253)',
-                            opacity: '0.8',
-                        },
-                    }}
-                    startIcon={<AddIcon />}
-                >
-                    Add Product
-                </Button>
             </div>
             {/* Section */}
             <div className={cx('table')}>
@@ -100,7 +79,7 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                     padding: '12px 16px 12px 24px',
                                 }}
                             >
-                                Category
+                                Phone
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -108,7 +87,7 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                     padding: '12px 16px 12px 24px',
                                 }}
                             >
-                                Brand
+                                Email
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -116,7 +95,7 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                     padding: '12px 16px 12px 24px',
                                 }}
                             >
-                                Price
+                                Wallet Balance
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -124,7 +103,7 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                     padding: '12px 16px 12px 24px',
                                 }}
                             >
-                                Published
+                                No Of Orders
                             </TableCell>
                             <TableCell
                                 sx={{
@@ -146,15 +125,9 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                             borderBottom: '1px solid #e3e9ef',
                                         }}
                                     >
-                                        <div className={cx('name-item')}>
-                                            <Image
-                                                className={cx('name-image')}
-                                                src={item.image}
-                                            />
-                                            <div className={cx('name-body')}>
-                                                <p>{item.name}</p>
-                                                <span>{item.id}</span>
-                                            </div>
+                                        <div className={cx('name')}>
+                                            <Image src={item.image} />
+                                            <span>{item.name}</span>
                                         </div>
                                     </TableCell>
                                     <TableCell
@@ -163,8 +136,8 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                             borderBottom: '1px solid #e3e9ef',
                                         }}
                                     >
-                                        <span className={cx('category')}>
-                                            {item.category}
+                                        <span className={cx('phone')}>
+                                            {item.phone}
                                         </span>
                                     </TableCell>
                                     <TableCell
@@ -173,19 +146,8 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                             borderBottom: '1px solid #e3e9ef',
                                         }}
                                     >
-                                        <Image
-                                            className={cx('brand-image')}
-                                            src={item.brandImage}
-                                        />
-                                    </TableCell>
-                                    <TableCell
-                                        sx={{
-                                            padding: '12px 16px 12px 24px',
-                                            borderBottom: '1px solid #e3e9ef',
-                                        }}
-                                    >
-                                        <span className={cx('price')}>
-                                            {item.price} US$
+                                        <span className={cx('email')}>
+                                            {item.email}
                                         </span>
                                     </TableCell>
                                     <TableCell
@@ -194,21 +156,19 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                             borderBottom: '1px solid #e3e9ef',
                                         }}
                                     >
-                                        <div
-                                            className={cx(
-                                                'form-switch',
-                                                'switch',
-                                            )}
-                                        >
-                                            <input
-                                                className={cx(
-                                                    'form-check-input',
-                                                    'check-input',
-                                                )}
-                                                type="checkbox"
-                                                role="switch"
-                                            />
-                                        </div>
+                                        <span className={cx('wallet')}>
+                                            {item.wallet} US$
+                                        </span>
+                                    </TableCell>
+                                    <TableCell
+                                        sx={{
+                                            padding: '12px 16px 12px 24px',
+                                            borderBottom: '1px solid #e3e9ef',
+                                        }}
+                                    >
+                                        <span className={cx('noOfOrder')}>
+                                            {item.noOfOrder}
+                                        </span>
                                     </TableCell>
                                     <TableCell
                                         sx={{
@@ -216,51 +176,49 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
                                             borderBottom: '1px solid #e3e9ef',
                                         }}
                                     >
-                                        <div className={cx('actions')}>
-                                            <Button
-                                                onClick={handleShowEdit}
-                                                sx={{
-                                                    minWidth: '35px',
-                                                    height: '35px',
-                                                    borderRadius: '999px',
-                                                    color: 'rgb(125, 135, 156)',
+                                        <Button
+                                            onClick={handleShowEdit}
+                                            sx={{
+                                                minWidth: '35px',
+                                                height: '35px',
+                                                borderRadius: '999px',
+                                                color: 'rgb(125, 135, 156)',
 
-                                                    '&:hover': {
-                                                        backgroundColor:
-                                                            'rgba(0, 0, 0, 0.04)',
-                                                        color: 'rgb(78, 151, 253)',
-                                                    },
-                                                }}
-                                            >
-                                                <EditIcon
-                                                    sx={{
-                                                        minWidth: '20px',
-                                                        height: '20px',
-                                                    }}
-                                                />
-                                            </Button>
-                                            <Button
+                                                '&:hover': {
+                                                    backgroundColor:
+                                                        'rgba(0, 0, 0, 0.04)',
+                                                    color: 'rgb(78, 151, 253)',
+                                                },
+                                            }}
+                                        >
+                                            <EditIcon
                                                 sx={{
-                                                    minWidth: '35px',
-                                                    height: '35px',
-                                                    borderRadius: '999px',
-                                                    color: 'rgb(125, 135, 156)',
-
-                                                    '&:hover': {
-                                                        backgroundColor:
-                                                            'rgba(0, 0, 0, 0.04)',
-                                                        color: 'rgb(78, 151, 253)',
-                                                    },
+                                                    minWidth: '20px',
+                                                    height: '20px',
                                                 }}
-                                            >
-                                                <DeleteIcon
-                                                    sx={{
-                                                        minWidth: '20px',
-                                                        height: '20px',
-                                                    }}
-                                                />
-                                            </Button>
-                                        </div>
+                                            />
+                                        </Button>
+                                        <Button
+                                            sx={{
+                                                minWidth: '35px',
+                                                height: '35px',
+                                                borderRadius: '999px',
+                                                color: 'rgb(125, 135, 156)',
+
+                                                '&:hover': {
+                                                    backgroundColor:
+                                                        'rgba(0, 0, 0, 0.04)',
+                                                    color: 'rgb(78, 151, 253)',
+                                                },
+                                            }}
+                                        >
+                                            <DeleteIcon
+                                                sx={{
+                                                    minWidth: '20px',
+                                                    height: '20px',
+                                                }}
+                                            />
+                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             );
@@ -282,11 +240,10 @@ function ProductList({ DATA, showProduct, handleShowAdd, handleShowEdit }) {
     );
 }
 
-ProductList.propTypes = {
+CustomersList.propTypes = {
     DATA: PropTypes.array,
-    showProduct: PropTypes.string,
-    handleShowAdd: PropTypes.func,
+    showCustomer: PropTypes.string,
     handleShowEdit: PropTypes.func,
 };
 
-export default ProductList;
+export default CustomersList;

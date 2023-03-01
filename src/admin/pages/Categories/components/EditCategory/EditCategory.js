@@ -1,14 +1,15 @@
 import styles from './EditCategory.module.scss';
+import Image from '~/components/Image/Image';
 
 import classNames from 'classnames/bind';
 import { Button, Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
-import Image from '~/components/Image/Image';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function EditCategory() {
+function EditCategory({ showEdit, handleShowCategory }) {
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
 
@@ -26,9 +27,14 @@ function EditCategory() {
     };
 
     return (
-        <div>
-            <h3 className={cx('heading')}>Edit EditCategory</h3>
+        <div
+            style={{
+                display: showEdit,
+            }}
+        >
+            <h3 className={cx('heading')}>Edit Category</h3>
             <Button
+                onClick={handleShowCategory}
                 sx={{
                     fontSize: '1.4rem',
                     backgroundColor: 'rgb(78, 151, 253)',
@@ -50,25 +56,10 @@ function EditCategory() {
                     <div className={cx('container')}>
                         <Grid container spacing={3}>
                             {/* Section 1 */}
-                            <Grid item xs={6}>
+                            <Grid item xs={12}>
                                 <TextField
                                     fullWidth
                                     label="Name"
-                                    variant="outlined"
-                                    sx={{
-                                        '& .MuiFormLabel-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                        '& .MuiInputBase-root': {
-                                            fontSize: '1.4rem',
-                                        },
-                                    }}
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Select Parent Category"
                                     variant="outlined"
                                     sx={{
                                         '& .MuiFormLabel-root': {
@@ -89,7 +80,7 @@ function EditCategory() {
                                         className={cx('upload-input')}
                                         onChange={onImageChange}
                                     />
-                                    <h5>Drag & drop product image here</h5>
+                                    <h5>Drag & drop category image here</h5>
                                     <span className={cx('upload-or')}>OR</span>
                                     <Button
                                         sx={{
@@ -160,5 +151,10 @@ function EditCategory() {
         </div>
     );
 }
+
+EditCategory.propTypes = {
+    showEdit: PropTypes.string,
+    handleShowCategory: PropTypes.func,
+};
 
 export default EditCategory;

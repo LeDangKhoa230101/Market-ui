@@ -1,6 +1,7 @@
 import styles from './Categories.module.scss';
 import CategoryList from '~/admin/pages/Categories/components/CategoryList';
 import AddCategory from '~/admin/pages/Categories/components/AddCategory';
+import EditCategory from '~/admin/pages/Categories/components/EditCategory';
 
 import classNames from 'classnames/bind';
 import { useState } from 'react';
@@ -121,6 +122,7 @@ const DATA = [
 function Categories() {
     const [showCategory, setShowCategory] = useState('block');
     const [showAdd, setShowAdd] = useState('none');
+    const [showEdit, setShowEdit] = useState('none');
 
     const handleShowAdd = () => {
         setShowCategory('none');
@@ -129,7 +131,14 @@ function Categories() {
 
     const handleShowCategory = () => {
         setShowAdd('none');
+        setShowEdit('none');
         setShowCategory('block');
+    };
+
+    const handleShowEdit = () => {
+        setShowCategory('none');
+        setShowAdd('none');
+        setShowEdit('block');
     };
 
     return (
@@ -138,9 +147,14 @@ function Categories() {
                 DATA={DATA}
                 showCategory={showCategory}
                 handleShowAdd={handleShowAdd}
+                handleShowEdit={handleShowEdit}
             />
             <AddCategory
                 showAdd={showAdd}
+                handleShowCategory={handleShowCategory}
+            />
+            <EditCategory
+                showEdit={showEdit}
                 handleShowCategory={handleShowCategory}
             />
         </div>

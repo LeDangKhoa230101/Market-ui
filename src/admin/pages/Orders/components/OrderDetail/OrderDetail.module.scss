@@ -1,0 +1,95 @@
+.heading {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.container {
+    padding: 24px;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.order-id,
+.order-placed {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+
+    & span {
+        margin-right: 8px;
+        color: rgb(125, 135, 156);
+    }
+
+    & p {
+        margin-bottom: 0;
+    }
+}
+
+.item {
+    display: flex;
+    align-items: center;
+
+    & .image {
+        width: 64px;
+        height: 64px;
+        margin-right: 6px;
+    }
+}
+
+.item-body {
+    font-size: 1.5rem;
+
+    & span {
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    & p {
+        margin-bottom: 0;
+    }
+}
+
+.property {
+    font-size: 1.5rem;
+    color: #7d879c;
+}
+
+.title {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+
+    & span {
+        color: #7d879c;
+    }
+
+    & p {
+        font-weight: 500;
+    }
+}
+
+hr {
+    color: #c1c9d9;
+    margin: 16px 0;
+}
+
+.total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+    font-weight: 500;
+}

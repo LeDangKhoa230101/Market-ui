@@ -1,4 +1,4 @@
-import styles from './EditCategory.module.scss';
+import styles from './EditCustomer.module.scss';
 
 import classNames from 'classnames/bind';
 import { Button, Grid } from '@mui/material';
@@ -8,7 +8,7 @@ import Image from '~/components/Image/Image';
 
 const cx = classNames.bind(styles);
 
-function EditCategory() {
+function EditCustomer({ showEdit, handleShowCustomer }) {
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
 
@@ -26,9 +26,14 @@ function EditCategory() {
     };
 
     return (
-        <div>
-            <h3 className={cx('heading')}>Edit EditCategory</h3>
+        <div
+            style={{
+                display: showEdit,
+            }}
+        >
+            <h3 className={cx('heading')}>Edit Customer</h3>
             <Button
+                onClick={handleShowCustomer}
                 sx={{
                     fontSize: '1.4rem',
                     backgroundColor: 'rgb(78, 151, 253)',
@@ -53,7 +58,7 @@ function EditCategory() {
                             <Grid item xs={6}>
                                 <TextField
                                     fullWidth
-                                    label="Name"
+                                    label="Full Name"
                                     variant="outlined"
                                     sx={{
                                         '& .MuiFormLabel-root': {
@@ -68,8 +73,9 @@ function EditCategory() {
                             <Grid item xs={6}>
                                 <TextField
                                     fullWidth
-                                    label="Select Parent Category"
+                                    label="Phone"
                                     variant="outlined"
+                                    type="number"
                                     sx={{
                                         '& .MuiFormLabel-root': {
                                             fontSize: '1.4rem',
@@ -89,7 +95,7 @@ function EditCategory() {
                                         className={cx('upload-input')}
                                         onChange={onImageChange}
                                     />
-                                    <h5>Drag & drop product image here</h5>
+                                    <h5>Drag & drop avatar image here</h5>
                                     <span className={cx('upload-or')}>OR</span>
                                     <Button
                                         sx={{
@@ -134,6 +140,23 @@ function EditCategory() {
                             </Grid>
                             {/* Section 4 */}
                             <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    label="Email"
+                                    variant="outlined"
+                                    type="email"
+                                    sx={{
+                                        '& .MuiFormLabel-root': {
+                                            fontSize: '1.4rem',
+                                        },
+                                        '& .MuiInputBase-root': {
+                                            fontSize: '1.4rem',
+                                        },
+                                    }}
+                                />
+                            </Grid>
+                            {/* Section 5 */}
+                            <Grid item xs={12}>
                                 <Button
                                     sx={{
                                         fontSize: '1.4rem',
@@ -150,7 +173,7 @@ function EditCategory() {
                                         },
                                     }}
                                 >
-                                    Save Category
+                                    Save Customer
                                 </Button>
                             </Grid>
                         </Grid>
@@ -161,4 +184,4 @@ function EditCategory() {
     );
 }
 
-export default EditCategory;
+export default EditCustomer;

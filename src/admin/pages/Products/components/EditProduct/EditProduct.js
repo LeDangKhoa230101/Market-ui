@@ -1,14 +1,15 @@
 import styles from './EditProduct.module.scss';
+import Image from '~/components/Image/Image';
 
 import classNames from 'classnames/bind';
 import { Button, Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
-import Image from '~/components/Image/Image';
+import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function EditProduct() {
+function EditProduct({ showEdit, handleShowProduct }) {
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
 
@@ -26,9 +27,14 @@ function EditProduct() {
     };
 
     return (
-        <div>
+        <div
+            style={{
+                display: showEdit,
+            }}
+        >
             <h3 className={cx('heading')}>Edit Product</h3>
             <Button
+                onClick={handleShowProduct}
                 sx={{
                     fontSize: '1.4rem',
                     backgroundColor: 'rgb(78, 151, 253)',
@@ -209,5 +215,10 @@ function EditProduct() {
         </div>
     );
 }
+
+EditProduct.propTypes = {
+    showEdit: PropTypes.string,
+    handleShowProduct: PropTypes.func,
+};
 
 export default EditProduct;

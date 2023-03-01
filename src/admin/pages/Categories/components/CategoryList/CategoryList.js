@@ -20,7 +20,7 @@ import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 
-function CategoryList({ DATA, showCategory, handleShowAdd }) {
+function CategoryList({ DATA, showCategory, handleShowAdd, handleShowEdit }) {
     const [currentPage, setCurrentPage] = useState(1);
     const [limit] = useState(5);
 
@@ -202,12 +202,13 @@ function CategoryList({ DATA, showCategory, handleShowAdd }) {
                                         }}
                                     >
                                         <Button
+                                            onClick={handleShowEdit}
                                             sx={{
                                                 minWidth: '35px',
                                                 height: '35px',
                                                 borderRadius: '999px',
                                                 color: 'rgb(125, 135, 156)',
-                                                marginLeft: '10px',
+                                                marginLeft: '14px',
 
                                                 '&:hover': {
                                                     backgroundColor:
@@ -269,6 +270,7 @@ CategoryList.propTypes = {
     DATA: PropTypes.array,
     showCategory: PropTypes.string,
     handleShowAdd: PropTypes.func,
+    handleShowEdit: PropTypes.func,
 };
 
 export default CategoryList;
