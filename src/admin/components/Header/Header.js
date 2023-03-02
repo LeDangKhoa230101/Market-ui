@@ -1,11 +1,18 @@
 import styles from './Header.module.scss';
 import Image from '~/components/Image/Image';
+import Sidebar from '~/admin/components/Sidebar';
+import Search from '~/admin/components/Search';
 
 import classNames from 'classnames/bind';
-import SearchIcon from '@mui/icons-material/Search';
-import { Button } from '@mui/material';
+import { Button, Drawer } from '@mui/material';
 import { Link } from 'react-router-dom';
 import PersonIcon from '@mui/icons-material/Person';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
+
+import { useMediaQuery } from 'react-responsive';
+import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
 
 const cx = classNames.bind(styles);
 
@@ -22,7 +29,26 @@ const MENU = [
 ];
 
 function Header({ leftHeader }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
     const currentUser = false;
+
+    const [showSidebar, setShowSidebar] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
+
+    const handleHideSidebar = () => {
+        setShowSidebar(false);
+    };
+
+    const handleHideSearch = () => {
+        setShowSearch(false);
+    };
 
     return (
         <div
@@ -35,23 +61,92 @@ function Header({ leftHeader }) {
                 <div className={cx('content')}>
                     <div className={cx('header-left')}>
                         <h3>ADMIN</h3>
+                        {/* Menu response */}
+                        {isTabletAndMobile && (
+                            <Button
+                                onClick={() => setShowSidebar(true)}
+                                sx={{
+                                    minWidth: '40px',
+                                    height: '40px',
+                                    color: '#4e97fd',
+                                }}
+                            >
+                                <MenuIcon
+                                    sx={{
+                                        minWidth: '24px',
+                                        height: '24px',
+                                    }}
+                                />
+                            </Button>
+                        )}
+                        <Drawer open={showSidebar} onClose={handleHideSidebar}>
+                            <Sidebar handleHideSidebar={handleHideSidebar} />
+                        </Drawer>
                     </div>
+
                     <div className={cx('header-right')}>
                         {/* Search */}
-                        <div className={cx('header-search')}>
-                            <SearchIcon
+                        {isDesktop ? (
+                            <Search />
+                        ) : isTabletAndMobile ? (
+                            <Button
+                                onClick={() => setShowSearch(true)}
                                 sx={{
-                                    width: '24px',
-                                    height: '24px',
-                                    color: '#AEB4BE',
+                                    minWidth: '40px',
+                                    height: '40px',
+                                    borderRadius: '999px',
+                                    color: '#7d879c',
+                                    backgroundColor: '#f6f9fc',
+                                    marginRight: '8px',
+
+                                    '&:hover': {
+                                        backgroundColor: '#f6f9fc',
+                                    },
                                 }}
-                            />
-                            <input
-                                className={cx('header-search-input')}
-                                type="text"
-                                placeholder="Search anything..."
-                            />
-                        </div>
+                            >
+                                <SearchIcon
+                                    sx={{
+                                        width: '24px',
+                                        height: '24px',
+                                    }}
+                                />
+                            </Button>
+                        ) : null}
+                        <Drawer
+                            open={showSearch}
+                            onClose={handleHideSearch}
+                            anchor="top"
+                            sx={{
+                                '& .MuiPaper-root': {
+                                    height: '100%',
+                                    padding: '24px',
+                                    alignItems: 'flex-end',
+                                },
+                            }}
+                        >
+                            <Button
+                                onClick={handleHideSearch}
+                                sx={{
+                                    minWidth: '40px',
+                                    height: '40px',
+                                    color: '#7d879c',
+                                    backgroundColor: 'transparent',
+                                    marginBottom: '10px',
+
+                                    '&:hover': {
+                                        backgroundColor: 'transparent',
+                                    },
+                                }}
+                            >
+                                <CloseIcon
+                                    sx={{
+                                        width: '24px',
+                                        height: '24px',
+                                    }}
+                                />
+                            </Button>
+                            <Search />
+                        </Drawer>
                         {/* Search */}
 
                         {/* User */}

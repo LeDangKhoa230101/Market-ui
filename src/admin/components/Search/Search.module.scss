@@ -1,0 +1,27 @@
+.header-search {
+    width: 240px;
+    display: flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 8px;
+    background-color: #f6f9fc;
+    margin-right: 24px;
+
+    & .header-search-input {
+        background: none;
+        margin-left: 8px;
+    }
+}
+
+// tablet and mobile
+@media (max-width: 1223px) {
+    .header-search {
+        width: 100%;
+        padding: 14px 10px;
+        margin-right: 0;
+
+        & .header-search-input {
+            font-size: 1.7rem;
+        }
+    }
+}

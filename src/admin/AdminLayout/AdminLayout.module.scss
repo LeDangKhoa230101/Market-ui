@@ -13,3 +13,12 @@
 .content {
     transition: all 0.3s;
 }
+
+// -----------------
+// -----------------
+// tablet and mobile
+@media (max-width: 1223px) {
+    .admin-container {
+        width: 100%;
+    }
+}

@@ -17,6 +17,9 @@ import { Box } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
+import { useMediaQuery } from 'react-responsive';
+import CloseIcon from '@mui/icons-material/Close';
+
 const cx = classNames.bind(styles);
 
 const ADMIN = [
@@ -69,17 +72,34 @@ function Sidebar({
     handleSetWidthSidebar,
     handleMouseOverSidebar,
     handleMouseOutSidebar,
+    handleHideSidebar,
 }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
     return (
         <Box
             onMouseOver={handleMouseOverSidebar}
             onMouseOut={handleMouseOutSidebar}
             className={cx('sidebar')}
             sx={{
-                width: widthSidebar,
+                width: isDesktop
+                    ? widthSidebar
+                    : isTabletAndMobile
+                    ? '280px'
+                    : null,
 
                 '&:hover': {
-                    width: hoverSidebar,
+                    width: isDesktop
+                        ? hoverSidebar
+                        : isTabletAndMobile
+                        ? '280px'
+                        : null,
                 },
             }}
         >
@@ -94,13 +114,21 @@ function Sidebar({
                     }
                     alt="logo"
                 />
-                <NavigateBeforeIcon
-                    onClick={handleSetWidthSidebar}
-                    className={cx('left-icon')}
-                    sx={{
-                        rotate: rotate,
-                    }}
-                />
+                {isDesktop && (
+                    <NavigateBeforeIcon
+                        onClick={handleSetWidthSidebar}
+                        className={cx('left-icon')}
+                        sx={{
+                            rotate: rotate,
+                        }}
+                    />
+                )}
+                {isTabletAndMobile && (
+                    <CloseIcon
+                        onClick={handleHideSidebar}
+                        className={cx('left-icon')}
+                    />
+                )}
             </div>
 
             {/* ADMIN */}
@@ -129,22 +157,43 @@ function Sidebar({
                                 marginBottom: '4px',
                             }}
                         >
-                            <NavLink
-                                to={item.to}
-                                className={(nav) =>
-                                    cx('admin-btn', {
-                                        active: nav.isActive ? 'active' : '',
-                                    })
-                                }
-                            >
-                                {item.icon}
-                                {hoverSidebar === '280px' ||
-                                widthSidebar === '280px' ? (
+                            {isDesktop ? (
+                                <NavLink
+                                    to={item.to}
+                                    className={(nav) =>
+                                        cx('admin-btn', {
+                                            active: nav.isActive
+                                                ? 'active'
+                                                : '',
+                                        })
+                                    }
+                                >
+                                    {item.icon}
+                                    {hoverSidebar === '280px' ||
+                                    widthSidebar === '280px' ? (
+                                        <span className={cx('title')}>
+                                            {item.title}
+                                        </span>
+                                    ) : null}
+                                </NavLink>
+                            ) : isTabletAndMobile ? (
+                                <NavLink
+                                    onClick={handleHideSidebar}
+                                    to={item.to}
+                                    className={(nav) =>
+                                        cx('admin-btn', {
+                                            active: nav.isActive
+                                                ? 'active'
+                                                : '',
+                                        })
+                                    }
+                                >
+                                    {item.icon}
                                     <span className={cx('title')}>
                                         {item.title}
                                     </span>
-                                ) : null}
-                            </NavLink>
+                                </NavLink>
+                            ) : null}
                         </Button>
                     );
                 })}

@@ -269,3 +269,99 @@ export const lineOptionsAnalytics = {
         fontSize: '14px',
     },
 };
+
+// Analytics Mobile
+export const lineDataAnalyticsMobile = [
+    {
+        name: 'Sales',
+        data: [15, 45, 12, 50, 75, 13, 30, 99, 75, 90, 55, 15],
+    },
+    {
+        name: 'Expense',
+        data: [2, 48, 19, 59, 25, 9, 36, 9, 79, 70, 57, 5],
+    },
+];
+
+export const lineOptionsAnalyticsMobile = {
+    chart: {
+        type: 'bar',
+        height: 700,
+        toolbar: {
+            show: false,
+        },
+    },
+    plotOptions: {
+        bar: {
+            horizontal: true,
+            dataLabels: {
+                position: 'top',
+            },
+            columnWidth: '28px',
+            borderRadius: 4,
+        },
+    },
+    dataLabels: {
+        enabled: true,
+        offsetX: -6,
+        style: {
+            fontSize: '12px',
+            colors: ['#fff'],
+        },
+    },
+    colors: ['#68a6fd', '#9099ab'],
+    stroke: {
+        width: [4, 0, 0],
+    },
+    tooltip: {
+        shared: true,
+        intersect: false,
+    },
+    xaxis: {
+        categories: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+        ],
+        labels: {
+            style: {
+                fontSize: '14px',
+                colors: '#9099ab',
+                fontWeight: 400,
+            },
+        },
+    },
+    markers: {
+        size: 6,
+        strokeWidth: 3,
+        fillOpacity: 0,
+        strokeOpacity: 0,
+        hover: {
+            size: 8,
+        },
+    },
+    // yaxis: {
+    //     tickAmount: 5,
+    //     min: 0,
+    //     max: 100,
+    //     labels: {
+    //         style: {
+    //             fontSize: '14px',
+    //             colors: '#9099ab',
+    //             fontWeight: 400,
+    //         },
+    //     },
+    // },
+    legend: {
+        position: 'top',
+        fontSize: '14px',
+    },
+};

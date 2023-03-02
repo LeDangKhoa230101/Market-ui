@@ -32,21 +32,6 @@
     align-items: center;
 }
 
-.header-search {
-    width: 240px;
-    display: flex;
-    align-items: center;
-    padding: 7px 10px;
-    border-radius: 8px;
-    background-color: #f6f9fc;
-    margin-right: 24px;
-
-    & .header-search-input {
-        background: none;
-        margin-left: 8px;
-    }
-}
-
 .header-avatar {
     position: relative;
     width: 40px;
@@ -137,4 +122,17 @@
 .hr {
     margin: 8px 0px;
     border: 1px dashed rgb(243, 245, 249);
+}
+
+// -----------------
+// tablet and mobile
+@media (max-width: 1223px) {
+    .header-left {
+        display: flex;
+        align-items: center;
+
+        & h3 {
+            margin-right: 10px;
+        }
+    }
 }

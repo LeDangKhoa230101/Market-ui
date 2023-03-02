@@ -5,9 +5,19 @@ import Sidebar from '~/admin/components/Sidebar';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function AdminLayout({ children }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
     const [widthSidebar, setWidthSidebar] = useState('280px');
     const [hoverSidebar, setHoverSidebar] = useState('none');
     const [rotate, setRotate] = useState('');
@@ -54,23 +64,33 @@ function AdminLayout({ children }) {
     return (
         <div className={cx('admin')}>
             {/* Sidebar */}
-            <Sidebar
-                widthSidebar={widthSidebar}
-                hoverSidebar={hoverSidebar}
-                rotate={rotate}
-                handleSetWidthSidebar={handleSetWidthSidebar}
-                handleMouseOverSidebar={handleMouseOverSidebar}
-                handleMouseOutSidebar={handleMouseOutSidebar}
-            />
+            {isDesktop && (
+                <Sidebar
+                    widthSidebar={widthSidebar}
+                    hoverSidebar={hoverSidebar}
+                    rotate={rotate}
+                    handleSetWidthSidebar={handleSetWidthSidebar}
+                    handleMouseOverSidebar={handleMouseOverSidebar}
+                    handleMouseOutSidebar={handleMouseOutSidebar}
+                />
+            )}
 
             {/* Container */}
             <div
                 className={cx('admin-container')}
                 style={{
-                    marginLeft: marginLeftContainer,
+                    marginLeft: isDesktop
+                        ? marginLeftContainer
+                        : isTabletAndMobile
+                        ? '0'
+                        : null,
                 }}
             >
-                <Header leftHeader={leftHeader} />
+                <Header
+                    leftHeader={
+                        isDesktop ? leftHeader : isTabletAndMobile ? '0' : null
+                    }
+                />
                 <div
                     className={cx('content')}
                     style={{

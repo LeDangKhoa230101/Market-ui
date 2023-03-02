@@ -1,5 +1,4 @@
 .wrapper {
-    min-width: 100vh;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -122,5 +121,16 @@
         background-color: var(--primary-color) !important;
         border: none;
         outline: none;
+    }
+}
+
+// ------------------
+// ------------------
+// ------------------
+// ------------------
+// mobile
+@media (max-width: 767px) {
+    .form {
+        min-width: 330px;
     }
 }
