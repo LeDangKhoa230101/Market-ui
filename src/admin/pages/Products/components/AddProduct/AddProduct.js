@@ -7,9 +7,27 @@ import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function AddProduct({ showAdd, handleShowProduct }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTabletAndMobile = useMediaQuery({
+        query: '(max-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
 
@@ -56,7 +74,18 @@ function AddProduct({ showAdd, handleShowProduct }) {
                     <div className={cx('container')}>
                         <Grid container spacing={3}>
                             {/* Section 1 */}
-                            <Grid item xs={6}>
+                            <Grid
+                                item
+                                xs={
+                                    isDesktop
+                                        ? 6
+                                        : isTablet
+                                        ? 6
+                                        : isMobile
+                                        ? 12
+                                        : null
+                                }
+                            >
                                 <TextField
                                     fullWidth
                                     label="Name"
@@ -71,7 +100,18 @@ function AddProduct({ showAdd, handleShowProduct }) {
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid
+                                item
+                                xs={
+                                    isDesktop
+                                        ? 6
+                                        : isTablet
+                                        ? 6
+                                        : isMobile
+                                        ? 12
+                                        : null
+                                }
+                            >
                                 <TextField
                                     fullWidth
                                     label="Category"
@@ -156,7 +196,18 @@ function AddProduct({ showAdd, handleShowProduct }) {
                                 />
                             </Grid>
                             {/* Section 5 */}
-                            <Grid item xs={6}>
+                            <Grid
+                                item
+                                xs={
+                                    isDesktop
+                                        ? 6
+                                        : isTablet
+                                        ? 6
+                                        : isMobile
+                                        ? 12
+                                        : null
+                                }
+                            >
                                 <TextField
                                     fullWidth
                                     label="Regular Price"
@@ -172,7 +223,18 @@ function AddProduct({ showAdd, handleShowProduct }) {
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid
+                                item
+                                xs={
+                                    isDesktop
+                                        ? 6
+                                        : isTablet
+                                        ? 6
+                                        : isMobile
+                                        ? 12
+                                        : null
+                                }
+                            >
                                 <TextField
                                     fullWidth
                                     label="Sale Price"

@@ -5,6 +5,7 @@ import Image from '~/components/Image/Image';
 import Pagination from '~/admin/components/Pagination';
 import SearchIcon from '@mui/icons-material/Search';
 import {
+    Box,
     Button,
     Table,
     TableBody,
@@ -17,7 +18,31 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import TableContainer from '@material-ui/core/TableContainer';
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
+
+const CustomerHeader = [
+    {
+        title: 'Name',
+    },
+    {
+        title: 'Phone',
+    },
+    {
+        title: 'Email',
+    },
+    {
+        title: 'Wallet Balance',
+    },
+    {
+        title: 'No Of Orders',
+    },
+    {
+        title: 'Actions',
+    },
+];
 
 function CustomersList({ DATA, showCustomer, handleShowEdit }) {
     const [currentPage, setCurrentPage] = useState(1);
@@ -58,173 +83,149 @@ function CustomersList({ DATA, showCustomer, handleShowEdit }) {
             </div>
             {/* Section */}
             <div className={cx('table')}>
-                <Table>
-                    <TableHead
-                        sx={{
-                            backgroundColor: '#f3f5f9',
-                        }}
-                    >
-                        <TableRow>
-                            <TableCell
-                                sx={{
-                                    fontSize: '1.4rem',
-                                    padding: '12px 16px 12px 24px',
-                                }}
-                            >
-                                Name
-                            </TableCell>
-                            <TableCell
-                                sx={{
-                                    fontSize: '1.4rem',
-                                    padding: '12px 16px 12px 24px',
-                                }}
-                            >
-                                Phone
-                            </TableCell>
-                            <TableCell
-                                sx={{
-                                    fontSize: '1.4rem',
-                                    padding: '12px 16px 12px 24px',
-                                }}
-                            >
-                                Email
-                            </TableCell>
-                            <TableCell
-                                sx={{
-                                    fontSize: '1.4rem',
-                                    padding: '12px 16px 12px 24px',
-                                }}
-                            >
-                                Wallet Balance
-                            </TableCell>
-                            <TableCell
-                                sx={{
-                                    fontSize: '1.4rem',
-                                    padding: '12px 16px 12px 24px',
-                                }}
-                            >
-                                No Of Orders
-                            </TableCell>
-                            <TableCell
-                                sx={{
-                                    fontSize: '1.4rem',
-                                    padding: '12px 16px 12px 24px',
-                                }}
-                            >
-                                Actions
-                            </TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {currentData?.map((item, index) => {
-                            return (
-                                <TableRow key={index}>
-                                    <TableCell
-                                        sx={{
-                                            padding: '12px 16px 12px 24px',
-                                            borderBottom: '1px solid #e3e9ef',
-                                        }}
-                                    >
-                                        <div className={cx('name')}>
-                                            <Image src={item.image} />
-                                            <span>{item.name}</span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell
-                                        sx={{
-                                            padding: '12px 16px 12px 24px',
-                                            borderBottom: '1px solid #e3e9ef',
-                                        }}
-                                    >
-                                        <span className={cx('phone')}>
-                                            {item.phone}
-                                        </span>
-                                    </TableCell>
-                                    <TableCell
-                                        sx={{
-                                            padding: '12px 16px 12px 24px',
-                                            borderBottom: '1px solid #e3e9ef',
-                                        }}
-                                    >
-                                        <span className={cx('email')}>
-                                            {item.email}
-                                        </span>
-                                    </TableCell>
-                                    <TableCell
-                                        sx={{
-                                            padding: '12px 16px 12px 24px',
-                                            borderBottom: '1px solid #e3e9ef',
-                                        }}
-                                    >
-                                        <span className={cx('wallet')}>
-                                            {item.wallet} US$
-                                        </span>
-                                    </TableCell>
-                                    <TableCell
-                                        sx={{
-                                            padding: '12px 16px 12px 24px',
-                                            borderBottom: '1px solid #e3e9ef',
-                                        }}
-                                    >
-                                        <span className={cx('noOfOrder')}>
-                                            {item.noOfOrder}
-                                        </span>
-                                    </TableCell>
-                                    <TableCell
-                                        sx={{
-                                            padding: '12px 16px 12px 10px',
-                                            borderBottom: '1px solid #e3e9ef',
-                                        }}
-                                    >
-                                        <Button
-                                            onClick={handleShowEdit}
+                <TableContainer component={Box}>
+                    <Table>
+                        <TableHead
+                            sx={{
+                                backgroundColor: '#f3f5f9',
+                            }}
+                        >
+                            <TableRow>
+                                {CustomerHeader.map((item, index) => {
+                                    return (
+                                        <TableCell
+                                            key={index}
+                                            align="right"
                                             sx={{
-                                                minWidth: '35px',
-                                                height: '35px',
-                                                borderRadius: '999px',
-                                                color: 'rgb(125, 135, 156)',
-
-                                                '&:hover': {
-                                                    backgroundColor:
-                                                        'rgba(0, 0, 0, 0.04)',
-                                                    color: 'rgb(78, 151, 253)',
-                                                },
+                                                fontSize: '1.4rem',
+                                                padding: '12px 16px 12px 24px',
+                                                textAlign: 'left',
                                             }}
                                         >
-                                            <EditIcon
-                                                sx={{
-                                                    minWidth: '20px',
-                                                    height: '20px',
-                                                }}
-                                            />
-                                        </Button>
-                                        <Button
+                                            {item.title}
+                                        </TableCell>
+                                    );
+                                })}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {currentData?.map((item, index) => {
+                                return (
+                                    <TableRow key={index}>
+                                        <TableCell
                                             sx={{
-                                                minWidth: '35px',
-                                                height: '35px',
-                                                borderRadius: '999px',
-                                                color: 'rgb(125, 135, 156)',
-
-                                                '&:hover': {
-                                                    backgroundColor:
-                                                        'rgba(0, 0, 0, 0.04)',
-                                                    color: 'rgb(78, 151, 253)',
-                                                },
+                                                padding: '12px 16px 12px 24px',
+                                                borderBottom:
+                                                    '1px solid #e3e9ef',
                                             }}
                                         >
-                                            <DeleteIcon
+                                            <div className={cx('name')}>
+                                                <Image src={item.image} />
+                                                <span>{item.name}</span>
+                                            </div>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                padding: '12px 16px 12px 24px',
+                                                borderBottom:
+                                                    '1px solid #e3e9ef',
+                                            }}
+                                        >
+                                            <span className={cx('phone')}>
+                                                {item.phone}
+                                            </span>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                padding: '12px 16px 12px 24px',
+                                                borderBottom:
+                                                    '1px solid #e3e9ef',
+                                            }}
+                                        >
+                                            <span className={cx('email')}>
+                                                {item.email}
+                                            </span>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                padding: '12px 16px 12px 24px',
+                                                borderBottom:
+                                                    '1px solid #e3e9ef',
+                                            }}
+                                        >
+                                            <span className={cx('wallet')}>
+                                                {item.wallet} US$
+                                            </span>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                padding: '12px 16px 12px 24px',
+                                                borderBottom:
+                                                    '1px solid #e3e9ef',
+                                            }}
+                                        >
+                                            <span className={cx('noOfOrder')}>
+                                                {item.noOfOrder}
+                                            </span>
+                                        </TableCell>
+                                        <TableCell
+                                            sx={{
+                                                padding: '12px 16px 12px 10px',
+                                                borderBottom:
+                                                    '1px solid #e3e9ef',
+                                                textAlign: 'center',
+                                            }}
+                                        >
+                                            <Button
+                                                onClick={handleShowEdit}
                                                 sx={{
-                                                    minWidth: '20px',
-                                                    height: '20px',
+                                                    minWidth: '35px',
+                                                    height: '35px',
+                                                    borderRadius: '999px',
+                                                    color: 'rgb(125, 135, 156)',
+
+                                                    '&:hover': {
+                                                        backgroundColor:
+                                                            'rgba(0, 0, 0, 0.04)',
+                                                        color: 'rgb(78, 151, 253)',
+                                                    },
                                                 }}
-                                            />
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
+                                            >
+                                                <EditIcon
+                                                    sx={{
+                                                        minWidth: '20px',
+                                                        height: '20px',
+                                                    }}
+                                                />
+                                            </Button>
+                                            <Button
+                                                sx={{
+                                                    minWidth: '35px',
+                                                    height: '35px',
+                                                    borderRadius: '999px',
+                                                    color: 'rgb(125, 135, 156)',
+
+                                                    '&:hover': {
+                                                        backgroundColor:
+                                                            'rgba(0, 0, 0, 0.04)',
+                                                        color: 'rgb(78, 151, 253)',
+                                                    },
+                                                }}
+                                            >
+                                                <DeleteIcon
+                                                    sx={{
+                                                        minWidth: '20px',
+                                                        height: '20px',
+                                                    }}
+                                                />
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
 
                 {/* Pagination */}
                 {currentData && (

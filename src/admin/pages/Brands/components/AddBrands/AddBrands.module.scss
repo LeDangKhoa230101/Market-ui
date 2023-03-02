@@ -56,3 +56,17 @@
     border-radius: 4px;
     box-shadow: rgb(3 0 71 / 9%) 0px 1px 3px;
 }
+
+// ------------
+// ------------
+// mobile
+@media (max-width: 767px) {
+    .container {
+        padding: 24px;
+    }
+
+    .upload-image {
+        padding: 24px;
+        text-align: center;
+    }
+}

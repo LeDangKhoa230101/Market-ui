@@ -1,14 +1,28 @@
 import styles from './EditCustomer.module.scss';
+import Image from '~/components/Image/Image';
 
 import classNames from 'classnames/bind';
 import { Button, Grid } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
-import Image from '~/components/Image/Image';
+
+import { useMediaQuery } from 'react-responsive';
 
 const cx = classNames.bind(styles);
 
 function EditCustomer({ showEdit, handleShowCustomer }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     const [images, setImages] = useState([]);
     const [imageURLs, setImageURLs] = useState([]);
 
@@ -55,7 +69,18 @@ function EditCustomer({ showEdit, handleShowCustomer }) {
                     <div className={cx('container')}>
                         <Grid container spacing={3}>
                             {/* Section 1 */}
-                            <Grid item xs={6}>
+                            <Grid
+                                item
+                                xs={
+                                    isDesktop
+                                        ? 6
+                                        : isTablet
+                                        ? 6
+                                        : isMobile
+                                        ? 12
+                                        : null
+                                }
+                            >
                                 <TextField
                                     fullWidth
                                     label="Full Name"
@@ -70,7 +95,18 @@ function EditCustomer({ showEdit, handleShowCustomer }) {
                                     }}
                                 />
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid
+                                item
+                                xs={
+                                    isDesktop
+                                        ? 6
+                                        : isTablet
+                                        ? 6
+                                        : isMobile
+                                        ? 12
+                                        : null
+                                }
+                            >
                                 <TextField
                                     fullWidth
                                     label="Phone"

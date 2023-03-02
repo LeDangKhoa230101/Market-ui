@@ -78,3 +78,13 @@
 .paginate {
     margin-top: 30px;
 }
+
+// ---------------
+// ---------------
+// ---------------
+// mobile
+@media (max-width: 767px) {
+    .paginate {
+        margin-right: 10px;
+    }
+}

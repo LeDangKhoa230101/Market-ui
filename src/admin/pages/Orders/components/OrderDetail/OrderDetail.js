@@ -7,9 +7,23 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
 
+import { useMediaQuery } from 'react-responsive';
+
 const cx = classNames.bind(styles);
 
 function OrderDetail({ showDetail, handleShowOrders }) {
+    const isDesktop = useMediaQuery({
+        query: '(min-width: 1223px)',
+    });
+
+    const isTablet = useMediaQuery({
+        query: '(min-width: 768px) and (max-width: 1223px)',
+    });
+
+    const isMobile = useMediaQuery({
+        query: '(max-width: 767px)',
+    });
+
     return (
         <div
             style={{
@@ -44,7 +58,15 @@ function OrderDetail({ showDetail, handleShowOrders }) {
                             {/* Section 1 */}
                             <Grid
                                 item
-                                xs={6}
+                                xs={
+                                    isDesktop
+                                        ? 6
+                                        : isTablet
+                                        ? 6
+                                        : isMobile
+                                        ? 12
+                                        : null
+                                }
                                 sx={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -66,52 +88,15 @@ function OrderDetail({ showDetail, handleShowOrders }) {
                                 xs={12}
                                 sx={{
                                     display: 'flex',
-                                    alignItems: 'center',
+                                    alignItems: isDesktop
+                                        ? 'center'
+                                        : isTablet
+                                        ? 'center'
+                                        : isMobile
+                                        ? 'flex-start'
+                                        : null,
                                     justifyContent: 'space-between',
-                                }}
-                            >
-                                <div className={cx('item')}>
-                                    <Image
-                                        className={cx('image')}
-                                        src="https://bazaar.ui-lib.com/assets/images/products/Automotive/2.Audi2017.png"
-                                    />
-                                    <div className={cx('item-body')}>
-                                        <span>Budi 2017</span>
-                                        <p>226,00 US$ x3</p>
-                                    </div>
-                                </div>
-                                <span className={cx('property')}>
-                                    Product properties: Black, L
-                                </span>
-                                <Button
-                                    sx={{
-                                        minWidth: '35px',
-                                        height: '35px',
-                                        borderRadius: '999px',
-                                        color: 'rgb(125, 135, 156)',
-
-                                        '&:hover': {
-                                            backgroundColor:
-                                                'rgba(0, 0, 0, 0.04)',
-                                            color: 'rgb(78, 151, 253)',
-                                        },
-                                    }}
-                                >
-                                    <DeleteIcon
-                                        sx={{
-                                            minWidth: '20px',
-                                            height: '20px',
-                                        }}
-                                    />
-                                </Button>
-                            </Grid>
-                            <Grid
-                                item
-                                xs={12}
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'space-between',
+                                    flexDirection: isMobile && 'column',
                                 }}
                             >
                                 <div className={cx('item')}>
@@ -153,7 +138,10 @@ function OrderDetail({ showDetail, handleShowOrders }) {
                     </div>
                 </Grid>
                 {/* Item 2 */}
-                <Grid item xs={6}>
+                <Grid
+                    item
+                    xs={isDesktop ? 6 : isTablet ? 6 : isMobile ? 12 : null}
+                >
                     <div className={cx('container')}>
                         <Grid item xs={12}>
                             <TextField
@@ -174,7 +162,10 @@ function OrderDetail({ showDetail, handleShowOrders }) {
                     </div>
                 </Grid>
                 {/* Item 3 */}
-                <Grid item xs={6}>
+                <Grid
+                    item
+                    xs={isDesktop ? 6 : isTablet ? 6 : isMobile ? 12 : null}
+                >
                     <div className={cx('container')}>
                         <Grid item xs={12}>
                             <h3 className={cx('title')}>Total Summary</h3>
