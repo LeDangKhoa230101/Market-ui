@@ -80,40 +80,7 @@ function ModalUser() {
                                     Welcome To Bazaar
                                 </span>
                             </div>
-                            <div>
-                                <LoginForm />
-                                <span className={cx('modal_user-seperate')}>
-                                    or
-                                </span>
-                                <div>
-                                    <Button
-                                        className={cx('modal_user-face-btn')}
-                                    >
-                                        <Image
-                                            className={cx(
-                                                'modal_user-face-icon',
-                                            )}
-                                            src="https://bazaar.ui-lib.com/assets/images/icons/facebook-filled-white.svg"
-                                            alt="facebook"
-                                        />
-                                        Continue With Facebook
-                                    </Button>
-                                </div>
-                                <div>
-                                    <Button
-                                        className={cx('modal_user-google-btn')}
-                                    >
-                                        <Image
-                                            className={cx(
-                                                'modal_user-google-icon',
-                                            )}
-                                            src="https://bazaar.ui-lib.com/assets/images/icons/google-1.svg"
-                                            alt="google"
-                                        />
-                                        Continue With Google
-                                    </Button>
-                                </div>
-                            </div>
+                            <LoginForm />
                             <div>
                                 <div className={cx('modal_user-footer')}>
                                     Don't have account?

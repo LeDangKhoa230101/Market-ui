@@ -13,7 +13,7 @@ function App() {
                     overflow: 'hidden',
                 }}
             >
-                {/* <Routes>
+                <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;
 
@@ -36,8 +36,8 @@ function App() {
                             />
                         );
                     })}
-                </Routes> */}
-                <Routes>
+                </Routes>
+                {/* <Routes>
                     {adminRoutes.map((route, index) => {
                         const Page = route.component;
 
@@ -61,7 +61,7 @@ function App() {
                             />
                         );
                     })}
-                </Routes>
+                </Routes> */}
             </div>
         </Router>
     );
